@@ -348,19 +348,24 @@ table {
   border: 0;
   box-sizing: border-box; }
 
-h1 {
-  font-size: 100%; }
+.about_us {
+  border-bottom: 1px solid #e5e7eb; }
 
 .banner {
   padding: 4.07em 5.07em;
   background: #2f3854;
   color: #fff; }
+  .banner h1 {
+    font-weight: normal; }
 
 body {
-  font: 100%/121.42% 'Helvetica Neue'; }
+  font: 125%/121.42% 'Helvetica Neue'; }
 
 form {
   overflow: auto; }
+
+h1 {
+  font-size: 100%; }
 
 input[type='email'],
 input[type='password'],
@@ -373,6 +378,11 @@ input[type='text'] {
   padding: 0 2.07em;
   width: 14.785em; }
 
+input[type=submit] {
+  background: #fff;
+  color: #9dc3ff;
+  margin-top: .85em; }
+
 input:not(:nth-child(2)) {
   margin-left: 2.07em; }
 
@@ -381,11 +391,14 @@ input:not(:nth-child(2)) {
   background-size: cover;
   background-position: center; }
 
-.locations, .log_in, .register {
+.log_in {
+  border-bottom: 1px solid #e5e7eb; }
+
+.about_us, .locations, .log_in, .register {
   padding: 4.07em 5.07em; }
-  .locations h1, .log_in h1, .register h1 {
+  .about_us h1, .locations h1, .log_in h1, .register h1 {
     color: #2f3854;
     font-weight: bold;
     text-transform: uppercase; }
-  .locations p, .log_in p, .register p {
+  .about_us p, .locations p, .log_in p, .register p {
     color: #6b7d98; }

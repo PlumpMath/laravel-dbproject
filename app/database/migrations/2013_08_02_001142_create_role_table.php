@@ -12,7 +12,7 @@ class CreateRoleTable extends Migration {
      */
     public function up()
     {
-        Schema::create('role', function(Blueprint $table) {
+        Schema::create('roles', function(Blueprint $table) {
             $table->increments('id');
             
             $table->timestamps();
@@ -26,7 +26,7 @@ class CreateRoleTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('role');
+        Schema::drop('roles');
     }
 
 }

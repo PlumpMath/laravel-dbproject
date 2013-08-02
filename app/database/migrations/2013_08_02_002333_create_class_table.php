@@ -12,7 +12,7 @@ class CreateClassTable extends Migration {
      */
     public function up()
     {
-        Schema::create('class', function(Blueprint $table) {
+        Schema::create('classes', function(Blueprint $table) {
             $table->increments('id');
             $table->integer('location_id');
             $table->integer('court_number');
@@ -30,7 +30,7 @@ class CreateClassTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('class');
+        Schema::drop('classes');
     }
 
 }

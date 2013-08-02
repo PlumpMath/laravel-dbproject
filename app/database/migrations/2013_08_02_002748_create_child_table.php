@@ -12,7 +12,7 @@ class CreateChildTable extends Migration {
      */
     public function up()
     {
-        Schema::create('child', function(Blueprint $table) {
+        Schema::create('children', function(Blueprint $table) {
             $table->increments('id');
             $table->timestamp('date_of_birth');
             $table->integer('age');
@@ -34,7 +34,7 @@ class CreateChildTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('child');
+        Schema::drop('children');
     }
 
 }

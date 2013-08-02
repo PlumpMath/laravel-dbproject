@@ -13,11 +13,13 @@
     <!-- LOG IN -->
     <div class='log_in'>
         {{ Form::open(['url' => '/']) }}
-        {{ Form::email('email', 'example@gmail.com') }}{{ Form::password('password') }}
+        {{ Form::email('email', 'example@gmail.com') }}{{ Form::password('password') }}{{ Form::submit('Sign In') }}
         {{ Form::close() }}
     </div>
     <!-- ABOUT US -->
-    <div>
+    <div class='about_us'>
+      <h1>Some killer copy about our programs.</h1>
+      <p>You want to know more? Me too!</p>
     </div>
     <!-- OUR LOCATIONS -->
     <div class='locations'>

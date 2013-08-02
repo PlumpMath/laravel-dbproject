@@ -5,9 +5,13 @@
     padding: 4.07em 5.07em;
 }
 
+$blue: #9dc3ff;
 $dark_blue: #2f3854;
 $mid_blue: #6b7d98;
 $light_blue: #e1edff;
+$gray: #e5e7eb;
+$dark_gray: #cfd2da;
+
 
 * {
     margin: 0;
@@ -16,22 +20,30 @@ $light_blue: #e1edff;
     box-sizing: border-box;
 }
 
-h1 {
-    font-size: 100%;
+.about_us {
+    border-bottom: 1px solid $gray;
 }
 
 .banner {
     @include padding;
     background: $dark_blue;
     color: #fff;
+
+    h1 {
+        font-weight: normal;
+    }
 }
 
 body {
-    font: 100%/121.42% 'Helvetica Neue';
+    font: 125%/121.42% 'Helvetica Neue';
 }
 
 form {
     overflow: auto;
+}
+
+h1 {
+    font-size: 100%;
 }
 
 input[type='email'],
@@ -46,6 +58,12 @@ input[type='text'] {
     width: 14.785em;
 }
 
+input[type=submit] {
+    background: #fff;
+    color: $blue;
+    margin-top: .85em;
+}
+
 input:not(:nth-child(2)) {
     margin-left: 2.07em;
 }
@@ -56,7 +74,11 @@ input:not(:nth-child(2)) {
     background-position: center;
 }
 
-.locations, .log_in, .register {
+.log_in {
+    border-bottom: 1px solid $gray;
+}
+
+.about_us, .locations, .log_in, .register {
     @include padding;
 
     h1 {
