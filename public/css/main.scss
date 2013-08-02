@@ -1,4 +1,71 @@
 @import "normalize";
 @import "fonts";
 
+@mixin padding {
+    padding: 4.07em 5.07em;
+}
+
 $dark_blue: #2f3854;
+$mid_blue: #6b7d98;
+$light_blue: #e1edff;
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+h1 {
+    font-size: 100%;
+}
+
+.banner {
+    @include padding;
+    background: $dark_blue;
+    color: #fff;
+}
+
+body {
+    font: 100%/121.42% 'Helvetica Neue';
+}
+
+form {
+    overflow: auto;
+}
+
+input[type='email'],
+input[type='password'],
+input[type='text'] {
+    background: $light_blue;
+    color: $mid_blue;
+    float: left;
+    height: 2.857em;
+    outline: none;
+    padding: 0 2.07em;
+    width: 14.785em;
+}
+
+input:not(:nth-child(2)) {
+    margin-left: 2.07em;
+}
+
+.locations {
+    background: url('../img/BigMap.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.locations, .log_in, .register {
+    @include padding;
+
+    h1 {
+        color: $dark_blue;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    p {
+        color: $mid_blue;
+    }
+}

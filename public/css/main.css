@@ -83,17 +83,6 @@ a:hover {
 /* ==========================================================================
    Typography
    ========================================================================== */
-/**
- * Address variable `h1` font-size and margin within `section` and `article`
- * contexts in Firefox 4+, Safari 5, and Chrome.
- */
-h1 {
-  font-size: 2em;
-  margin: 0.67em 0; }
-
-/**
- * Address styling not present in IE 8/9, Safari 5, and Chrome.
- */
 abbr[title] {
   border-bottom: 1px dotted; }
 
@@ -334,17 +323,69 @@ table {
 @font-face {
   font-family: "Helvetica Neue";
   /* DEV ONLY */
-  src: url("font/HelveticaNeueLTStd-Hv.otf");
-  src: url("font/HelveticaNeueLTStd-Hv.eot");
-  src: local("☺"), url("font/HelveticaNeueLTStd-Hv.woff") format("woff"), url("font/HelveticaNeueLTStd-Hv.ttf") format("truetype"), url("font/HelveticaNeueLTStd-Hv.svg") format("svg");
-  font-weight: "bold";
-  font-style: "normal"; }
+  src: url("../font/HelveticaNeueLTStd-Hv.otf");
+  /* PRODUCTION * /
+  src: url('../font/HelveticaNeueLTStd-Hv.eot');
+  src: local('☺'), url('../font/HelveticaNeueLTStd-Hv.woff') format('woff'), url('../font/HelveticaNeueLTStd-Hv.ttf') format('truetype'), url('../font/HelveticaNeueLTStd-Hv.svg') format('svg');
+  font-weight: $weight;
+  font-style: $style;
+  /**/ }
 
 @font-face {
   font-family: "Helvetica Neue";
   /* DEV ONLY */
-  src: url("font/HelveticaNeueLTStd-Roman.otf");
-  src: url("font/HelveticaNeueLTStd-Roman.eot");
-  src: local("☺"), url("font/HelveticaNeueLTStd-Roman.woff") format("woff"), url("font/HelveticaNeueLTStd-Roman.ttf") format("truetype"), url("font/HelveticaNeueLTStd-Roman.svg") format("svg");
-  font-weight: "normal";
-  font-style: "normal"; }
+  src: url("../font/HelveticaNeueLTStd-Roman.otf");
+  /* PRODUCTION * /
+  src: url('../font/HelveticaNeueLTStd-Roman.eot');
+  src: local('☺'), url('../font/HelveticaNeueLTStd-Roman.woff') format('woff'), url('../font/HelveticaNeueLTStd-Roman.ttf') format('truetype'), url('../font/HelveticaNeueLTStd-Roman.svg') format('svg');
+  font-weight: $weight;
+  font-style: $style;
+  /**/ }
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box; }
+
+h1 {
+  font-size: 100%; }
+
+.banner {
+  padding: 4.07em 5.07em;
+  background: #2f3854;
+  color: #fff; }
+
+body {
+  font: 100%/121.42% 'Helvetica Neue'; }
+
+form {
+  overflow: auto; }
+
+input[type='email'],
+input[type='password'],
+input[type='text'] {
+  background: #e1edff;
+  color: #6b7d98;
+  float: left;
+  height: 2.857em;
+  outline: none;
+  padding: 0 2.07em;
+  width: 14.785em; }
+
+input:not(:nth-child(2)) {
+  margin-left: 2.07em; }
+
+.locations {
+  background: url("../img/BigMap.png");
+  background-size: cover;
+  background-position: center; }
+
+.locations, .log_in, .register {
+  padding: 4.07em 5.07em; }
+  .locations h1, .log_in h1, .register h1 {
+    color: #2f3854;
+    font-weight: bold;
+    text-transform: uppercase; }
+  .locations p, .log_in p, .register p {
+    color: #6b7d98; }

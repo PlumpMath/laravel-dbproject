@@ -17,9 +17,7 @@
             @yield('content')
         </div>
 
-        {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js') }}
-        <script>window.jQuery || document.write('{{ HTML::script('js/vendor/jquery-2.0.3.min.js' }}')</script>
-        {{ HTML::script('js/helper.js') }}
-        {{ HTML::script('js/main.js') }}
+        {{ HTML::script('//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js') }}
+        <script>window.jQuery || document.write('<script src=\'js/vendor/jquery-1.10.2.min.js\'><\/script>')</script>
     </body>
 </html>

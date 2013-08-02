@@ -1,17 +1,18 @@
 @mixin font_add($name, $file, $weight, $style) {
     font-family: $name;
     /* DEV ONLY */ src: url('#{$file}.otf');
+    /* PRODUCTION * /
     src: url('#{$file}.eot');
     src: local('☺'), url('#{$file}.woff') format('woff'), url('#{$file}.ttf') format('truetype'), url('#{$file}.svg') format('svg');
     font-weight: $weight;
     font-style: $style;
-
+    /**/
 }
 
 @font-face {
-    @include font_add('Helvetica Neue','font/HelveticaNeueLTStd-Hv', 'bold', 'normal');
+    @include font_add('Helvetica Neue', '../font/HelveticaNeueLTStd-Hv', 'bold', 'normal');
 }
 
 @font-face {
-    @include font_add('Helvetica Neue', 'font/HelveticaNeueLTStd-Roman', 'normal', 'normal');
+    @include font_add('Helvetica Neue', '../font/HelveticaNeueLTStd-Roman', 'normal', 'normal');
 }
