@@ -14,7 +14,11 @@ class CreateClassTable extends Migration {
     {
         Schema::create('class', function(Blueprint $table) {
             $table->increments('id');
-            
+            $table->integer('location_id');
+            $table->integer('court_number');
+            $table->integer('spots_total');
+            $table->integer('spots_available');
+            $table->decimal('price', 5, 2);
             $table->timestamps();
         });
     }
