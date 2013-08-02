@@ -26,8 +26,6 @@ class CreateUserTable extends Migration {
             $table->string('last_logged_in_from', 12);
             $table->timestamp('last_logged_in_at');
             $table->boolean('stay_logged_in');
-            $table->boolean('validated');
-            $table->integer('permissions');
             $table->boolean('active');
             $table->timestamp('deleted_at');
             $table->timestamps();    
