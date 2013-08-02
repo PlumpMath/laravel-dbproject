@@ -3,3 +3,8 @@
 composer.phar
 composer.lock
 .DS_Store
+.*
+*~
+\#*\#
+error_log
+app/config/app.php
