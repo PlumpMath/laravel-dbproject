@@ -30,6 +30,7 @@ $dark_gray: #cfd2da;
     color: #fff;
 
     h1 {
+        font-size: .7071em;
         font-weight: normal;
     }
 }
@@ -90,4 +91,8 @@ input:not(:nth-child(2)) {
     p {
         color: $mid_blue;
     }
+}
+
+.register {
+    text-align: center;
 }
