@@ -19,6 +19,20 @@ Route::post('/', function () {
         }
     });
 
+Route::get('/logout', function() {
+        if (!Auth::guest()) {
+            Auth::logout();
+        }
+
+        return Redirect::to('/');
+    });
+
+// USERS
+
+Route::get('/users', function () {
+        return 'A list of all users';
+    });
+
 Route::get('/users/{id}', function ($id) {
         if (Auth::guest()){
             return Redirect::to('/');
@@ -30,3 +44,15 @@ Route::get('/users/{id}', function ($id) {
             }
         }
     });
+
+//Resources
+
+Route::resource('classes', 'ClassController');
+
+Route::resource('children', 'ChildController');
+
+Route::resource('roles', 'RolesController');
+
+Route::resource('permissions', 'PermissionController');
+
+Route::resource('locations', 'LocationController');

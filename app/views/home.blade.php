@@ -26,7 +26,7 @@
       <p>You want to know more? Me too!</p>
     </div>
     <!-- OUR LOCATIONS -->
-    <div class='locations'>
+    <div class='our_locations'>
         <h1>Wherever you may be.</h1>
         <p>With over 6 locations, we're bringing our home to yours.</p>
     </div>

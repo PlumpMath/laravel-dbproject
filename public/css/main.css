@@ -350,19 +350,43 @@ table {
   border: 0;
   box-sizing: border-box; }
 
+a {
+  color: inherit;
+  text-decoration: none; }
+
 .about_us {
   border-bottom: 1px solid #e5e7eb;
   border-top: 1px solid #e5e7eb; }
 
-.about_us, .locations, .log_in, .register {
+.about_us, .our_locations, .log_in, .register {
   padding: 4.07em 5.07em;
   background: #fff; }
-  .about_us h1, .locations h1, .log_in h1, .register h1 {
+  .about_us h1, .our_locations h1, .log_in h1, .register h1 {
     color: #2f3854;
     font-weight: bold;
     text-transform: uppercase; }
-  .about_us p, .locations p, .log_in p, .register p {
+  .about_us p, .our_locations p, .log_in p, .register p {
     color: #6b7d98; }
+
+.actionable_item {
+  padding: 4.07em 5.07em;
+  color: #fff; }
+  .actionable_item h1 {
+    display: inline;
+    font-weight: normal;
+    text-transform: uppercase; }
+  .actionable_item.classes {
+    background: #aa86e8; }
+  .actionable_item.users {
+    background: #7b8ae9; }
+  .actionable_item.locations {
+    background: #ffd394; }
+  .actionable_item.permissions {
+    background: #ffa894; }
+  .actionable_item.roles {
+    background: #95beff; }
+  .actionable_item.children {
+    background: #6e7bcf; }
 
 .banner, .top_menu {
   padding: 4.07em 5.07em;
@@ -377,6 +401,9 @@ body {
 
 .bold {
   font-weight: bold; }
+
+.default {
+  background: url("../img/default_icon.png"); }
 
 .errors {
   clear: left;
@@ -409,14 +436,8 @@ h1 {
   visibility: visible;
   z-index: 9; }
 
-.page_push {
-  -webkit-transform: translateY(0);
-  -webkit-transition: 500ms;
-  transition: 500ms; }
-  .page_push.page_push_end {
-    -webkit-transform: translateY(11.4375rem); }
-
 .icon {
+  cursor: pointer;
   display: inline-block;
   height: 41px;
   margin-right: 2.07em;
@@ -448,10 +469,16 @@ input[type='password'] {
 li {
   margin-bottom: 1.125em; }
 
-.locations {
+.our_locations {
   background: url("../img/BigMap.png");
   background-size: cover;
   background-position: center; }
+
+.page_push {
+  -webkit-transform: translateY(0);
+  transition: 500ms ease; }
+  .page_push.page_push_end {
+    -webkit-transform: translateY(11.4375rem); }
 
 .page_wrapper {
   position: relative;
