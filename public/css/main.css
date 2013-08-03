@@ -320,6 +320,19 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+/**/
+@font-face {
+  font-family: "Helvetica Neue";
+  /* DEV ONLY */
+  src: url("../font/HelveticaNeueLTStd-Lt.otf");
+  /* PRODUCTION * /
+  src: url('../font/HelveticaNeueLTStd-Lt.eot');
+  src: local('☺'), url('../font/HelveticaNeueLTStd-Lt.woff') format('woff'), url('../font/HelveticaNeueLTStd-Lt.ttf') format('truetype'), url('../font/HelveticaNeueLTStd-Lt.svg') format('svg');
+  /**/
+  font-weight: normal; }
+
+/**/
+/**/
 @font-face {
   font-family: "Helvetica Neue";
   /* DEV ONLY */
@@ -327,21 +340,10 @@ table {
   /* PRODUCTION * /
   src: url('../font/HelveticaNeueLTStd-Hv.eot');
   src: local('☺'), url('../font/HelveticaNeueLTStd-Hv.woff') format('woff'), url('../font/HelveticaNeueLTStd-Hv.ttf') format('truetype'), url('../font/HelveticaNeueLTStd-Hv.svg') format('svg');
-  font-weight: $weight;
-  font-style: $style;
-  /**/ }
+  /**/
+  font-weight: bold; }
 
-@font-face {
-  font-family: "Helvetica Neue";
-  /* DEV ONLY */
-  src: url("../font/HelveticaNeueLTStd-Roman.otf");
-  /* PRODUCTION * /
-  src: url('../font/HelveticaNeueLTStd-Roman.eot');
-  src: local('☺'), url('../font/HelveticaNeueLTStd-Roman.woff') format('woff'), url('../font/HelveticaNeueLTStd-Roman.ttf') format('truetype'), url('../font/HelveticaNeueLTStd-Roman.svg') format('svg');
-  font-weight: $weight;
-  font-style: $style;
-  /**/ }
-
+/**/
 * {
   margin: 0;
   padding: 0;
@@ -361,16 +363,19 @@ table {
   .about_us p, .locations p, .log_in p, .register p {
     color: #6b7d98; }
 
-.banner {
+.banner, .top_menu {
   padding: 4.07em 5.07em;
   background: #2f3854;
   color: #fff; }
-  .banner h1 {
+  .banner h1, .top_menu h1 {
     font-size: .7071em;
     font-weight: normal; }
 
 body {
-  font: 125%/121.42% 'Helvetica Neue'; }
+  font: 100%/121.42% 'Helvetica Neue'; }
+
+.bold {
+  font-weight: bold; }
 
 .errors {
   clear: left;
@@ -378,11 +383,29 @@ body {
   .errors p {
     color: #ff87b2; }
 
+.expand_menu {
+  background: url("../img/menu_icon.png");
+  height: 12px;
+  margin-top: .25em;
+  width: 2.07em; }
+
 form {
   overflow: auto; }
 
 h1 {
   font-size: 100%; }
+
+.hidden_menu {
+  background: #2f3854;
+  color: #fff;
+  padding: 0 5.07em 4.07em 5.07em; }
+
+.icon {
+  display: inline-block;
+  height: 41px;
+  margin-right: 2.07em;
+  vertical-align: middle;
+  width: 41px; }
 
 input[type='email'],
 input[type='password'],
@@ -403,10 +426,36 @@ input[type=submit] {
 input:not(:nth-child(2)) {
   margin-left: 2.07em; }
 
+.left {
+  float: left; }
+
+li {
+  margin-bottom: 1.125em; }
+
 .locations {
   background: url("../img/BigMap.png");
   background-size: cover;
   background-position: center; }
 
+#personal_settings_icon {
+  background: url("../img/personal_settings_icon.png"); }
+
+.right {
+  float: right; }
+
 .register {
   text-align: center; }
+
+#sign_out_icon {
+  background: url("../img/sign_out_icon.png");
+  margin-left: -15px;
+  width: 56px; }
+
+.top_menu {
+  overflow: auto; }
+  .top_menu h1 {
+    font-size: 100%;
+    text-transform: uppercase; }
+
+ul {
+  list-style: none; }

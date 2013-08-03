@@ -20,7 +20,7 @@ class UsersTableSeeder extends Seeder {
     public function run()
     {
 
-        $now = date('U-m-d H:i:s');
+        $now = date('Y-m-d H:i:s');
 
         $users = array(
 

@@ -39,7 +39,7 @@ $pink: #ff87b2;
     }
 }
 
-.banner {
+.banner, .top_menu {
     @include padding;
     background: $dark_blue;
     color: #fff;
@@ -51,7 +51,11 @@ $pink: #ff87b2;
 }
 
 body {
-    font: 125%/121.42% 'Helvetica Neue';
+    font: 100%/121.42% 'Helvetica Neue';
+}
+
+.bold {
+    font-weight: bold;
 }
 
 .errors {
@@ -63,12 +67,33 @@ body {
     }
 }
 
+.expand_menu {
+    background: url('../img/menu_icon.png');
+    height: 12px;
+    margin-top: .25em;
+    width: 2.07em;
+}
+
 form {
     overflow: auto;
 }
 
 h1 {
     font-size: 100%;
+}
+
+.hidden_menu {
+    background: $dark_blue;
+    color: #fff;
+    padding: 0 5.07em 4.07em 5.07em;
+}
+
+.icon {
+    display: inline-block;
+    height: 41px;
+    margin-right: 2.07em;
+    vertical-align: middle;
+    width: 41px;
 }
 
 input[type='email'],
@@ -93,12 +118,47 @@ input:not(:nth-child(2)) {
     margin-left: 2.07em;
 }
 
+.left {
+    float: left;
+}
+
+li {
+    margin-bottom: 1.125em;
+}
+
 .locations {
     background: url('../img/BigMap.png');
     background-size: cover;
     background-position: center;
 }
 
+#personal_settings_icon {
+    background: url('../img/personal_settings_icon.png');
+}
+
+.right {
+    float: right;
+}
+
 .register {
     text-align: center;
+}
+
+#sign_out_icon {
+    background: url('../img/sign_out_icon.png');
+    margin-left: -15px;
+    width: 56px;
+}
+
+.top_menu {
+    overflow: auto;
+
+    h1 {
+        font-size: 100%;
+        text-transform: uppercase;
+    }
+}
+
+ul {
+    list-style: none;
 }
