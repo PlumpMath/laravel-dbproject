@@ -15,6 +15,10 @@
         {{ Form::open(['url' => '/']) }}
         {{ Form::email('email', 'example@gmail.com') }}{{ Form::password('password') }}{{ Form::submit('Sign In') }}
         {{ Form::close() }}
+    <!-- ERRORS -->
+        @if (Session::has('login_errors'))
+        <div class='errors'><p>Username or password incorrect.</p></div>
+        @endif
     </div>
     <!-- ABOUT US -->
     <div class='about_us'>

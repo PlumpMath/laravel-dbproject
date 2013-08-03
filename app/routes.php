@@ -5,12 +5,16 @@ Route::get('/', function () {
     });
 
 Route::post('/', function () {
-        $email = Input::get('email');
-        $password = Input::get('password');
+        $userdata = array(
 
-        if (Auth::attempt(array('email' => $email, 'password' => $password), true)) {
-            return 'Authenticated';
+                          'email'    => Input::get('email'),
+                          'password' => Input::get('password'),
+
+                          );
+
+        if (Auth::attempt($userdata, true)) {
+            return Redirect::to('/users/'.Auth::user()->id.'/');
         } else {
-            return 'User does not exist.';
+            return Redirect::to('/')->with('login_errors', true);
         }
     });

@@ -7,11 +7,11 @@
 
 $blue: #9dc3ff;
 $dark_blue: #2f3854;
+$dark_gray: #cfd2da;
+$gray: #e5e7eb;
 $mid_blue: #6b7d98;
 $light_blue: #e1edff;
-$gray: #e5e7eb;
-$dark_gray: #cfd2da;
-
+$pink: #ff87b2;
 
 * {
     margin: 0;
@@ -22,6 +22,21 @@ $dark_gray: #cfd2da;
 
 .about_us {
     border-bottom: 1px solid $gray;
+    border-top: 1px solid $gray;
+}
+
+.about_us, .locations, .log_in, .register {
+    @include padding;
+
+    h1 {
+        color: $dark_blue;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    p {
+        color: $mid_blue;
+    }
 }
 
 .banner {
@@ -37,6 +52,15 @@ $dark_gray: #cfd2da;
 
 body {
     font: 125%/121.42% 'Helvetica Neue';
+}
+
+.errors {
+    clear: left;
+    padding-top: 2.07em;
+    
+    p {
+        color: $pink;
+    }
 }
 
 form {
@@ -73,24 +97,6 @@ input:not(:nth-child(2)) {
     background: url('../img/BigMap.png');
     background-size: cover;
     background-position: center;
-}
-
-.log_in {
-    border-bottom: 1px solid $gray;
-}
-
-.about_us, .locations, .log_in, .register {
-    @include padding;
-
-    h1 {
-        color: $dark_blue;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    p {
-        color: $mid_blue;
-    }
 }
 
 .register {
