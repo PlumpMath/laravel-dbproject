@@ -355,7 +355,8 @@ table {
   border-top: 1px solid #e5e7eb; }
 
 .about_us, .locations, .log_in, .register {
-  padding: 4.07em 5.07em; }
+  padding: 4.07em 5.07em;
+  background: #fff; }
   .about_us h1, .locations h1, .log_in h1, .register h1 {
     color: #2f3854;
     font-weight: bold;
@@ -385,6 +386,7 @@ body {
 
 .expand_menu {
   background: url("../img/menu_icon.png");
+  cursor: pointer;
   height: 12px;
   margin-top: .25em;
   width: 2.07em; }
@@ -398,7 +400,21 @@ h1 {
 .hidden_menu {
   background: #2f3854;
   color: #fff;
-  padding: 0 5.07em 4.07em 5.07em; }
+  height: 11.4375rem;
+  padding: 0 5.07rem 4.07rem 5.07rem;
+  position: absolute;
+  top: 9.375rem;
+  left: 0;
+  right: 0;
+  visibility: visible;
+  z-index: 9; }
+
+.page_push {
+  -webkit-transform: translateY(0);
+  -webkit-transition: 500ms;
+  transition: 500ms; }
+  .page_push.page_push_end {
+    -webkit-transform: translateY(11.4375rem); }
 
 .icon {
   display: inline-block;
@@ -423,7 +439,7 @@ input[type=submit] {
   color: #9dc3ff;
   margin-top: .85em; }
 
-input:not(:nth-child(2)) {
+input[type='password'] {
   margin-left: 2.07em; }
 
 .left {
@@ -436,6 +452,10 @@ li {
   background: url("../img/BigMap.png");
   background-size: cover;
   background-position: center; }
+
+.page_wrapper {
+  position: relative;
+  z-index: 10; }
 
 #personal_settings_icon {
   background: url("../img/personal_settings_icon.png"); }
