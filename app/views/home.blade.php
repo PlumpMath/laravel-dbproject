@@ -12,7 +12,7 @@
     </div>
     <!-- LOG IN -->
     <div class='log_in'>
-        {{ Form::open(['url' => '/']) }}
+        {{ Form::open(array('url' => '/')) }}
         {{ Form::email('email', 'example@gmail.com') }}{{ Form::password('password') }}{{ Form::submit('Sign In') }}
         {{ Form::close() }}
     <!-- ERRORS -->

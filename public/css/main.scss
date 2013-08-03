@@ -5,7 +5,7 @@
     padding: 4.07em 5.07em;
 }
 
-$blue: #9dc3ff;
+$blue: #95beff;
 $dark_blue: #2f3854;
 $dark_gray: #cfd2da;
 $gray: #e5e7eb;
@@ -21,7 +21,7 @@ $pink: #ff87b2;
 }
 
 a {
-    color: inherit;
+    color: $blue;
     text-decoration: none;
 }
 
@@ -30,7 +30,7 @@ a {
     border-top: 1px solid $gray;
 }
 
-.about_us, .our_locations, .log_in, .register {
+.about_us, .our_locations, .log_in, .register, .the_manual {
     @include padding;
     background: #fff;
 
@@ -48,10 +48,21 @@ a {
 .actionable_item {
     @include padding;
     color: #fff;
+    overflow: auto;
+
+    .right {
+        margin-top: -4px;
+    }
+
     h1 {
         display: inline;
         font-weight: normal;
         text-transform: uppercase;
+    }
+
+    form {
+        display: inline;
+        margin-left: 4.14rem;
     }
 
     &.classes {
@@ -63,11 +74,11 @@ a {
     }
 
     &.locations {
-        background: #ffd394;
+        background: #ffa894;
     }
 
     &.permissions {
-        background: #ffa894;
+        background: #ffd394;
     }
 
     &.roles {
@@ -85,7 +96,6 @@ a {
     color: #fff;
 
     h1 {
-        font-size: .7071em;
         font-weight: normal;
     }
 }
@@ -138,6 +148,19 @@ h1 {
         right: 0;
     visibility: visible;
     z-index: 9;
+
+    a {
+        color: #fff;
+    }
+   
+    li:first-child {
+        margin-top: 8px;
+    }
+ 
+    li {
+        margin-bottom: 1.125em;
+    }
+
 }
 
 .icon {
@@ -145,6 +168,7 @@ h1 {
     display: inline-block;
     height: 41px;
     margin-right: 2.07em;
+    margin-top: - 4px;
     vertical-align: middle;
     width: 41px;
 }
@@ -154,7 +178,6 @@ input[type='password'],
 input[type='text'] {
     background: $light_blue;
     color: $mid_blue;
-    float: left;
     height: 2.857em;
     outline: none;
     padding: 0 2.07em;
@@ -167,16 +190,12 @@ input[type=submit] {
     margin-top: .85em;
 }
 
-input[type='password'] {
+input[type='email'] ~ input {
     margin-left: 2.07em;
 }
 
 .left {
     float: left;
-}
-
-li {
-    margin-bottom: 1.125em;
 }
 
 .our_locations {
@@ -207,7 +226,15 @@ li {
 }
 
 .register {
+    padding: 8.14rem 10.14rem;
     text-align: center;
+}
+
+.sign_in {
+
+    input {
+        float: left;
+    }
 }
 
 #sign_out_icon {
@@ -216,11 +243,51 @@ li {
     width: 56px;
 }
 
+.tasks {
+    @include padding;
+    background: #fff;
+
+    h1 {
+        text-transform: uppercase;
+        margin-bottom: 1.125rem;
+        font-weight: bold;
+        color: $dark_blue;
+    }
+
+    h2 {
+        font-size: 1rem;
+        font-weight: normal;
+        color: $mid_blue
+    }
+    
+    ul {
+        margin-bottom: 2.07em;
+    }
+
+    li {
+        color: $blue;
+    }
+
+}
+
+.the_manual {
+    
+    h1 {
+        display: inline-block;
+        margin-bottom: 1.125em;
+        margin-right: 2.07em;
+    }
+
+    p {
+        display: inline;
+    }
+        
+}
+
 .top_menu {
     overflow: auto;
 
     h1 {
-        font-size: 100%;
         text-transform: uppercase;
     }
 }

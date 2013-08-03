@@ -351,38 +351,44 @@ table {
   box-sizing: border-box; }
 
 a {
-  color: inherit;
+  color: #95beff;
   text-decoration: none; }
 
 .about_us {
   border-bottom: 1px solid #e5e7eb;
   border-top: 1px solid #e5e7eb; }
 
-.about_us, .our_locations, .log_in, .register {
+.about_us, .our_locations, .log_in, .register, .the_manual {
   padding: 4.07em 5.07em;
   background: #fff; }
-  .about_us h1, .our_locations h1, .log_in h1, .register h1 {
+  .about_us h1, .our_locations h1, .log_in h1, .register h1, .the_manual h1 {
     color: #2f3854;
     font-weight: bold;
     text-transform: uppercase; }
-  .about_us p, .our_locations p, .log_in p, .register p {
+  .about_us p, .our_locations p, .log_in p, .register p, .the_manual p {
     color: #6b7d98; }
 
 .actionable_item {
   padding: 4.07em 5.07em;
-  color: #fff; }
+  color: #fff;
+  overflow: auto; }
+  .actionable_item .right {
+    margin-top: -4px; }
   .actionable_item h1 {
     display: inline;
     font-weight: normal;
     text-transform: uppercase; }
+  .actionable_item form {
+    display: inline;
+    margin-left: 4.14rem; }
   .actionable_item.classes {
     background: #aa86e8; }
   .actionable_item.users {
     background: #7b8ae9; }
   .actionable_item.locations {
-    background: #ffd394; }
-  .actionable_item.permissions {
     background: #ffa894; }
+  .actionable_item.permissions {
+    background: #ffd394; }
   .actionable_item.roles {
     background: #95beff; }
   .actionable_item.children {
@@ -393,7 +399,6 @@ a {
   background: #2f3854;
   color: #fff; }
   .banner h1, .top_menu h1 {
-    font-size: .7071em;
     font-weight: normal; }
 
 body {
@@ -435,12 +440,19 @@ h1 {
   right: 0;
   visibility: visible;
   z-index: 9; }
+  .hidden_menu a {
+    color: #fff; }
+  .hidden_menu li:first-child {
+    margin-top: 8px; }
+  .hidden_menu li {
+    margin-bottom: 1.125em; }
 
 .icon {
   cursor: pointer;
   display: inline-block;
   height: 41px;
   margin-right: 2.07em;
+  margin-top: -4px;
   vertical-align: middle;
   width: 41px; }
 
@@ -449,7 +461,6 @@ input[type='password'],
 input[type='text'] {
   background: #e1edff;
   color: #6b7d98;
-  float: left;
   height: 2.857em;
   outline: none;
   padding: 0 2.07em;
@@ -457,17 +468,14 @@ input[type='text'] {
 
 input[type=submit] {
   background: #fff;
-  color: #9dc3ff;
+  color: #95beff;
   margin-top: .85em; }
 
-input[type='password'] {
+input[type='email'] ~ input {
   margin-left: 2.07em; }
 
 .left {
   float: left; }
-
-li {
-  margin-bottom: 1.125em; }
 
 .our_locations {
   background: url("../img/BigMap.png");
@@ -491,17 +499,44 @@ li {
   float: right; }
 
 .register {
+  padding: 8.14rem 10.14rem;
   text-align: center; }
+
+.sign_in input {
+  float: left; }
 
 #sign_out_icon {
   background: url("../img/sign_out_icon.png");
   margin-left: -15px;
   width: 56px; }
 
+.tasks {
+  padding: 4.07em 5.07em;
+  background: #fff; }
+  .tasks h1 {
+    text-transform: uppercase;
+    margin-bottom: 1.125rem;
+    font-weight: bold;
+    color: #2f3854; }
+  .tasks h2 {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #6b7d98; }
+  .tasks ul {
+    margin-bottom: 2.07em; }
+  .tasks li {
+    color: #95beff; }
+
+.the_manual h1 {
+  display: inline-block;
+  margin-bottom: 1.125em;
+  margin-right: 2.07em; }
+.the_manual p {
+  display: inline; }
+
 .top_menu {
   overflow: auto; }
   .top_menu h1 {
-    font-size: 100%;
     text-transform: uppercase; }
 
 ul {

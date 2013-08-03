@@ -45,6 +45,10 @@ Route::get('/users/{id}', function ($id) {
         }
     });
 
+Route::get('/classes/search', function () {
+        return 'Search';
+    });
+
 //Resources
 
 Route::resource('classes', 'ClassController');
