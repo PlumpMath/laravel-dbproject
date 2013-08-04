@@ -50,6 +50,10 @@ a {
     color: #fff;
     overflow: auto;
 
+    a {
+        color: #fff;
+    }
+
     .right {
         margin-top: -4px;
     }
@@ -129,8 +133,47 @@ body {
     width: 2.07em;
 }
 
-form {
-    overflow: auto;
+.options {
+    @include padding;
+    background: #fff;
+    color: $mid_blue;
+    
+    .filter {
+        margin-bottom: 1.125rem;
+    }
+
+    .select {
+        position: relative;
+        z-index: 10;
+        background: $light_blue;
+        color: $mid_blue;
+        height: 2.857em;
+        width: 14.785em;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 2.07rem;
+        
+        &:hover {
+            li ~ li {
+                display: block;
+            }
+
+            li:not(:last-child) {
+                border-bottom: 1px solid #d5e2f4;
+            }
+        }
+    }
+
+    li {
+        background: $light_blue;
+        padding-top: .6rem;
+        padding-bottom: 1.1rem;
+        text-align: center;
+    }
+
+    li ~ li {
+        display: none;
+    }
 }
 
 h1 {

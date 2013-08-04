@@ -30,7 +30,11 @@ Route::get('/logout', function() {
 // USERS
 
 Route::get('/users', function () {
-        return 'A list of all users';
+        if (Auth::guest()) {
+            return Redirect::to('/');
+        } else {
+            return View::make('users.index', array('title' => 'Users | myafterschoolprograms'));
+        }
     });
 
 Route::get('/users/{id}', function ($id) {
@@ -40,13 +44,25 @@ Route::get('/users/{id}', function ($id) {
             if (Auth::user()->id != $id) {
                 return Redirect::to('/');
             } else {
-                return View::make('users.index', array('title' => Auth::user()->first_name." ".Auth::user()->last_name." | myafterschoolprograms"));
+                return View::make('users.show', array('title' => Auth::user()->first_name.' '.Auth::user()->last_name.' | myafterschoolprograms'));
             }
         }
     });
 
-Route::get('/classes/search', function () {
-        return 'Search';
+Route::post('/classes/search', function () {
+        return 'Search Classes';
+    });
+
+Route::post('/locations/search', function () {
+        return 'Search Locations';
+    });
+
+Route::post('/users/search', function () {
+        return 'Search Users';
+    });
+
+Route::get('/the_manual', function() {
+        return 'THE MANUAL';
     });
 
 //Resources

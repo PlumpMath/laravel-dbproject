@@ -324,10 +324,10 @@ table {
 @font-face {
   font-family: "Helvetica Neue";
   /* DEV ONLY */
-  src: url("../font/HelveticaNeueLTStd-Lt.otf");
+  src: url("../font/HelveticaNeueLTStd-Roman.otf");
   /* PRODUCTION * /
-  src: url('../font/HelveticaNeueLTStd-Lt.eot');
-  src: local('☺'), url('../font/HelveticaNeueLTStd-Lt.woff') format('woff'), url('../font/HelveticaNeueLTStd-Lt.ttf') format('truetype'), url('../font/HelveticaNeueLTStd-Lt.svg') format('svg');
+  src: url('../font/HelveticaNeueLTStd-Roman.eot');
+  src: local('☺'), url('../font/HelveticaNeueLTStd-Roman.woff') format('woff'), url('../font/HelveticaNeueLTStd-Roman.ttf') format('truetype'), url('../font/HelveticaNeueLTStd-Roman.svg') format('svg');
   /**/
   font-weight: normal; }
 
@@ -372,6 +372,8 @@ a {
   padding: 4.07em 5.07em;
   color: #fff;
   overflow: auto; }
+  .actionable_item a {
+    color: #fff; }
   .actionable_item .right {
     margin-top: -4px; }
   .actionable_item h1 {
@@ -423,8 +425,33 @@ body {
   margin-top: .25em;
   width: 2.07em; }
 
-form {
-  overflow: auto; }
+.options {
+  padding: 4.07em 5.07em;
+  background: #fff;
+  color: #6b7d98; }
+  .options .filter {
+    margin-bottom: 1.125rem; }
+  .options .select {
+    position: relative;
+    z-index: 10;
+    background: #e1edff;
+    color: #6b7d98;
+    height: 2.857em;
+    width: 14.785em;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 2.07rem; }
+    .options .select:hover li ~ li {
+      display: block; }
+    .options .select:hover li:not(:last-child) {
+      border-bottom: 1px solid #d5e2f4; }
+  .options li {
+    background: #e1edff;
+    padding-top: .6rem;
+    padding-bottom: 1.1rem;
+    text-align: center; }
+  .options li ~ li {
+    display: none; }
 
 h1 {
   font-size: 100%; }
