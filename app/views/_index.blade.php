@@ -3,30 +3,36 @@
 @section('content')
     @include('top_menu')
     <div class='page_wrapper' id='page_wrapper'>
-      <div class='actionable_item users'>
+      <div class='actionable_item {{ strtolower($class_name) }}'>
               <div class='default icon'></div>
-              <h1>Users</h1>
+              <h1>{{ $class_name }}</h1>
       </div>
       <div class='options'>
         <div class='filter'>
         Filter by
         <div class='select'>
-          <ul>
-            <li>Date</li>
-            <li>Grade</li>
-            <li>Time</li>
-          </ul>
+             {{ $options }}
         </div>
         in
         <div class='select'>
           <ul>
-            <li>Desc</li>
             <li>Asc</li>
+            <li>Desc</li>
           </ul>
         </div>
         order
         </div>
-        <div class='only_show'>Only show eligible classes</div>
+        </div>
+      <div class='list'>
+        @if (count($lists) === 0)
+            <ul>
+              <li class='empty'>There are no {{ strtolower($class_name) }}.<a href='{{ $URL }}'> Create one?</a></li>
+            </ul>
+        @else
+            @foreach ($lists as $list)
+                {{ $list }}
+            @endforeach
+        @endif
       </div>
     </div>
 @stop

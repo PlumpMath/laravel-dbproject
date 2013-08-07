@@ -504,6 +504,43 @@ input[type='email'] ~ input {
 .left {
   float: left; }
 
+.list {
+  padding: 4.07em 5.07em;
+  color: #6b7d98; }
+  .list ul {
+    border-top: 1px solid #cfd2da; }
+    .list ul:last-child {
+      border-bottom: 1px solid #cfd2da; }
+    .list ul:before, .list ul:after {
+      content: " ";
+      /* 1 */
+      display: table;
+      /* 2 */ }
+    .list ul:after {
+      clear: both; }
+  .list li {
+    padding: 4.07rem 0;
+    text-align: center;
+    float: left; }
+    .list li.name {
+      background: #e5e7eb;
+      width: 15.21rem;
+      color: #2f3854;
+      font-weight: bold;
+      text-transform: uppercase; }
+    .list li.edit, .list li.delete {
+      border-left: 1px solid #e5e7eb;
+      float: right;
+      padding: 4.07em 1.125rem; }
+    .list li.email {
+      width: 30.42rem; }
+    .list li.empty {
+      background: #e5e7eb;
+      text-align: center;
+      width: 100%; }
+    .list li.delete {
+      border-right: 1px solid #e5e7eb; }
+
 .our_locations {
   background: url("../img/BigMap.png");
   background-size: cover;

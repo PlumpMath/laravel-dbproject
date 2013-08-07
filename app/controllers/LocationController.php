@@ -9,7 +9,34 @@ class LocationController extends BaseController {
      */
     public function index()
     {
-        return 'A list of locations';
+        if (Auth::guest()) {
+            return Redirect::to('/');
+        } else {
+            $locations = Location::all();
+            $lists = array();
+            $items = array('Address');
+
+            $options = View::make('_list', array(
+                                                 'items' => $items
+                                                 ));
+
+            foreach($locations as $location) {
+                $lists[] = View::make('_list', array(
+                                                         'items' => array(
+                                                                          'address' => $location->street_address.', '.$location->town.', '.$location->state.' '.$location->zip_code,
+                                                                         )
+                                                         
+                                                         ));
+            }
+
+            return View::make('_index', array(
+                                                   'title' => 'Locations | myafterschoolprograms', 
+                                                   'lists' => $lists,
+                                                   'options' => $options,
+                                                   'URL' => URL::action('LocationController@create'),
+                                                   'class_name' => 'Locations',
+                                              ));
+        }
     }
 
     /**

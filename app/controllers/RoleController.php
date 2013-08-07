@@ -9,7 +9,34 @@ class RoleController extends BaseController {
      */
     public function index()
     {
-        //
+        if (Auth::guest()) {
+            return Redirect::to('/');
+        } else {
+            $roles = Role::all();
+            $lists = array();
+            $items = array('Name');
+
+            $options = View::make('_list', array(
+                                                 'items' => $items
+                                                 ));
+
+            foreach($roles as $role) {
+                $lists[] = View::make('_list', array(
+                                                         'items' => array(
+                                                                          'Id' => $role->id
+                                                                         )
+                                                         
+                                                         ));
+            }
+
+            return View::make('_index', array(
+                                                   'title' => 'Roles | myafterschoolprograms', 
+                                                   'lists' => $lists,
+                                                   'options' => $options,
+                                                   'URL' => URL::action('RoleController@create'),
+                                                   'class_name' => 'Roles',
+                                              ));
+        }
     }
 
     /**

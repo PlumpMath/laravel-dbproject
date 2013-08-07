@@ -241,6 +241,65 @@ input[type='email'] ~ input {
     float: left;
 }
 
+.list {
+    @include padding;
+    color: $mid_blue;
+
+    ul {
+        border-top: 1px solid $dark_gray;
+
+        &:last-child {
+        border-bottom: 1px solid $dark_gray;            
+        }
+
+        &:before,
+        &:after {
+            content: " "; /* 1 */
+            display: table; /* 2 */
+        }
+        
+        &:after {
+            clear: both;
+        }
+    }
+
+    li {
+        padding: 4.07rem 0;
+        text-align:center;
+        float: left;
+
+        &.name {
+            background: $gray;            
+            width: 15.21rem;
+            color: $dark_blue;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        &.edit, &.delete {
+            border-left: 1px solid $gray;
+            float: right;
+            padding: 4.07em 1.125rem;
+        }
+
+        &.email {
+            width: 30.42rem;
+        }
+
+        &.empty {
+            background: $gray;
+            text-align: center;
+            width: 100%;
+        }
+
+        &.delete {
+            border-right: 1px solid $gray;
+        }
+
+    }
+
+}
+
 .our_locations {
     background: url('../img/BigMap.png');
     background-size: cover;

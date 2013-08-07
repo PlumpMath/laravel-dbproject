@@ -33,7 +33,32 @@ Route::get('/users', function () {
         if (Auth::guest()) {
             return Redirect::to('/');
         } else {
-            return View::make('users.index', array('title' => 'Users | myafterschoolprograms'));
+            $users = User::all();
+            $lists = array();
+            $items = array('Name', 'Email');
+
+            $options = View::make('_list', array(
+                                                 'items' => $items
+                                                 ));
+
+            foreach($users as $user) {
+                $lists[] = View::make('_list', array(
+                                                         'items' => array(
+                                                                          'name' => $user->first_name.' '.$user->last_name,
+                                                                          'email' => $user->email,
+                                                                          'delete' => 'Delete',
+                                                                          'edit' => 'Edit'
+                                                                         )
+                                                         
+                                                         ));
+            }
+
+            return View::make('_index', array(
+                                                   'title' => 'Users | myafterschoolprograms', 
+                                                   'lists' => $lists,
+                                                   'options' => $options,
+                                                   'class_name' => 'Users',
+                                              ));
         }
     });
 
@@ -71,7 +96,7 @@ Route::resource('classes', 'ClassController');
 
 Route::resource('children', 'ChildController');
 
-Route::resource('roles', 'RolesController');
+Route::resource('roles', 'RoleController');
 
 Route::resource('permissions', 'PermissionController');
 

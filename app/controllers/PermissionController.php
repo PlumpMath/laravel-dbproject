@@ -9,7 +9,34 @@ class PermissionController extends BaseController {
      */
     public function index()
     {
-        //
+        if (Auth::guest()) {
+            return Redirect::to('/');
+        } else {
+            $permissions = Permission::all();
+            $lists = array();
+            $items = array('Resource');
+
+            $options = View::make('_list', array(
+                                                 'items' => $items
+                                                 ));
+
+            foreach($permissions as $permission) {
+                $lists[] = View::make('_list', array(
+                                                         'items' => array(
+                                                                          'Id' => $permission->id
+                                                                         )
+                                                         
+                                                         ));
+            }
+
+            return View::make('_index', array(
+                                                   'title' => 'Permissions | myafterschoolprograms', 
+                                                   'lists' => $lists,
+                                                   'options' => $options,
+                                                   'URL' => URL::action('PermissionController@create'),
+                                                   'class_name' => 'Permissions',
+                                              ));
+        }
     }
 
     /**
