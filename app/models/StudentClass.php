@@ -1,6 +1,7 @@
 <?php
 
-class Class extends Eloquent {
+class StudentClass extends Eloquent {
+    protected $table = 'classes';
     protected $guarded = array();
 
     public static $rules = array();

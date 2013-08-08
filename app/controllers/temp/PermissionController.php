@@ -46,7 +46,19 @@ class PermissionController extends BaseController {
      */
     public function create()
     {
-        //
+        if (Auth::guest()) {
+            return Redirect::to('/');
+        } else {
+            return View::make('_create', array(
+                                                          'class_name' => 'Permissions',
+                                                          'title' => 'Create Permission | myafterschoolprograms',
+                                                          'URL' => URL::action('PermissionController@store'),
+                                                          'inputs' => array(
+                                                                            'Resource',
+                                                                            'Action',
+                                                                            ),
+                                               ));
+        }
     }
 
     /**
@@ -56,7 +68,22 @@ class PermissionController extends BaseController {
      */
     public function store()
     {
-        //
+        if (Auth::guest()) {
+            return Redirect::to('/');
+        } else {
+            $v = Validator::make(Input::all(), array('resource' => 'alpha|required',
+                                                                        'action' => 'in:create,show,update,destroy,'));
+            if ($v->fails()) {
+                return Redirect::action('PermissionController@create')->withErrors($v);
+            } else {
+                $permission = new Permission;
+                $permission->resource = Input::get('resource');
+                $permission->action = Input::get('action');
+                $permission->save();
+
+                return 'Permission Created';
+            }
+        }
     }
 
     /**

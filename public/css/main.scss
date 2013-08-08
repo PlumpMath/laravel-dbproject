@@ -112,6 +112,11 @@ body {
     font-weight: bold;
 }
 
+.create {
+    @include padding;
+    background: #fff;
+}
+
 .default {
     background: url('../img/default_icon.png');
 }
