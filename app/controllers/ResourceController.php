@@ -44,17 +44,37 @@ class ResourceController extends BaseController {
         return false;
     }
 
-    protected function getFieldsWithAction($action) 
+    protected function getFieldsWithAction($action, $format = false) 
     {
         $output = array();
 
         foreach($this->field as $key => $actions) {
             if ($this->fieldHasAction($key, $action)) {
-                $output[] = $key;
+                if ($format === true) {
+                    $output[] = $this->formatField($key);
+                } else {
+                    $output[] = $key;
+                }
             }
         }
 
         return $output;
+    }
+
+    protected function getFieldFromResource($resource, $field)
+    {
+        return $resource->$field;
+    }
+
+    protected function formatField($str)
+    {
+        $pieces = explode('_', $str);
+        
+        foreach($pieces as $key => $piece) {
+            $pieces[$key] = ucfirst($piece);
+        }
+        
+        return implode(' ', $pieces);
     }
 
     public function index()
@@ -65,18 +85,22 @@ class ResourceController extends BaseController {
         $resources = $resource::all();
 
         $options   = View::make('elements.list', array(
-                                                        'items' => $this->getFieldsWithAction('indexable'),
+                                                       'items' => $this->getFieldsWithAction('indexable', true),
                                                         ));
         $members = array();
         $fieldsToShow = $this->getFieldsWithAction('read');
         foreach($resources as $resource) {
             $items = array();
             foreach($fieldsToShow as $field) {
-                $items[] = $resource->$field;
+                $items[$field] = $this->getFieldFromResource($resource, $field);
             }
 
-            $members[] = View::make('elements.list', array(
-                                                           'items' => $items,
+            $members[] = View::make('resource.list', array(
+                                                           'items'      => $items,
+                                                           'url_show'   => action($this->controller.'@show', $resource->id),
+                                                           'controller' => $this->controller,
+                                                           'id'         => $resource->id,
+                                                           'url_edit'   => action($this->controller.'@edit', $resource->id),
                                                            ));
         }
 
@@ -158,6 +182,8 @@ class ResourceController extends BaseController {
 
         return View::make('resource.destroy', array(
                                                     'title' => $title,
+                                                    'resource' => $this->name['plural'],
+                                                    'type' => $this->name['singular'],
                                                     ));
     }
 

@@ -1,4 +1,4 @@
-@extends('layouts.resource');
+@extends('layouts.resource')
 
 @section('resource')
 <div class='options'>

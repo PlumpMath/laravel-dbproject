@@ -1,10 +1,20 @@
 <?php
 Route::get('/', function ()
 {
-    return 'Home.';
+    if (Auth::attempt(array('email' => 'admin', 'password' => 'admin'))) {
+        return 'Logged in.';
+    } else {
+        return 'Well, shit\'s fucked up.';
+    }
 });
 
 Route::resource('permissions', 'PermissionController');
+Route::resource('roles', 'RoleController');
+Route::resource('users', 'UserController');
+Route::resource('locations', 'LocationController');
+Route::resource('activities', 'ActivityController');
+Route::resource('coupons', 'CouponController');
+Route::resource('children', 'ChildController');
 
 
 /** /

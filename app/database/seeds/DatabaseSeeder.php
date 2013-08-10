@@ -26,6 +26,7 @@ class RoleTableSeeder extends Seeder {
         $role = new Role;
         $role->name = 'admin';
         $role->save();
+
         $role = Role::find(1);
         for($i = 1; $i < 50; $i++) {
             $role->permissions()->attach($i);
@@ -61,9 +62,27 @@ class UsersTableSeeder extends Seeder {
     {
 
         $now = date('Y-m-d H:i:s');
+        $names = array(
+                       'John',
+                       'Betsy',
+                       'Clementine',
+                       'Nostrodamus',
+                       'Daniel',
+                       'David',
+                       'Nancy',
+                       'Claire',
+                       'Simmons',
+                       'Williams',
+                       'Bernie',
+                       'Clements',
+                       'Tabbitha',
+                       'George',
+                       'Brock',
+                       'Leslie',
+                       );
+
 
         $users = array(
-
                         array(
                               'email' => 'admin',
                               'password' => Hash::make('admin'),
@@ -79,38 +98,29 @@ class UsersTableSeeder extends Seeder {
                               'created_at' => $now,
                               'updated_at' => $now
                               ),
-                        array(
-                              'email' => 'johnsmith@example.com',
-                              'password' => Hash::make('johnlikessoup'),
-                              'phone' => '5555555555',
-                              'first_name' => 'John',
-                              'last_name' => 'Smith',
-                              'street_address' => '555 Example Road',
-                              'city' => 'Example City',
-                              'state' => 'NY',
-                              'zip_code' => '55555',
-                              'stay_logged_in' => 1,
-                              'active' => 1,
-                              'created_at' => $now,
-                              'updated_at' => $now
-                              ),
-                        array(
-                              'email' => 'afterschoolprograms@live.com',
-                              'password' => Hash::make('prerelease'),
-                              'phone' => '6317768242',
-                              'first_name' => 'Dave',
-                              'last_name' => 'Brenner',
-                              'street_address' => 'Dave\'s House',
-                              'city' => 'Dave\'s City',
-                              'state' => 'NY',
-                              'zip_code' => '55555',
-                              'stay_logged_in' => 0,
-                              'active' => 1,
-                              'created_at' => $now,
-                              'updated_at' => $now
-                              )
-                        
                         );
+
+        for($i = 0; $i < 25; $i++) {
+            $first_name = $names[array_rand($names)];
+            $last_name = $names[array_rand($names)];
+            $email = strtolower($first_name.''.$last_name).'@example.com';
+
+            $users[] = array(
+                             'email' => $email,
+                             'password' => Hash::make($email),
+                             'phone' => '5555555555',
+                             'first_name' => $first_name,
+                             'last_name' => $last_name,
+                             'street_address' => '555 Example Road',
+                             'city' => 'Example City',
+                             'state' => 'NY',
+                             'zip_code' => '55555',
+                             'stay_logged_in' => 1,
+                             'active' => 1,
+                             'created_at' => $now,
+                             'updated_at' => $now
+                             );
+        }
 
         foreach($users as $user) {
             User::create($user);

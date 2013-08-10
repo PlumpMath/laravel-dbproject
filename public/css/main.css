@@ -358,14 +358,14 @@ a {
   border-bottom: 1px solid #e5e7eb;
   border-top: 1px solid #e5e7eb; }
 
-.about_us, .our_locations, .log_in, .register, .the_manual {
+.about_us, .deleted, .our_locations, .log_in, .register, .the_manual {
   padding: 4.07em 5.07em;
   background: #fff; }
-  .about_us h1, .our_locations h1, .log_in h1, .register h1, .the_manual h1 {
+  .about_us h1, .deleted h1, .our_locations h1, .log_in h1, .register h1, .the_manual h1 {
     color: #2f3854;
     font-weight: bold;
     text-transform: uppercase; }
-  .about_us p, .our_locations p, .log_in p, .register p, .the_manual p {
+  .about_us p, .deleted p, .our_locations p, .log_in p, .register p, .the_manual p {
     color: #6b7d98; }
 
 .actionable_item {
@@ -522,6 +522,14 @@ input[type='email'] ~ input {
       /* 2 */ }
     .list ul:after {
       clear: both; }
+  .list .delete {
+    padding: 4.07rem 0;
+    text-align: center;
+    float: left;
+    border-left: 1px solid #e5e7eb;
+    float: right;
+    padding: 4.07em 1.125rem;
+    border-right: 1px solid #e5e7eb; }
   .list li {
     padding: 4.07rem 0;
     text-align: center;
@@ -532,7 +540,7 @@ input[type='email'] ~ input {
       color: #2f3854;
       font-weight: bold;
       text-transform: uppercase; }
-    .list li.edit, .list li.delete {
+    .list li.edit {
       border-left: 1px solid #e5e7eb;
       float: right;
       padding: 4.07em 1.125rem; }
@@ -542,8 +550,6 @@ input[type='email'] ~ input {
       background: #e5e7eb;
       text-align: center;
       width: 100%; }
-    .list li.delete {
-      border-right: 1px solid #e5e7eb; }
 
 .our_locations {
   background: url("../img/BigMap.png");
