@@ -1,3 +1,5 @@
+@extends('layouts.resource');
+
 @section('resource')
 <div class='options'>
   <div class='filter'>

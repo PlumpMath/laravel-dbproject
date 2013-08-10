@@ -2,8 +2,6 @@
 
 class ResourceController extends BaseController {
 
-    protected $layout = 'layouts.resource';
-
     //name of resource in plural and singular
     protected $name = array(
                               'singular' => 'Resource',
@@ -11,7 +9,7 @@ class ResourceController extends BaseController {
                               );
 
     /**
-     * ex. 'key' => 'sort|edit|create|show'
+     * ex. 'key' => 'indexable|create|read|update'
      */
     protected $field = array(
                               'key' => 'actions'
@@ -35,7 +33,8 @@ class ResourceController extends BaseController {
         $this->url_update  = null;
     }
 
-    protected function fieldHasAction($key, $action) {
+    protected function fieldHasAction($key, $action) 
+    {
         $actions = explode('|', $this->field[$key]);
 
         foreach($actions as $a) {
@@ -45,7 +44,8 @@ class ResourceController extends BaseController {
         return false;
     }
 
-    protected function getFieldsWithAction($action) {
+    protected function getFieldsWithAction($action) 
+    {
         $output = array();
 
         foreach($this->field as $key => $actions) {
@@ -65,12 +65,18 @@ class ResourceController extends BaseController {
         $resources = $resource::all();
 
         $options   = View::make('elements.list', array(
-                                                        'items' => $this->getFieldsWithAction('sort'),
+                                                        'items' => $this->getFieldsWithAction('indexable'),
                                                         ));
         $members = array();
+        $fieldsToShow = $this->getFieldsWithAction('read');
         foreach($resources as $resource) {
+            $items = array();
+            foreach($fieldsToShow as $field) {
+                $items[] = $resource->$field;
+            }
+
             $members[] = View::make('elements.list', array(
-                                                           'items' => $this->getFieldsWithAction('index'),
+                                                           'items' => $items,
                                                            ));
         }
 
@@ -79,8 +85,6 @@ class ResourceController extends BaseController {
                                                   'members'     => $members,
                                                   'options'     => $options,
                                                   'url_create'  => $this->url_create,
-                                                  'url_destroy' => $this->url_destory,
-                                                  'url_edit'    => $this->url_edit,
                                                   'resource'    => $this->name['plural'],
                                                   ));
     }
@@ -111,7 +115,7 @@ class ResourceController extends BaseController {
         } else {
             $resource = new $this->name['singular'];
             
-            foreach($this->getFieldsWithAction('store') as $field) {
+            foreach($this->getFieldsWithAction('create') as $field) {
                 $resource->$field = Input::get($field);
             }
 

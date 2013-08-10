@@ -9,9 +9,14 @@ class PermissionController extends ResourceController
 
     protected $field = array(
                              'id'         => null,
-                             'resource'   => 'sort|edit|update|index|show'
-                             'action'     => 'sort|edit|update|index|show'
+                             'resource'   => 'indexable|create|read|update',
+                             'action'     => 'indexable|create|read|update',
                              'created_at' => null,
                              'updated_at' => null,
+                             );
+
+    protected $rules = array(
+                             'resource'   => 'required|alpha',
+                             'action'     => 'required|alpha',
                              );
 }
