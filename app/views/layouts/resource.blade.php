@@ -1,39 +1,14 @@
 @extends('layouts.master')
 
+@include('elements.header')
+
 @section('content')
-    @include('top_menu')
     <div class='page_wrapper' id='page_wrapper'>
-      <div class='actionable_item {{ strtolower($class_name) }}'>
+      <div class='actionable_item {{ strtolower($resource) }}'>
               <div class='default icon'></div>
-              <h1>{{ $class_name }}</h1>
+              <h1>{{ $resource }}</h1>
       </div>
-      <div class='options'>
-        <div class='filter'>
-        Filter by
-        <div class='select'>
-             {{ $options }}
-        </div>
-        in
-        <div class='select'>
-          <ul>
-            <li>Asc</li>
-            <li>Desc</li>
-          </ul>
-        </div>
-        order
-        </div>
-        </div>
-      <div class='list'>
-        @if (count($lists) === 0)
-            <ul>
-              <li class='empty'>There are no {{ strtolower($class_name) }}.<a href='{{ $URL }}'> Create one?</a></li>
-            </ul>
-        @else
-            @foreach ($lists as $list)
-                {{ $list }}
-            @endforeach
-        @endif
-      </div>
+      @yield('resource')
     </div>
 @stop
 

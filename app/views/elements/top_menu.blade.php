@@ -1,3 +1,4 @@
+@section('header')
     <!-- TOP MENU -->
     <div class='top_menu'>
         <div class='left'>
@@ -14,3 +15,4 @@
             <li><div id='sign_out_icon' class='icon'></div><a href='{{ URL::to('/logout'); }}'>Sign out</a></li>
         </ul>
     </div>
+@stop

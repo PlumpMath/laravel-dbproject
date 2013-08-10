@@ -1,4 +1,12 @@
 <?php
+Route::get('/', function ()
+{
+    return 'Home.';
+});
+
+Route::resource('permissions', 'PermissionController');
+
+
 /** /
 Route::get('/', function () {
         return View::make('home', array('title' => 'myafterschoolprograms'));
@@ -92,11 +100,6 @@ Route::get('/the_manual', function() {
 
 //Resources
 
-/**/
-
-Route::resource('classes', 'ResourceController');
-
-/** /
 Route::resource('children', 'ChildController');
 
 Route::resource('roles', 'RoleController');
