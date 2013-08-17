@@ -358,14 +358,14 @@ a {
   border-bottom: 1px solid #e5e7eb;
   border-top: 1px solid #e5e7eb; }
 
-.about_us, .deleted, .our_locations, .log_in, .register, .the_manual {
+.about_us, .deleted, .our_locations, .log_in, .register, .the_manual, .create {
   padding: 4.07em 5.07em;
   background: #fff; }
-  .about_us h1, .deleted h1, .our_locations h1, .log_in h1, .register h1, .the_manual h1 {
+  .about_us h1, .deleted h1, .our_locations h1, .log_in h1, .register h1, .the_manual h1, .create h1 {
     color: #2f3854;
     font-weight: bold;
     text-transform: uppercase; }
-  .about_us p, .deleted p, .our_locations p, .log_in p, .register p, .the_manual p {
+  .about_us p, .deleted p, .our_locations p, .log_in p, .register p, .the_manual p, .create p {
     color: #6b7d98; }
 
 .actionable_item {
@@ -504,6 +504,10 @@ input[type=submit] {
 
 input[type='email'] ~ input {
   margin-left: 2.07em; }
+
+input {
+  display: block;
+  margin-top: 1.125rem; }
 
 .left {
   float: left; }

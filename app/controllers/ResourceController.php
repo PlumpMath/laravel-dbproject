@@ -117,10 +117,16 @@ class ResourceController extends BaseController {
     {
         $title  = 'Creating '.$this->name['plural'].' | myafterschoolprograms';
         $fields = $this->getFieldsWithAction('create');
+        $names  = array();
+
+        foreach ($fields as $field) {
+            $names[] = $this->formatField($field);
+        }
 
         return View::make('resource.create', array(
                                                    'title'     => $title,
                                                    'fields'    => $fields,
+                                                   'names'     => $names,
                                                    'url_index' => $this->url_index,
                                                    'url_store' => $this->url_store,
                                                    'resource'  => $this->name['plural'],
@@ -163,6 +169,11 @@ class ResourceController extends BaseController {
 
         $resource = $this->name['singular'];
         $resource = $resource::find($id);
+
+        return View::make('resource.edit', array(
+                                                 'title'    => $title,
+                                                 'resource' => $this->name['plural'],
+                                                 ));
     }
 
     public function update($id)

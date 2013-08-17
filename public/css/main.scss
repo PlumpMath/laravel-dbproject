@@ -30,7 +30,7 @@ a {
     border-top: 1px solid $gray;
 }
 
-.about_us, .deleted, .our_locations, .log_in, .register, .the_manual {
+.about_us, .deleted, .our_locations, .log_in, .register, .the_manual, .create {
     @include padding;
     background: #fff;
 
@@ -240,6 +240,11 @@ input[type=submit] {
 
 input[type='email'] ~ input {
     margin-left: 2.07em;
+}
+
+input {
+    display: block;
+    margin-top: 1.125rem;
 }
 
 .left {

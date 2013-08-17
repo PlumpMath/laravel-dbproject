@@ -141,3 +141,10 @@ class UsersTableSeeder extends Seeder {
         }
     }
 }
+
+class ActivitiesTableSeeder
+{
+    public function run()
+    {
+    }
+}
