@@ -1,7 +1,7 @@
 <?php
 Route::get('/', function ()
 {
-    if (Auth::attempt(array('email' => 'admin', 'password' => 'admin'))) {
+    if (Auth::attempt(array('email' => 'ryandaniel@example.com', 'password' => 'ryandaniel@example.com'))) {
         return 'Logged in.';
     } else {
         return 'Well, shit\'s fucked up.';

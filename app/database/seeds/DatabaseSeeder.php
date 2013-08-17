@@ -33,6 +33,10 @@ class RoleTableSeeder extends Seeder {
         }
         $role->users()->attach(1);
         $role->save();
+        
+        $user = User::find(1);
+        $user->roles()->attach(1);
+        $user->save();
     }
 }
 
@@ -63,6 +67,16 @@ class UsersTableSeeder extends Seeder {
 
         $now = date('Y-m-d H:i:s');
         $names = array(
+                       'James',
+                       'Mary',
+                       'Ruthie',
+                       'William',
+                       'Timmy',
+                       'Heidi',
+                       'Craig',
+                       'Ryan',
+                       'Danny',
+                       'Jordan',
                        'John',
                        'Betsy',
                        'Clementine',
@@ -100,7 +114,7 @@ class UsersTableSeeder extends Seeder {
                               ),
                         );
 
-        for($i = 0; $i < 25; $i++) {
+        for($i = 0; $i < 10; $i++) {
             $first_name = $names[array_rand($names)];
             $last_name = $names[array_rand($names)];
             $email = strtolower($first_name.''.$last_name).'@example.com';

@@ -18,7 +18,7 @@ class ResourceController extends BaseController {
     public function __construct()
     {
         //check that user has proper permissions
-        //$this->beforeFilter('auth.permission');
+        $this->beforeFilter('auth.permission');
 
         //protect against csrf
         $this->beforeFilter('csrf', array('on' => 'post'));

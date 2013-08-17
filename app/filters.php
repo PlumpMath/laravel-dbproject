@@ -29,19 +29,20 @@ Route::filter('auth.permission', function()
     if (Auth::check()) {
         $route = Route::currentRouteName();
         
-        $roles = Auth::user()->roles();
+        $user = Auth::user();
+        $roles = $user->roles;
 
         foreach($roles as $role) {
-            $permissions = $role->permissions();
+            $permissions = $role->permissions;
             foreach($permissions as $permission) {
-                if ($permission->resource().'.'.$permission->action() === $route) {
+                if ($permission->resource.'.'.$permission->action === $route) {
                     $not_allowed = false;
                 }
             }
         }
     }
 
-    if ($not_allowed) return Redirect::to('.');
+    if ($not_allowed === true) return Redirect::to('/');
 });
 
 Route::filter('guest', function()
