@@ -13,12 +13,172 @@ class DatabaseSeeder extends Seeder {
 
 		$this->call('UsersTableSeeder');
         $this->call('PermissionsTableSeeder');
-        $this->call('RoleTableSeeder');
+        $this->call('RolesTableSeeder');
+        $this->call('LocationsTableSeeder');
 	}
 
 }
 
-class RoleTableSeeder extends Seeder {
+class LocationsTableSeeder extends Seeder {
+    public function run()
+    {
+        $now = date('Y-m-d H:i:s');
+
+        $locations = array(
+                           array(
+                                 'name' => 'Sportime Massapequa',
+                                 'contact_name' => 'Fayez',
+                                 'phone' => '5167993550',
+                                 'address' => '5600 Old Sunrise Highway',
+                                 'city' => 'Massapequa',
+                                 'state' => 'NY',
+                                 'zip_code' => '11758',
+                                 'capacity' => 8,
+                                 'status' => 1,
+                                 'notes' => NULL,
+                                 ),
+                           array(
+                                 'name' => 'Bethpage Park Tennis Center',
+                                 'contact_name' => 'Andrea, Steve',
+                                 'phone' => '5137771358',
+                                 'address' => '99 Quaker Meeting House Road',
+                                 'city' => 'Farmingdale',
+                                 'state' => 'NY',
+                                 'zip_code' => '11735',
+                                 'capacity' => 8,
+                                 'status' => 1,
+                                 'notes' => NULL,
+                                 ),
+                           array(
+                                 'name' => 'Long Beach Tennis Center',
+                                 'contact_name' => 'Sid, Sunil',
+                                 'phone' => '5164326060',
+                                 'address' => '899 Monroe Boulevard',
+                                 'city' => 'Long Beach',
+                                 'state' => 'NY',
+                                 'zip_code' => '11561',
+                                 'capacity' => 8,
+                                 'status' => 1,
+                                 'notes' => NULL,
+                                 ),
+                           array(
+                                 'name' => 'Eastern Athletic Club',
+                                 'contact_name' => 'Kristin, Cira',
+                                 'phone' => '6314642882',
+                                 'address' => '9A Montauk Highway',
+                                 'city' => 'Blue Point',
+                                 'state' => 'NY',
+                                 'zip_code' => '11715',
+                                 'capacity' => 6,
+                                 'status' => 1,
+                                 'notes' => NULL,
+                                 ),
+                           array(
+                                 'name' => 'Eastern Athletic Club',
+                                 'contact_name' => 'Marc, Jamie',
+                                 'phone' => '6314201310',
+                                 'address' => '100 Ruland Road',
+                                 'city' => 'Melville',
+                                 'state' => 'NY',
+                                 'capacity' => 6,
+                                 'zip_code' => '11747',
+                                 'status' => 1,
+                                 'notes' => NULL,
+                                 ),
+                           array(
+                                 'name' => 'Eastern Athletic Club',
+                                 'contact_name' => 'Sheldon, Betsy',
+                                 'phone' => '6312716616',
+                                 'address' => '854 East Jericho Turnpike',
+                                 'city' => 'Dix Hills',
+                                 'state' => 'NY',
+                                 'capacity' => 6,
+                                 'zip_code' => '11746',
+                                 'status' => 1,
+                                 'notes' => NULL,
+                                 ),
+                           array(
+                                 'name' => 'Sportime Kings Park',
+                                 'contact_name' => 'Jason, Joe, Will',
+                                 'phone' => '6312696300',
+                                 'address' => '275 Old Indian Head Road',
+                                 'city' => 'Kings Park',
+                                 'state' => 'NY',
+                                 'capacity' => 8,
+                                 'zip_code' => '11754',
+                                 'status' => 1,
+                                 'notes' => NULL,
+                                 ),
+                           array(
+                                 'name' => 'Sportime Quogue',
+                                 'contact_name' => 'Mark, Jeannie',
+                                 'phone' => '6316536767',
+                                 'address' => '2571 Quogue-Riverhead Road',
+                                 'city' => 'East Quogue',
+                                 'state' => 'NY',
+                                 'capacity' => 8,
+                                 'zip_code' => '11942',
+                                 'status' => 1,
+                                 'notes' => NULL,
+                                 ),
+                           array(
+                                 'name' => 'Bay Terrace Tennis Center',
+                                 'contact_name' => 'Sunil',
+                                 'phone' => '7182295151',
+                                 'address' => '212-00 23rd Avenue',
+                                 'city' => 'Bayside',
+                                 'state' => 'NY',
+                                 'zip_code' => '11360',
+                                 'capacity' => 0,
+                                 'status' => 1,
+                                 'notes' => NULL,
+                                 ),
+                           array(
+                                 'name' => 'Jericho Westbury Indoor Tennis',
+                                 'contact_name' => 'Don, Laura',
+                                 'phone' => '5169974060',
+                                 'address' => '44 Jericho Turnpike',
+                                 'city' => 'Jericho',
+                                 'state' => 'NY',
+                                 'zip_code' => '11753',
+                                 'capacity' => 0,
+                                 'status' => 1,
+                                 'notes' => NULL,
+                                 ),
+                           array(
+                                 'name' => 'West Hampton Beach',
+                                 'contact_name' => 'Bobby Lum',
+                                 'phone' => '6312886060',
+                                 'address' => '86 Depot Road',
+                                 'city' => 'West Hampton Beach',
+                                 'state' => 'NY',
+                                 'zip_code' => '11978',
+                                 'capacity' => 8,
+                                 'status' => 1,
+                                 'notes' => NULL,
+                                 ),
+                           array(
+                                 'name' => 'Studio Art Commack',
+                                 'contact_name' => 'Karen Hogan',
+                                 'phone' => '9736700572',
+                                 'address' => '213 Commck Road',
+                                 'city' => 'Commack',
+                                 'state' => 'NY',
+                                 'zip_code' => '11725',
+                                 'capacity' => 0,
+                                 'status' => 1,
+                                 'notes' => NULL,
+                                 ),
+                           );
+
+        foreach($locations as $location) {
+            Location::create($location);
+        }
+
+    }
+}
+
+class RolesTableSeeder extends Seeder {
     public function run()
     {
         $now = date('Y-m-d H:i:s');

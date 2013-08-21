@@ -15,12 +15,15 @@ class CreateLocationTable extends Migration {
         Schema::create('locations', function(Blueprint $table) {
             $table->increments('id');
             $table->string('name');
+            $table->string('contact_name');
             $table->string('phone');
-            $table->integer('capacity');
-            $table->string('street_address');
-            $table->string('town');
+            $table->integer('capacity')->unsigned();
+            $table->string('address');
+            $table->string('city');
             $table->string('state');
             $table->string('zip_code');
+            $table->boolean('status');
+            $table->text('notes')->nullable();
             $table->timestamps();
         });
     }
