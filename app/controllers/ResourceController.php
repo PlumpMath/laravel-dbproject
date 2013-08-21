@@ -82,7 +82,7 @@ class ResourceController extends BaseController {
         $title     = $this->name['plural'].' | myafterschoolprograms';
 
         $resource = $this->name['singular'];
-        $resources = $resource::all();
+        $resources = $resource::paginate(5);
 
         $options   = View::make('elements.list', array(
                                                        'items' => $this->getFieldsWithAction('indexable', true),
@@ -107,6 +107,7 @@ class ResourceController extends BaseController {
         return View::make('resource.index', array(
                                                   'title'       => $title,
                                                   'members'     => $members,
+                                                  'links'       => $resources->links(),
                                                   'options'     => $options,
                                                   'url_create'  => $this->url_create,
                                                   'resource'    => $this->name['plural'],

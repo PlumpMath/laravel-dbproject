@@ -26,6 +26,7 @@
   @foreach ($members as $member)
   {{ $member }}
   @endforeach
+  {{ $links }}
   @endif
 </div>
 @stop
