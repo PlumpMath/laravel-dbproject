@@ -8,6 +8,11 @@ Route::get('/', function ()
     }
 });
 
+Route::get('/test', function()
+{
+    return View::make('location');
+});
+
 Route::resource('permissions', 'PermissionController');
 Route::resource('roles', 'RoleController');
 Route::resource('users', 'UserController');

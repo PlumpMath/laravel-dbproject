@@ -14,7 +14,7 @@ class CreateAccountActivityTable extends Migration {
     {
         Schema::create('account_activity', function(Blueprint $table) {
             $table->increments('id');
-            $table->timestap('time');
+            $table->timestamp('time');
             $table->string('location');
             $table->string('ip');
             $table->timestamps();
