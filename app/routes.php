@@ -39,8 +39,11 @@ Route::get('/locations/{id}', function($id)
         $location[$key] = $row;
     }
 
-    return View::make('location_full', array('rows' => $location));
+    return View::make('location_full', array('rows' => $location, 'url_copy' => '#'));
 });
+
+
+/*
 
 Route::resource('permissions', 'PermissionController');
 Route::resource('roles', 'RoleController');
@@ -50,6 +53,7 @@ Route::resource('activities', 'ActivityController');
 Route::resource('coupons', 'CouponController');
 Route::resource('children', 'ChildController');
 
+*/
 
 /** /
 Route::get('/', function () {

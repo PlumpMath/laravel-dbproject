@@ -1,6 +1,8 @@
 @import "normalize";
 @import "fonts";
 
+$width: 46.978rem;
+
 $max: 17.944rem;
 $hg: 6.854rem;
 $lg: 4.236rem;
@@ -10,13 +12,14 @@ $tny: 1rem;
 
 $gray: #bdc5d1;
 
+$black: #384059;
 $dark_blue: #2f3854;
-$middle_blue: #b1bdd1;
+$middle_blue: #5f6376;
 
 $green: #2dcb70;
-$blue: #3296d9;
-$yellow: #f0c40e;
-$red: #e54c3b;
+$blue: #95beff;
+$yellow: #fbdf6f;
+$red: #cc2a3b;
 
 body {
     color: $dark_blue;
@@ -36,12 +39,16 @@ html, body, .table, .sidebar {
     right: 0;
     top: 0;
     bottom: 0;
-    padding: $sm;
+    padding: 0 $sm;
     width: 22.5%;
 
     .cell {
         display: table-cell;
         vertical-align: middle;
+    }
+
+    .account_info {
+        margin-top: $max;
     }
 
     .user_label {
@@ -69,38 +76,56 @@ html, body, .table, .sidebar {
 
 h1 {
     color: $dark_blue;
--font-weight: normal;
-    font-size: $tny;
-    margin-top: $hg;
-    text-align: left;
-    text-transform: uppercase;
+    font-weight: normal;
+    font-size: $sm;
+    margin-top: $med;
+    -text-transform: uppercase;
 }
 
 table {
+-font-family: Consolas;
     width: 100%;
 
     tr {
         &:nth-child(2n) {
-            background: #eff3ff;
+            background: $dark_blue;
         }
         &:nth-child(2n-1) {
-            background: #f7f9ff;
+            background: $black;
+        }
+        &:first-child {
+            td:first-child {
+                border-radius: 8px 0 0 0;
+            }
+
+            td:last-child {
+                border-radius: 0 8px 0 0;
+            }
+        }
+        &:last-child {
+            td:first-child {
+                border-radius: 0 0 0 8px;
+            }
+
+            td:last-child {
+                border-radius: 0 0 8px 0;
+            }
         }
     }
 
     td {
+        color: $gray;
         padding: $tny;
         width: 50%;
 
         &:first-child {
-            color: $gray;
+            color: $yellow;
         }
     }
 }
 
 .table {
     display: table;
-    text-align:center;
     width: 77.5%;
 
     .cell {
@@ -108,49 +133,61 @@ table {
 }
 
 .content {
-    width: 46.978rem;
+    width: $width;
     margin: auto;
-    margin-top: $hg;
+    padding-top: $max;
     padding-bottom: $hg;
 
     a {
         color: $blue;
         text-decoration: none;
         display: block;
-        text-align: left;
     }
 }
 
-.title {
-    color: $dark_blue;
-    font-size: $lg;
-    line-height: 100%;
-    letter-spacing: -2.25;
-    margin-bottom: $tny;
-}
+.header {
+    margin-bottom: $sm;
 
-.address {
-    color: $gray;
-    font-size: $sm;
+    .title {
+        color: $dark_blue;
+        font-size: $lg;
+        line-height: 100%;
+        letter-spacing: -2.25;
+        margin-bottom: $tny;
+    }
+    
+    .address {
+        color: $gray;
+        font-size: $sm;
+    }
 }
 
 .commands {
     overflow: auto;
-    margin-bottom: $hg;
+    position: fixed;
+    left: $sm;
+    top: $sm;
+    -margin-top: -($med * 1.5);
+    width: $med;
+
+    a {
+        display: block;
+    }
 }
+
 
 .name {
     background: #fff;
     position: fixed;
     width: 100%;
     bottom: 0;
-    padding: $sm 0;
+    padding: $sm;
     text-align: center;
 }
 
 .icon {
+    position: relative;
     color: #fff;
-    display: table;
     float: left;
     font-size: $tny;
     height: $med;
@@ -159,21 +196,24 @@ table {
 
     &.copy {
         background: $green;
-        border-radius: 8px 0 0 8px;
+        border-radius: 8px 8px 0 0;
     }
     
     &.edit {
-        background: $yellow;
+        background: $blue;
     }
 
     &.delete {
         background: $red;
-        border-radius: 0 8px 8px 0;
+        border-radius: 0 0 8px 8px;
     }
 
     i {
-        display: table-cell;
-        vertical-align: middle;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-left: -($tny * .5);
+        margin-top: -($tny * .5);
     }
 }
 

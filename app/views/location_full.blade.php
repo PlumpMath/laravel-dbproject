@@ -5,18 +5,24 @@
   </style>
 </head>
 <body>
-  <div class='sidebar'>
-    <div class='commands'>
+  <div class='commands'>
+    <a href='{{ $url_copy }}'>
       <div class='copy icon'>
         <i class='icon-copy'></i>
       </div>
+    </a>
+    <a href='{{ $url_edit }}'>
       <div class='edit icon'>
         <i class='icon-edit'></i>
       </div>
+    </a>
+    <a href='{{ $url_destroy }}'>
       <div class='delete icon'>
         <i class='icon-trash'></i>
       </div>
-    </div>
+    </a>
+  </div>
+  <div class='sidebar'>
     <div class='account_info'>
       <div class='user'>Admin</div>
       <div class='user_label'>account name</div>
@@ -34,8 +40,10 @@
   </div>
   <div class='table'>
     <div class='content'>
-      <div class='title'>{{ $rows['Name'] }}</div>
-      <div class='address'>{{ $rows['Address'].', '.$rows['City'].', '.$rows['State'].' '.$rows['Zip Code'] }} </div>
+      <div class='header'>
+        <div class='title'>{{ $rows['Name'] }}</div>
+        <div class='address'>{{ $rows['Address'].', '.$rows['City'].', '.$rows['State'].' '.$rows['Zip Code'] }} </div>
+      </div>
       <h1>Location Details</h1>
       <table>
         <tbody>
