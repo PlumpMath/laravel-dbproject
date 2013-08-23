@@ -350,53 +350,87 @@ body {
   font-size: 1rem;
   line-height: 161.8%; }
 
-html, body, .container {
-  height: 100%;
-  width: 100%; }
+html, body, .table, .sidebar {
+  height: 100%; }
 
-.container {
+.sidebar {
   display: table;
-  text-align: center; }
+  box-sizing: border-box;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  padding: 1.618rem;
+  width: 22.5%; }
+  .sidebar .cell {
+    display: table-cell;
+    vertical-align: middle; }
+  .sidebar .user_label {
+    line-height: 100%;
+    font-size: 1rem;
+    color: #bdc5d1;
+    margin-bottom: 1.618rem; }
+  .sidebar .user {
+    font-size: 1.618rem; }
+  .sidebar .signout .signout_label {
+    display: inline-block; }
+  .sidebar .signout i {
+    color: #bdc5d1;
+    margin-right: 1rem; }
 
-.cell {
-  display: table-cell;
-  vertical-align: middle; }
+h1 {
+  color: #2f3854;
+  -font-weight: normal;
+  font-size: 1rem;
+  margin-top: 6.854rem;
+  text-align: left;
+  text-transform: uppercase; }
+
+table {
+  width: 100%; }
+  table tr:nth-child(2n) {
+    background: #eff3ff; }
+  table tr:nth-child(2n-1) {
+    background: #f7f9ff; }
+  table td {
+    padding: 1rem;
+    width: 50%; }
+    table td:first-child {
+      color: #bdc5d1; }
+
+.table {
+  display: table;
+  text-align: center;
+  width: 77.5%; }
 
 .content {
-  display: inline-block; }
+  width: 46.978rem;
+  margin: auto;
+  margin-top: 6.854rem;
+  padding-bottom: 6.854rem; }
+  .content a {
+    color: #3296d9;
+    text-decoration: none;
+    display: block;
+    text-align: left; }
 
 .title {
   color: #2f3854;
   font-size: 4.236rem;
-  line-height: 161.8%;
-  letter-spacing: -2.25; }
+  line-height: 100%;
+  letter-spacing: -2.25;
+  margin-bottom: 1rem; }
 
 .address {
-  color: #c5cdda;
-  font-size: 1.618rem;
-  margin-bottom: 1rem;
-  padding-bottom: 1.618rem;
-  position: relative; }
-  .address:after {
-    content: "";
-    display: block;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    -left: 50%;
-    -margin-left: -8.972rem;
-    height: 1px;
-    -width: 17.944rem;
-    background: #c5cdda; }
+  color: #bdc5d1;
+  font-size: 1.618rem; }
 
 .commands {
-  position: fixed;
-  top: 1.618rem;
-  left: 1.618rem;
-  overflow: auto; }
+  overflow: auto;
+  margin-bottom: 6.854rem; }
 
 .name {
+  background: #fff;
   position: fixed;
   width: 100%;
   bottom: 0;

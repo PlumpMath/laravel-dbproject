@@ -8,7 +8,7 @@ $med: 2.618rem;
 $sm: 1.618rem;
 $tny: 1rem;
 
-$gray: #c5cdda;
+$gray: #bdc5d1;
 
 $dark_blue: #2f3854;
 $middle_blue: #b1bdd1;
@@ -25,63 +25,122 @@ body {
     line-height: 161.8%
 }
 
-html, body, .container {
+html, body, .table, .sidebar {
     height: 100%;
-    width: 100%;
 }
 
-.container {
+.sidebar {
+    display: table;
+    box-sizing: border-box;
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: $sm;
+    width: 22.5%;
+
+    .cell {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+    .user_label {
+        line-height: 100%;
+        font-size: $tny;
+        color: $gray;
+        margin-bottom: $sm;
+    }
+
+    .user {
+        font-size: $sm;
+    }
+
+    .signout {
+        .signout_label {
+            display: inline-block;
+        }
+        
+        i {
+            color: $gray;
+            margin-right: $tny;            
+        }
+    }
+}
+
+h1 {
+    color: $dark_blue;
+-font-weight: normal;
+    font-size: $tny;
+    margin-top: $hg;
+    text-align: left;
+    text-transform: uppercase;
+}
+
+table {
+    width: 100%;
+
+    tr {
+        &:nth-child(2n) {
+            background: #eff3ff;
+        }
+        &:nth-child(2n-1) {
+            background: #f7f9ff;
+        }
+    }
+
+    td {
+        padding: $tny;
+        width: 50%;
+
+        &:first-child {
+            color: $gray;
+        }
+    }
+}
+
+.table {
     display: table;
     text-align:center;
-}
+    width: 77.5%;
 
-.cell {
-    display: table-cell;
-    vertical-align: middle;
+    .cell {
+    }
 }
 
 .content {
-    display: inline-block;
+    width: 46.978rem;
+    margin: auto;
+    margin-top: $hg;
+    padding-bottom: $hg;
+
+    a {
+        color: $blue;
+        text-decoration: none;
+        display: block;
+        text-align: left;
+    }
 }
 
 .title {
     color: $dark_blue;
     font-size: $lg;
-    line-height: 161.8%;
+    line-height: 100%;
     letter-spacing: -2.25;
+    margin-bottom: $tny;
 }
 
 .address {
     color: $gray;
     font-size: $sm;
-    margin-bottom: $tny;
-    padding-bottom: $sm;
-    position: relative;
-
-    &:after {
-        content: "";
-        display: block;
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
--left: 50%;
--margin-left: -$max/2;
-
-        height: 1px;
--width: $max;
-        background: $gray;
-    }
 }
 
 .commands {
-    position: fixed;
-    top: $sm;
-    left: $sm;
     overflow: auto;
+    margin-bottom: $hg;
 }
 
 .name {
+    background: #fff;
     position: fixed;
     width: 100%;
     bottom: 0;
