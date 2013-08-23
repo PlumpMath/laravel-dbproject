@@ -173,6 +173,13 @@ table {
     a {
         display: block;
     }
+
+    button {
+        padding: 0;
+        margin: 0;
+        border: 0;
+        background: none;
+    }
 }
 
 
@@ -183,6 +190,30 @@ table {
     bottom: 0;
     padding: $sm;
     text-align: center;
+}
+
+@-webkit-keyframes blink {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: .8;
+    }
+}
+
+@-webkit-keyframes grow {
+    from {
+        font-size: $tny;
+        margin-left: -($tny / 2);
+        margin-top: -($tny / 2);
+    }
+
+    to {
+        font-size: $sm;
+        margin-left: -($sm / 2);
+        marign-top: -($sm / 2);
+    }
 }
 
 .icon {
@@ -206,6 +237,14 @@ table {
     &.delete {
         background: $red;
         border-radius: 0 0 8px 8px;
+    }
+
+    &:hover {
+        -webkit-animation-name: blink;
+        -webkit-animation-duration: .75s;
+        -webkit-animation-timing-function: ease-in;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-direction: alternate;
     }
 
     i {

@@ -444,6 +444,11 @@ table {
   width: 2.618rem; }
   .commands a {
     display: block; }
+  .commands button {
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: none; }
 
 .name {
   background: #fff;
@@ -452,6 +457,24 @@ table {
   bottom: 0;
   padding: 1.618rem;
   text-align: center; }
+
+@-webkit-keyframes blink {
+  from {
+    opacity: 1; }
+
+  to {
+    opacity: .8; } }
+
+@-webkit-keyframes grow {
+  from {
+    font-size: 1rem;
+    margin-left: -0.5rem;
+    margin-top: -0.5rem; }
+
+  to {
+    font-size: 1.618rem;
+    margin-left: -0.809rem;
+    marign-top: -0.809rem; } }
 
 .icon {
   position: relative;
@@ -469,6 +492,12 @@ table {
   .icon.delete {
     background: #cc2a3b;
     border-radius: 0 0 8px 8px; }
+  .icon:hover {
+    -webkit-animation-name: blink;
+    -webkit-animation-duration: .75s;
+    -webkit-animation-timing-function: ease-in;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate; }
   .icon i {
     position: absolute;
     top: 50%;

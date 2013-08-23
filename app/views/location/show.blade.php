@@ -1,10 +1,6 @@
-<head>
-  {{ HTML::style('css/main.css') }}
-  <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-  <style>
-  </style>
-</head>
-<body>
+@extends('layouts.master')
+
+@section('body')
   <div class='commands'>
     <a href='{{ $url_copy }}'>
       <div class='copy icon'>
@@ -16,11 +12,13 @@
         <i class='icon-edit'></i>
       </div>
     </a>
-    <a href='{{ $url_destroy }}'>
+    {{ Form::open(array('url' => $url_destroy, 'method' => 'delete')) }} 
+    <button type='submit'>
       <div class='delete icon'>
         <i class='icon-trash'></i>
       </div>
-    </a>
+    </button>
+    {{ Form::close() }}
   </div>
   <div class='sidebar'>
     <div class='account_info'>
@@ -86,5 +84,4 @@
   <div class='name'>
     myafterschoolprograms, inc.
   </div>
-</body>
-</html>
+@stop

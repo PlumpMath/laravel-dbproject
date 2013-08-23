@@ -1,30 +1,59 @@
 <?php
 
-class LocationController extends ResourceController
+class LocationController extends BaseController
 {
-    protected $name = array(
-                            'singular' => 'Location',
-                            'plural'   => 'Locations',
-                            );
+    public function show($id)
+    {
+        $location = Location::find($id)->toArray();
+        
+        foreach ($location as $key => $row) {
+            unset($location[$key]);
+            $key = ucwords(implode(' ', explode('_', $key)));
+            
+            switch ($key) {
+            case 'Phone':
+                $row = '<a href=\'tel:+1'.$row.'\'>('.substr($row, 0, 3).') '.substr($row, 3, 3).'-'.substr($row, 6, 4).'</a>';
+                break;
+            case 'Capacity':
+                $row = $row.' per class';
+                break;
+            case 'Status':
+                if ($row = 1) {
+                    $row = 'Active';
+                } else {
+                    $row = 'Inactive';
+                }
+            }
+            
+            $location[$key] = $row;
+        }
+        
+        return View::make('location.show', array('rows' => $location, 'url_copy' => action('LocationController@copy', $id), 'url_edit' => '#', 'url_destroy' => action('LocationController@destroy', $id)));
+        
+    }
+    
+    public function copy($id)
+    {
+        $resource_to_copy = Location::find($id);
+        $array_from_resource = $resource_to_copy->toArray();
+        unset($array_from_resource['id']);
+        $resource_copied = Location::create($array_from_resource);
 
-    protected $field = array(
-                             'id'             => null,
-                             'name'           => 'indexable|create|read|update',
-                             'phone'          => 'create|update',
-                             'capacity'       => 'indexable|create|read|update',
-                             'street_address' => 'create|update',
-                             'city'           => 'create|update',
-                             'zip_code'       => 'create|update',
-                             'created_at'     => null,
-                             'updated_at'     => null,
-                             );
+        return Redirect::action('LocationController@edit', $resource_copied->id);
+    }
 
-    protected $rules = array(
-                             'name'           => 'required|alpha_dash',
-                             'phone'          => 'required|numeric',
-                             'capacity'       => 'required|integer',
-                             'street_address' => 'required|alpha_dash',
-                             'city'           => 'required|alpha|size:2',
-                             'zip_code'       => 'requried|numeric',
-                             );
+    public function edit($id)
+    {
+    }
+
+    public function update($id)
+    {
+    }
+
+    public function destroy($id)
+    {
+        Location::destroy($id);
+        
+        return View::make('location.destroy');
+    }
 }

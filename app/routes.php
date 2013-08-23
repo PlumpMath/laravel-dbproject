@@ -8,40 +8,9 @@ Route::get('/', function ()
     }
 });
 
-Route::get('/test', function()
-{
-    return View::make('location');
-});
+Route::resource('locations', 'LocationController');
 
-Route::get('/locations/{id}', function($id)
-{
-    $location = Location::find($id)->toArray();
-
-    foreach ($location as $key => $row) {
-        unset($location[$key]);
-        $key = ucwords(implode(' ', explode('_', $key)));
-
-        switch ($key) {
-            case 'Phone':
-                $row = '<a href=\'tel:+1'.$row.'\'>('.substr($row, 0, 3).') '.substr($row, 3, 3).'-'.substr($row, 6, 4).'</a>';
-                break;
-            case 'Capacity':
-                $row = $row.' per class';
-                break;
-            case 'Status':
-                if ($row = 1) {
-                    $row = 'Active';
-                } else {
-                    $row = 'Inactive';
-                }
-        }
-
-        $location[$key] = $row;
-    }
-
-    return View::make('location_full', array('rows' => $location, 'url_copy' => '#'));
-});
-
+Route::get('locations/{id}/copy', 'LocationController@copy');
 
 /*
 
