@@ -1,41 +1,30 @@
 @extends('layouts.master')
+@include('elements.sidebar')
 
 @section('body')
   <div class='commands'>
     <a href='{{ $url_copy }}'>
       <div class='copy icon'>
         <i class='icon-copy'></i>
+        <p>copy?</p>
       </div>
     </a>
     <a href='{{ $url_edit }}'>
       <div class='edit icon'>
         <i class='icon-edit'></i>
+        <p>edit?</p>
       </div>
     </a>
     {{ Form::open(array('url' => $url_destroy, 'method' => 'delete')) }} 
     <button type='submit'>
       <div class='delete icon'>
         <i class='icon-trash'></i>
+        <p>delete?</p>
       </div>
     </button>
     {{ Form::close() }}
   </div>
-  <div class='sidebar'>
-    <div class='account_info'>
-      <div class='user'>Admin</div>
-      <div class='user_label'>account name</div>
-      <div class='signout'>
-        <i class='icon-signout'></i>
-        <div class='signout_label'>Sign Out</div>
-      </div>
-      <div class='signout'>
-        <i class='icon-cogs'></i>
-        <div class='signout_label'>Account Settings</div>
-      </div>
-    </div>
-    <div class='nav'>
-    </div>
-  </div>
+  @yield('sidebar')
   <div class='table'>
     <div class='content'>
       <div class='header'>

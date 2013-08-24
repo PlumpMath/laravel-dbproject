@@ -2,6 +2,36 @@
 
 class LocationController extends BaseController
 {
+    public function index()
+    {
+        $locations = Location::all()->toArray();
+
+        return View::make('location.index', array('title' => 'Locations | myafterschoolprograms', 'locations' => $locations, 'date' => 'none', 'name' => 'Location'));
+    }
+
+    public function store()
+    {
+        $locations = json_decode(Input::get('locations_to_affect'));
+        $isCopy = (Input::get('copy_submit', false) === '') ? true : false;
+        $isEdit = (Input::get('edit_submit', false) === '') ? true : false;
+        $isDelete = (Input::get('delete_submit', false) === '') ? true : false;
+
+        foreach($locations as $id) {
+            if ($isCopy) {
+                $resource_to_copy = Location::find($id);
+                $array_from_resource = $resource_to_copy->toArray();
+                unset($array_from_resource['id']);
+                $resource_copied = Location::create($array_from_resource);                
+            } else if ($isEdit) {
+                
+            } else if ($isDelete) {
+                Location::destroy($id);
+            }
+        }
+
+        return Redirect::action('LocationController@index');
+    }
+
     public function show($id)
     {
         $location = Location::find($id)->toArray();
@@ -28,7 +58,7 @@ class LocationController extends BaseController
             $location[$key] = $row;
         }
         
-        return View::make('location.show', array('rows' => $location, 'url_copy' => action('LocationController@copy', $id), 'url_edit' => '#', 'url_destroy' => action('LocationController@destroy', $id)));
+        return View::make('location.show', array('rows' => $location, 'url_copy' => action('LocationController@copy', $id), 'url_edit' => '#', 'url_destroy' => action('LocationController@destroy', $id), 'title' => $location['Name'].' | myafterschoolprograms'));
         
     }
     
@@ -39,7 +69,7 @@ class LocationController extends BaseController
         unset($array_from_resource['id']);
         $resource_copied = Location::create($array_from_resource);
 
-        return Redirect::action('LocationController@edit', $resource_copied->id);
+        return Redirect::action('LocationController@show', $resource_copied->id);
     }
 
     public function edit($id)
@@ -54,6 +84,6 @@ class LocationController extends BaseController
     {
         Location::destroy($id);
         
-        return View::make('location.destroy');
+        return Redirect::action('LocationController@index');
     }
 }

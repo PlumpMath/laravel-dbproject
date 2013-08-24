@@ -380,12 +380,27 @@ html, body, .table, .sidebar {
     color: #bdc5d1;
     margin-right: 1rem; }
 
-h1 {
+h1, h2 {
   color: #2f3854;
   font-weight: normal;
   font-size: 1.618rem;
-  margin-top: 2.618rem;
   -text-transform: uppercase; }
+
+h1 {
+  margin-top: 2.618rem; }
+
+input[name='search'] {
+  width: 40.742rem;
+  font-size: 2.618rem;
+  color: #2f3854;
+  border: none;
+  outline: none;
+  border-bottom: 3px solid #2f3854;
+  margin: 4.236rem 0 6.854rem 0; }
+
+.icon-search {
+  font-size: 2.618rem;
+  margin-right: 2.618rem; }
 
 table {
   -font-family: Consolas;
@@ -404,10 +419,41 @@ table {
     border-radius: 0 0 8px 0; }
   table td {
     color: #bdc5d1;
-    padding: 1rem;
+    padding: 1rem 0;
     width: 50%; }
     table td:first-child {
+      color: #fbdf6f;
+      padding-left: 1rem; }
+    table td:last-child {
+      padding-right: 1rem; }
+
+table.index tr {
+  -webkit-transition: .25s ease; }
+  table.index tr:hover {
+    background: #5f6376; }
+table.index td {
+  color: #fbdf6f;
+  width: 40%;
+  padding: 0; }
+  table.index td a i {
+    -webkit-transition: .25s ease;
+    color: inherit; }
+  table.index td a {
+    display: block;
+    height: 100%;
+    width: 100%;
+    padding: 1rem 0; }
+  table.index td:first-child {
+    text-align: center;
+    width: 8%;
+    color: #bdc5d1; }
+    table.index td:first-child .icon-ok {
+      color: #2dcb70; }
+    table.index td:first-child:hover {
       color: #fbdf6f; }
+  table.index td:last-child {
+    width: 52%;
+    color: #bdc5d1; }
 
 .table {
   display: table;
@@ -419,7 +465,7 @@ table {
   padding-top: 17.944rem;
   padding-bottom: 6.854rem; }
   .content a {
-    color: #95beff;
+    color: inherit;
     text-decoration: none;
     display: block; }
 
@@ -428,10 +474,10 @@ table {
   .header .title {
     color: #2f3854;
     font-size: 4.236rem;
-    line-height: 100%;
-    letter-spacing: -2.25;
-    margin-bottom: 1rem; }
+    line-height: 90%;
+    letter-spacing: -2px; }
   .header .address {
+    line-height: 161.8%;
     color: #bdc5d1;
     font-size: 1.618rem; }
 
@@ -441,10 +487,16 @@ table {
   left: 1.618rem;
   top: 1.618rem;
   -margin-top: -3.927rem;
-  width: 2.618rem; }
+  width: 2.618rem;
+  -webkit-transition: .2s ease; }
+  .commands.hidden {
+    -webkit-transform: translateX(-6.854rem); }
+  .commands.show {
+    -webkit-transform: translateX(0); }
   .commands a {
     display: block; }
   .commands button {
+    display: block;
     padding: 0;
     margin: 0;
     border: 0;
@@ -458,24 +510,6 @@ table {
   padding: 1.618rem;
   text-align: center; }
 
-@-webkit-keyframes blink {
-  from {
-    opacity: 1; }
-
-  to {
-    opacity: .8; } }
-
-@-webkit-keyframes grow {
-  from {
-    font-size: 1rem;
-    margin-left: -0.5rem;
-    margin-top: -0.5rem; }
-
-  to {
-    font-size: 1.618rem;
-    margin-left: -0.809rem;
-    marign-top: -0.809rem; } }
-
 .icon {
   position: relative;
   color: #fff;
@@ -483,7 +517,8 @@ table {
   font-size: 1rem;
   height: 2.618rem;
   width: 2.618rem;
-  text-align: center; }
+  text-align: center;
+  overflow: hidden; }
   .icon.copy {
     background: #2dcb70;
     border-radius: 8px 8px 0 0; }
@@ -492,12 +527,18 @@ table {
   .icon.delete {
     background: #cc2a3b;
     border-radius: 0 0 8px 8px; }
-  .icon:hover {
-    -webkit-animation-name: blink;
-    -webkit-animation-duration: .75s;
-    -webkit-animation-timing-function: ease-in;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-direction: alternate; }
+  .icon p {
+    line-height: 100%;
+    font-size: .618rem;
+    position: absolute;
+    top: 50%;
+    left: 2.618rem;
+    width: 2.618rem;
+    text-align: center;
+    margin-top: -.309rem; }
+  .icon:hover p, .icon:hover i {
+    -webkit-transition: .1s ease-out;
+    -webkit-transform: translateX(-2.618rem); }
   .icon i {
     position: absolute;
     top: 50%;
