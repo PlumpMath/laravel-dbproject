@@ -50,6 +50,7 @@ class LocationController extends BaseController
                                            'address' => $location['address'],
                                            'search_value' => $value,
                                            'search_key' => $var,
+                                           'url_show' => action('LocationController@show', $location['id'])
                                            );
                     }
                 }

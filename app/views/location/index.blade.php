@@ -74,7 +74,7 @@
                   data = JSON.parse(data);
                   var cls = (data.length === 1) ? "only_one" : "";
                   $.each(data, function(i, val) {
-                      result += "<tr class='"+cls+"'><td><a href='"+"' class='location_checkbox added'><i class='icon-circle-blank' id='"+val['id']+"'></i></a></td><td><a href='"+"'>"+val['name']+"</a></td><td><a href=''><span class='white'>"+val['search_key']+": </span>"+val['search_value']+"</a></td></tr>";
+                      result += "<tr class='"+cls+"'><td><a href='"+"' class='location_checkbox added'><i class='icon-circle-blank' id='"+val['id']+"'></i></a></td><td><a href='"+val['url_show']+"'>"+val['name']+"</a></td><td><a href='"+val['url_show']+"'><span class='white'>"+val['search_key']+": </span>"+val['search_value']+"</a></td></tr>";
                   });
                   $('#search_results').html(result);
                   $('.added').on('click', handleCheckboxes);
