@@ -4,6 +4,7 @@ class LocationController extends BaseController
 {
     public function index()
     {
+        if (isset($delete)) dd($delete);
         $locations = Location::all()->toArray();
 
         return View::make('location.index', array('title' => 'Locations | myafterschoolprograms', 'locations' => $locations, 'date' => 'none', 'name' => 'Location'));
@@ -30,6 +31,32 @@ class LocationController extends BaseController
         }
 
         return Redirect::action('LocationController@index');
+    }
+
+    public function search()
+    {
+        if (!Input::has('request')) return;
+        $request = explode(' ', strtolower(Input::get('request')));
+        $results = array();
+        $locations = Location::all();
+
+        foreach($locations as $location) {
+            $location = $location->toArray();
+            foreach($location as $var => $value) {
+                foreach($request as $word) {
+                    if (strpos(strtolower($value), $word) > -1) {
+                        $results[] = array('id' => $location['id'],
+                                           'name' => $location['name'],
+                                           'address' => $location['address'],
+                                           'search_value' => $value,
+                                           'search_key' => $var,
+                                           );
+                    }
+                }
+            }
+        }
+
+        return (json_encode($results));
     }
 
     public function show($id)
@@ -84,6 +111,6 @@ class LocationController extends BaseController
     {
         Location::destroy($id);
         
-        return Redirect::action('LocationController@index');
+        return Redirect::action('LocationController@index', array('delete' => 1));
     }
 }

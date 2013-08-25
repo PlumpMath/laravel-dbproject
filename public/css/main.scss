@@ -85,9 +85,6 @@ h1 {
     margin-top: $med;
 }
 
-form.search {
-}
-
 input[name='search'] {
     width: $width - $med - $med - 1rem;
     font-size: $med;
@@ -202,6 +199,47 @@ table.index {
 
     .cell {
     }
+}
+
+.search_results {
+    &.hide {
+        display: none;
+    }
+}
+
+table.search_results {
+
+    &.show {
+        margin-bottom: $hg;
+    }
+
+    tr.empty td {
+        box-sizing: border-box;
+        width: 100%;
+        text-align: center;
+        border-radius: 8px;
+        background: $red;
+        color: #fff;
+        padding: 1rem;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+
+    tr.only_one td {
+        &:first-child {
+            border-radius: 8px 0 0 8px;
+        }
+        
+        &:last-child {
+            border-radius: 0 8px 8px 0;
+        }
+    }
+}
+
+.white {
+    color: #fff;
 }
 
 .content {
@@ -323,10 +361,4 @@ table.index {
         margin-left: -($tny * .5);
         margin-top: -($tny * .5);
     }
-}
-
-.show {
-    color: $blue;
-    margin-right: $sm;
-    text-align: right;
 }

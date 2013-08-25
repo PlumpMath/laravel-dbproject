@@ -459,6 +459,29 @@ table.index td {
   display: table;
   width: 77.5%; }
 
+.search_results.hide {
+  display: none; }
+
+table.search_results.show {
+  margin-bottom: 6.854rem; }
+table.search_results tr.empty td {
+  box-sizing: border-box;
+  width: 100%;
+  text-align: center;
+  border-radius: 8px;
+  background: #cc2a3b;
+  color: #fff;
+  padding: 1rem; }
+  table.search_results tr.empty td:hover {
+    color: #fff; }
+table.search_results tr.only_one td:first-child {
+  border-radius: 8px 0 0 8px; }
+table.search_results tr.only_one td:last-child {
+  border-radius: 0 8px 8px 0; }
+
+.white {
+  color: #fff; }
+
 .content {
   width: 46.978rem;
   margin: auto;
@@ -545,8 +568,3 @@ table.index td {
     left: 50%;
     margin-left: -0.5rem;
     margin-top: -0.5rem; }
-
-.show {
-  color: #95beff;
-  margin-right: 1.618rem;
-  text-align: right; }

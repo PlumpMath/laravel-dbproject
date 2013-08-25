@@ -8,9 +8,10 @@ Route::get('/', function ()
     }
 });
 
-Route::resource('locations', 'LocationController');
+Route::post('/locations/search', 'LocationController@search');
+Route::get('/locations/{id}/copy', 'LocationController@copy');
 
-Route::get('locations/{id}/copy', 'LocationController@copy');
+Route::resource('locations', 'LocationController');
 
 /*
 
