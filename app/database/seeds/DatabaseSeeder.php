@@ -15,8 +15,39 @@ class DatabaseSeeder extends Seeder {
         $this->call('PermissionsTableSeeder');
         $this->call('RolesTableSeeder');
         $this->call('LocationsTableSeeder');
+        $this->call('MapsTableSeeder');
 	}
 
+}
+
+class MapsTableSeeder extends Seeder {
+	public function geocode($query)
+	{
+		$placeSearchURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $query . '&sensor=false';
+
+		$placeSearchJSON = file_get_contents($placeSearchURL);
+		$dataArray = json_decode($placeSearchJSON);
+		$location = $dataArray->results[0]->geometry->location;
+		return array($location->lat, $location->lng);
+	}
+	
+	public function run()
+	{
+		$now = date('Y-m-d H:i:s');
+		$locations = Location::all();
+		
+		foreach($locations as $location) {
+			$address = urlencode($location['address'] . $location['city'] . $location['state']);
+			$latlng = self::geocode($address);
+
+			Maps::create(array(
+					'id' => $location['id'],
+					'latitude' => $latlng[0],
+					'longitude' => $latlng[1],
+					)
+			);
+		}
+	}
 }
 
 class LocationsTableSeeder extends Seeder {
