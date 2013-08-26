@@ -568,3 +568,7 @@ table.search_results tr.only_one td:last-child {
     left: 50%;
     margin-left: -0.5rem;
     margin-top: -0.5rem; }
+
+.address.red {
+  color: #cc2a3b;
+  text-align: center; }

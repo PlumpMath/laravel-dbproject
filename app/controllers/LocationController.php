@@ -102,6 +102,29 @@ class LocationController extends BaseController
 
     public function edit($id)
     {
+        $location = Location::find($id)->toArray();
+        
+        foreach ($location as $key => $row) {
+            unset($location[$key]);
+            $key = ucwords(implode(' ', explode('_', $key)));
+            
+            switch ($key) {
+            case 'Phone':
+                $row = '('.substr($row, 0, 3).') '.substr($row, 3, 3).'-'.substr($row, 6, 4);
+                break;
+            case 'Status':
+                if ($row = 1) {
+                    $row = 'Active';
+                } else {
+                    $row = 'Inactive';
+                }
+            }
+            
+            $location[$key] = $row;
+        }
+        
+        return View::make('location.edit', array('rows' => $location, 'url_copy' => action('LocationController@copy', $id), 'url_edit' => '#', 'url_destroy' => action('LocationController@destroy', $id), 'url_update' => action('LocationController@update', $id), 'title' => $location['Name'].' | myafterschoolprograms'));
+        
     }
 
     public function update($id)
