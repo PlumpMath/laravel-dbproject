@@ -7,10 +7,72 @@ class LocationController extends BaseController
         if (isset($delete)) dd($delete);
         $locations = Location::all()->toArray();
 
-        return View::make('location.index', array('title' => 'Locations | myafterschoolprograms', 'locations' => $locations, 'date' => 'none', 'name' => 'Location'));
+        return View::make('location.index', array('title' => 'Locations | myafterschoolprograms', 'locations' => $locations, 'date' => 'none', 'name' => 'Location', 'url_edit' => '#', 'url_destroy' => '', 'url_create' => action('LocationController@create'),'url_copy' => '', 'url_update' => '', 'url_mass' => action('LocationController@affect')));
+    }
+
+    public function create()
+    {
+        $filleables = array(
+                            'Name',
+                            'Contact Name',
+                            'Phone',
+                            'Capacity',
+                            'Address',
+                            'City',
+                            'State',
+                            'Zip Code',
+                            'Status',
+                            'Notes',
+                            );
+        
+        return View::make('location.create', array('filleables' => $filleables, 'url_copy' => '', 'url_edit' => '#', 'url_destroy' => '', 'url_update' => '', 'title' => 'Creating a Location | myafterschoolprograms', 'url_create' => '', 'url_store' => action('LocationController@store')));
+        
     }
 
     public function store()
+    {
+        $location = new Location;
+
+        $inputs = Input::all();
+        $updateables = array(
+                            'name',
+                            'contact_name',
+                            'phone',
+                            'capacity',
+                            'address',
+                            'city',
+                            'state',
+                            'zip_code',
+                            'status',
+                            'notes',
+                            );
+
+        foreach($updateables as $updateable) {
+            $input = Input::get($updateable);
+
+            if ($input) {
+                if ($updateable === 'phone') {
+                    $location->$updateable = preg_replace("/[^0-9]/", "", $input);
+                } else if ($updateable === 'status') {
+                    if ($input = 'Active') {
+                        $input = 1;
+                    } else {
+                        $input = 0;
+                    }
+                    $location->$updateable = $input;
+                } else {
+                    $location->$updateable = $input;
+                }
+            }
+        }
+
+        $location->save();
+
+        return Redirect::action('LocationController@show', $location->id);
+    }
+
+
+    public function affect()
     {
         $locations = json_decode(Input::get('locations_to_affect'));
         $isCopy = (Input::get('copy_submit', false) === '') ? true : false;
@@ -86,7 +148,7 @@ class LocationController extends BaseController
             $location[$key] = $row;
         }
         
-        return View::make('location.show', array('rows' => $location, 'url_copy' => action('LocationController@copy', $id), 'url_edit' => '#', 'url_destroy' => action('LocationController@destroy', $id), 'title' => $location['Name'].' | myafterschoolprograms'));
+        return View::make('location.show', array('rows' => $location, 'url_copy' => action('LocationController@copy', $id), 'url_edit' => action('LocationController@edit', $id), 'url_update' => action('LocationController@update', $id), 'url_destroy' => action('LocationController@destroy', $id), 'title' => $location['Name'].' | myafterschoolprograms', 'url_create' => ''));
         
     }
     
@@ -123,12 +185,50 @@ class LocationController extends BaseController
             $location[$key] = $row;
         }
         
-        return View::make('location.edit', array('rows' => $location, 'url_copy' => action('LocationController@copy', $id), 'url_edit' => '#', 'url_destroy' => action('LocationController@destroy', $id), 'url_update' => action('LocationController@update', $id), 'title' => $location['Name'].' | myafterschoolprograms'));
+        return View::make('location.edit', array('rows' => $location, 'url_copy' => action('LocationController@copy', $id), 'url_edit' => '#', 'url_destroy' => action('LocationController@destroy', $id), 'url_update' => action('LocationController@update', $id), 'title' => $location['Name'].' | myafterschoolprograms', 'url_create' => ''));
         
     }
 
     public function update($id)
     {
+        $location = Location::find($id);
+
+        $inputs = Input::all();
+        $updateables = array(
+                            'name',
+                            'contact_name',
+                            'phone',
+                            'capacity',
+                            'address',
+                            'city',
+                            'state',
+                            'zip_code',
+                            'status',
+                            'notes',
+                            );
+
+        foreach($updateables as $updateable) {
+            $input = Input::get($updateable);
+
+            if ($input) {
+                if ($updateable === 'phone') {
+                    $location->$updateable = preg_replace("/[^0-9]/", "", $input);
+                } else if ($updateable === 'status') {
+                    if ($input = 'Active') {
+                        $input = 1;
+                    } else {
+                        $input = 0;
+                    }
+                    $location->$updateable = $input;
+                } else {
+                    $location->$updateable = $input;
+                }
+            }
+        }
+
+        $location->save();
+
+        return Redirect::action('LocationController@show', $id);
     }
 
     public function destroy($id)

@@ -1,8 +1,16 @@
 @extends('layouts.master')
 @include('elements.sidebar')
+@include('elements.commands')
+
 @section('body')
-  <div class='commands hidden'>
-    {{ Form::open(array('url' => action('LocationController@store'))) }}
+  <div class='commands'>
+    <a href='{{ $url_create }}'>
+      <div class='create icon'>
+        <i class='icon-file-text-alt'></i>
+        <p>new?</p>
+      </div>
+    </a>
+{{ Form::open(array('url' => $url_mass)) }}
     <input type='hidden' value='' id='locations_to_affect' name='locations_to_affect'>
     <button type='submit' name='copy_submit' class='location_submit'>
       <div class='copy icon'>
@@ -10,13 +18,33 @@
         <p>copy?</p>
       </div>
     </button>
+    <a href='{{ $url_edit }}'>
+      <div class='edit icon'>
+        <i class='icon-edit'></i>
+        <p>edit?</p>
+      </div>
+    </a>
     <button type='submit' name='delete_submit' class='location_submit'>
       <div class='delete icon'>
         <i class='icon-trash'></i>
         <p>delete?</p>
       </div>
     </button>
+{{ Form::close() }}
+    {{ Form::open(array('url' => $url_update, 'id' => 'update', 'method' => 'put')) }} 
+    <button type='submit'>
+      <div class='save icon inactive'>
+        <i class='icon-save'></i>
+        <p>save?</p>
+      </div>
+    </button>
     {{ Form::close() }}
+    <a href=''>
+      <div class='cancel icon inactive'>
+        <i class='icon-ban-circle'></i>
+        <p>cancel?</p>
+      </div>
+    </a>
   </div>
 @yield('sidebar')
 <div class='table'>
@@ -103,12 +131,6 @@
   var handleCheckboxes = function(event) {
       event.preventDefault();
       $(this).children().toggleClass('icon-circle-blank icon-ok');
-      var someAreChecked = ($('.icon-ok').length === 0);
-      var commands = $('.commands');
-
-      if ((someAreChecked || !$(commands).hasClass('show')) && (!someAreChecked || !$(commands).hasClass('hidden'))) {
-          $(commands).toggleClass('hidden show');
-      }
   }
 
   $('.location_checkbox').on('click', handleCheckboxes);

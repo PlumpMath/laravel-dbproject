@@ -544,12 +544,21 @@ table.search_results tr.only_one td:last-child {
   overflow: hidden; }
   .icon.copy {
     background: #2dcb70;
+    box-sizing: border-box;
+    border-top: 1px solid #62E89A; }
+  .icon.create, .icon.save {
+    background: #2dcb70;
     border-radius: 8px 8px 0 0; }
   .icon.edit {
     background: #95beff; }
-  .icon.delete {
+  .icon.delete, .icon.cancel {
     background: #cc2a3b;
     border-radius: 0 0 8px 8px; }
+  .icon.delete {
+    margin-bottom: 2.618rem; }
+  .icon.inactive {
+    background: #2f3854;
+    color: #bdc5d1; }
   .icon p {
     line-height: 100%;
     font-size: .618rem;
@@ -572,3 +581,12 @@ table.search_results tr.only_one td:last-child {
 .address.red {
   color: #cc2a3b;
   text-align: center; }
+
+input.edit, textarea.edit {
+  width: 100%;
+  border: none;
+  outline: none;
+  padding: 1rem;
+  box-sizing: border-box;
+  background: #E1EDFF;
+  color: #2f3854; }

@@ -9,6 +9,7 @@ Route::get('/', function ()
 });
 
 Route::post('/locations/search', 'LocationController@search');
+Route::post('/locations/affect', 'LocationController@affect');
 Route::get('/locations/{id}/copy', 'LocationController@copy');
 
 Route::resource('locations', 'LocationController');
