@@ -6,23 +6,84 @@
     var build_version       = '0.1.0',
         masp                = {
             version: build_version,
-            __construct: function() {
+            __construct: function () {
                 //handle input label toggling
                 var input_wrapper = ($('.form-wrapper').length !== 0) ? '.form-wrapper' : '.input-wrapper';
                 $(input_wrapper).on('load input', this.toggleLabels);
 
                 return this;
-            },  
-            toggleLabels: function(event) {
+            },
+            states: [
+                'AL',
+                'AK',
+                'AS',
+                'AZ',
+                'AR',
+                'CA',
+                'CO',
+                'CT',
+                'DE',
+                'DC',
+                'FM',
+                'FL',
+                'GA',
+                'GU',
+                'HI',
+                'ID',
+                'IL',
+                'IN',
+                'IA',
+                'KS',
+                'KY',
+                'LA',
+                'ME',
+                'MH',
+                'MD',
+                'MA',
+                'MI',
+                'MN',
+                'MS',
+                'MO',
+                'MT',
+                'NE',
+                'NV',
+                'NH',
+                'NJ',
+                'NM',
+                'NY',
+                'NC',
+                'ND',
+                'MP',
+                'OH',
+                'OK',
+                'OR',
+                'PW',
+                'PA',
+                'PR',
+                'RI',
+                'SC',
+                'SD',
+                'TN',
+                'TX',
+                'UT',
+                'VT',
+                'VI',
+                'VA',
+                'WA',
+                'WV',
+                'WI',
+                'WY' 
+            ],
+            toggleLabels: function (event) {
                 $(event.target)
                     .siblings('label')
                     .toggleClass('visible invisible', ($(event.target).val() !== ""));
             },
-            toggleVisibility: function(event, element) {
+            toggleVisibility: function (event, element) {
                 if (event) event.preventDefault();
                 $(element+'.invisible, '+element+'.visible').toggleClass('visible invisible');
             },
-            toggleButton: function(button, condition) {
+            toggleButton: function (button, condition) {
                 $(button).resetToggle('inactive active', condition);
                 $(button)
                     .children('.active-option')
@@ -31,10 +92,10 @@
                     .children('.inactive-option')
                     .resetToggle('invisible visible', (!condition));
             },
-            resetVisibility: function(element, condition) {
+            resetVisibility: function (element, condition) {
                 $(element).resetToggle('invisible visible', condition);
             },
-            capitalizeFirst: function(string) {
+            capitalizeFirst: function (string) {
                 return string.charAt(0).toUpperCase() + string.slice(1);
             }
         }
@@ -63,6 +124,5 @@
         return this;
     };
 
-    console.log('Hi! This site was designed and built by williamstein92@gmail.com')
     window.myafterschoolprograms = masp.__construct();
 }(window, jQuery));

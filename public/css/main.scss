@@ -18,6 +18,8 @@ $tny:   1rem;
 
 $line_height: 130.90%;
 
+$input_width: 26.8125rem;
+
 /*=== COLOR ===*/
 $black:         #2f3854;
 $gray:          #9397a8;
@@ -92,6 +94,24 @@ body, .horizontal-center-wrapper, html, .page, .vertical-center-outer-wrapper {
     }
 }/* .vertical-center-outer-wrapper */
 
+.page {
+    position: absolute;
+        top: 0;
+        left: 0;
+    text-align: center;
+    transition: .5s all;
+    width: 100%;
+    -webkit-transform: translateX(0);
+
+    &.hide-right {
+        -webkit-transform: translateX(100%);
+    }
+
+    &.hide-left {
+        -webkit-transform: translateX(-100%)
+    }
+}
+
 .heading {
     font-size: $sm;
     margin-bottom: $tny;
@@ -113,8 +133,39 @@ body, .horizontal-center-wrapper, html, .page, .vertical-center-outer-wrapper {
     }
 }/* .header */
 
-#Header, #Log-In, #Sign-Up, #Name-Input {
+#Header, #Log-In, #Sign-Up {
     text-align: center;
+}
+
+.input-collection {
+    display: inline-block;
+}
+
+#City-Input, #State-Input, #Zip-Code-Input {
+    display: inline-block;
+}
+
+#City-Input {
+    margin-right: $tny;
+
+    input {
+        width: $input_width/2 - ($tny * 2);
+    }
+}
+
+#State-Input {
+    margin-right: $tny;
+
+    input {
+        width: $input_width/4 - ($tny * 3);
+    }
+}
+
+#Zip-Code-Input {
+
+    input {
+        width: $input_width/4 - ($tny * 2);
+    }
 }
 
 #Footer {
@@ -228,7 +279,7 @@ button {
         margin-bottom: $sm;
         padding: $tny;
         position: relative;
-        width: 26.8125rem;
+        width: $input_width;
         z-index: $layer_3;
 
         &:focus, &:hover {
@@ -248,7 +299,7 @@ button {
     }
 }/* .input-wrapper */
 
-#Sign-Up, #Name-Input {
+#Sign-Up, .input-collection {
     margin-top: $lg;
 }/* #Sign-Up */
 
@@ -256,6 +307,10 @@ button {
     color: $green;
 }
 
-#Name-Check {
+#Password-Check {
+    color: $red;
+}
+
+#Name-Check, #Password-Check {
     margin-bottom: $tny;
 }
