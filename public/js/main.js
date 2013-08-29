@@ -105,6 +105,13 @@
             },
             capitalizeFirst: function (string) {
                 return string.charAt(0).toUpperCase() + string.slice(1);
+            },
+            sendJs: function (url) {
+                $.ajax({
+                    method: 'POST',
+                    url: url,
+                    data: {'js': !($('html').hasClass('no-js'))}
+                });
             }
         }
 

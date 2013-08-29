@@ -3,7 +3,15 @@
 Route::get('/', function ()
 {
     if (Auth::check()) {
-        return '';
+        $url = [
+        ];
+
+        $data = [
+            'title' => 'Welcome, '.Auth::user()->first_name.' '.Auth::user()->last_name.'!',
+            'url'   => $url,
+        ];
+
+        return View::make('defaults.home.signed_in', $data);
     } else {
         //urls for the view
         $url = [
@@ -17,7 +25,7 @@ Route::get('/', function ()
             'url'   => $url,
         ];
 
-        return View::make('defaults.home', $data);
+        return View::make('defaults.home.not_signed_in', $data);
     }
 });
 
@@ -44,7 +52,7 @@ Route::get('/register', function () {
     ];
 
     $data = [
-        'title' => '',
+        'title' => 'Registering -- myafterschoolprograms.com',
         'url'   => $url,
     ];
 
@@ -60,6 +68,15 @@ Route::post('/is_email_unique', function () {
     $b = ($v->passes()) ? 'true' : 'false';
 
     return $b;
+});
+
+Route::post('/check_js', function () {
+    $v = Validator::make(
+        array('js' => Input::get('js')),
+        array('js' => 'in:true,false')
+    );
+
+    if ($v->passes()) Session::put('js', Input::get('js'));
 });
 
 Route::post('/locations/search', 'LocationController@search');

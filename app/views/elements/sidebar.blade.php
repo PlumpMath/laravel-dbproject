@@ -1,5 +1,5 @@
 @section('sidebar')
-<div class='sidebar'>
+<div id='Sidebar' class='sidebar'>
   <div class='account_info'>
     <div class='user'>Admin</div>
     <div class='user_label'>account name</div>
