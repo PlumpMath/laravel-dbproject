@@ -68,6 +68,14 @@
                 '#Log-In button',
                 ($('#Email-Input input').val() !== '' && $('#Password-Input input').val() !== '')
             );
+
+            if ($('#Email-Input input').val() !== '' && $('#Password-Input input').val() !== '') {
+                $('#Log-In button').off('click');
+            } else {       
+                $('#Log-In button').on('click', function (event) {
+                    myafterschoolprograms.toggleVisibility(event, 'div');
+                });                
+            }
         });
     </script>
 @stop

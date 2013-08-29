@@ -412,7 +412,7 @@ body, .horizontal-center-wrapper, html, .page, .vertical-center-outer-wrapper {
   color: #2f3854;
   font-size: 2.618rem;
   line-height: 130.9%;
-  margin-bottom: -.5rem; }
+  margin-bottom: -.25rem; }
 .header .subheading {
   color: #9397a8;
   font-size: 1.618rem;
@@ -547,8 +547,8 @@ button {
 #Last-Name-Check, #First-Name-Check {
   color: #2dcb70; }
 
-#Password-Check {
+#Password-Check, #Email-Check {
   color: #cc2a3b; }
 
-#Name-Check, #Password-Check {
+#Name-Check, #Password-Check, #Email-Check {
   margin-bottom: 1rem; }

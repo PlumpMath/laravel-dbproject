@@ -9,7 +9,10 @@
             __construct: function () {
                 //handle input label toggling
                 var input_wrapper = ($('.form-wrapper').length !== 0) ? '.form-wrapper' : '.input-wrapper';
-                $(input_wrapper).on('load input', this.toggleLabels);
+                
+                this.resetLabels();
+
+                $(input_wrapper).on('input', this.toggleLabels);
 
                 return this;
             },
@@ -77,7 +80,12 @@
             toggleLabels: function (event) {
                 $(event.target)
                     .siblings('label')
-                    .toggleClass('visible invisible', ($(event.target).val() !== ""));
+                    .resetToggle('invisible visible', ($(event.target).val() === ""));
+            },
+            resetLabels: function () {
+                $.each($('label'), function () {
+                    $(this).resetToggle('invisible visible', ($(this).siblings('input').val() === ""));
+                });
             },
             toggleVisibility: function (event, element) {
                 if (event) event.preventDefault();

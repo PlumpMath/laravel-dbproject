@@ -48,8 +48,11 @@
                         </div>
                     </div>
                     <div id="Email-Input" class="input-collection input-wrapper">
-                        {{ Form::text('email') }}
+                        {{ Form::text('email', '', ['autofill' => 'off']) }}
                         {{ Form::label('email', 'youremail@example.com', ['class' => 'visible']) }}
+                        <div id="Email-Check" class="invisible">
+                            <p>Someone's already using that email!</p>
+                        </div>
                         <button class="inactive">
                             <p class="active-option invisible">Next!</p>
                             <p class="inactive-option visible">Still Typing...</p>
@@ -68,7 +71,7 @@
                             <p>Password, please</p>
                         </div>
                         <div class="subheading">
-                            <p>Concerned? <a href='#'>Read</a> what we're doing to keep you safe.</p>
+                            <p><a href='#'>Find out</a> what we're doing to keep you safe.</p>
                         </div>
                     </div>
                     <div id="Password-Input-Collection" class="input-collection">
@@ -139,7 +142,7 @@
 @section('scripts')
     <script>
         //Name Button activation
-        $('#Name-Input').on('input', function () {
+        $('#Name-Input').on('load input', function () {
             var name = $('#Name-Input input').val().trim().split(/ (.+)?/),
                 has_first_and_last = (name.length > 1 && name[1].length > 0);
 
@@ -157,9 +160,23 @@
         $('#Email-Input').on('input', function () {
             var email = $('#Email-Input input').val().trim(),
                 email_reg_exp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                is_an_email = email_reg_exp.test(email);
+                is_an_email = email_reg_exp.test(email),
+                is_unique = true;
 
-            myafterschoolprograms.toggleButton('#Email-Input button', is_an_email);
+            if (is_an_email) {
+                $.ajax({
+                    method: 'POST',
+                    url: '{{ $url['check_email'] }}',
+                    data: {'email': email},
+                    success: function (data) {
+                        is_unique = (data === 'true') ? true : false;
+                    },
+                    async: false
+                });
+            }
+
+            myafterschoolprograms.resetVisibility('#Email-Check', !is_unique)
+            myafterschoolprograms.toggleButton('#Email-Input button', is_an_email && is_unique);
         });
 
         //Password Button activation
@@ -183,10 +200,10 @@
         $('#Address-Input-Collection').on('input', function () {
             var address = $('#Address-Input input').val().trim(),
                 city = $('#City-Input input').val().trim(),
-                state = $('#State-Input input').val().trim(),
+                state = $('#State-Input input').val().trim().toUpperCase(),
                 zip = $('#Zip-Code-Input input').val().trim(),
                 is_state = ($.inArray(state, myafterschoolprograms.states) > -1),
-                is_zip = (/^\d+$/.test(zip)),
+                is_zip = (/^\d+$/.test(zip) && zip.length === 5),
                 are_filled = (address.length > 0 && city.length > 0 && state.length > 0 && zip.length > 0);
 
                 console.log(is_zip+' '+is_state+' '+are_filled)

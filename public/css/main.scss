@@ -123,7 +123,7 @@ body, .horizontal-center-wrapper, html, .page, .vertical-center-outer-wrapper {
         color: $black;
         font-size: $med;
         line-height: $line_height;
-        margin-bottom: -.5rem;
+        margin-bottom: -.25rem;
     }
 
     .subheading {
@@ -307,10 +307,10 @@ button {
     color: $green;
 }
 
-#Password-Check {
+#Password-Check, #Email-Check {
     color: $red;
 }
 
-#Name-Check, #Password-Check {
+#Name-Check, #Password-Check, #Email-Check {
     margin-bottom: $tny;
 }

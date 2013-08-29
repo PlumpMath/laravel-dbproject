@@ -2,19 +2,23 @@
 
 Route::get('/', function ()
 {
-    //urls for the view
-    $url = [
-        'log_in'    => URL::to('/log/in'),
-        'register'  => URL::to('/register'), 
-    ];
+    if (Auth::check()) {
+        return '';
+    } else {
+        //urls for the view
+        $url = [
+            'log_in'        => URL::to('/log/in'),
+            'register'      => URL::to('/register'),
+        ];
 
-    //data to make available to the view
-    $data = [
-        'title' => 'Hello! Welcome to myafterschoolprograms.com',
-        'url'   => $url,
-    ];
+        //data to make available to the view
+        $data = [
+            'title' => 'Hello! Welcome to myafterschoolprograms.com',
+            'url'   => $url,
+        ];
 
-    return View::make('defaults.home', $data);
+        return View::make('defaults.home', $data);
+    }
 });
 
 Route::post('/log/in', function () {
@@ -23,18 +27,20 @@ Route::post('/log/in', function () {
         'password'  => Input::get('password'),
     ];
 
-    if (Auth::attempt($user)) {
-        //authenticated
-        return 'success';
-    } else {
-        //failed
-        return 'failure';
-    }
+    Auth::attempt($user);
+
+    return Redirect::to('/');
+});
+
+Route::get('/log/out', function () {
+    Auth::logout();
+
+    return Redirect::to('/');
 });
 
 Route::get('/register', function () {
     $url = [
-
+        'check_email'   => URL::to('/is_email_unique'),
     ];
 
     $data = [
@@ -43,6 +49,17 @@ Route::get('/register', function () {
     ];
 
     return View::make('defaults.register', $data);
+});
+
+Route::post('/is_email_unique', function () {
+    $v = Validator::make(
+        array('email' => Input::get('email')),
+        array('email' => 'unique:users')
+    );
+
+    $b = ($v->passes()) ? 'true' : 'false';
+
+    return $b;
 });
 
 Route::post('/locations/search', 'LocationController@search');
