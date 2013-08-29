@@ -4,8 +4,8 @@ composer.phar
 composer.lock
 .DS_Store
 .*
-!/.backup
 *~
 \#*\#
 error_log
 /app/config/app.php
+!.backup

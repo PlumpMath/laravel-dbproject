@@ -1,0 +1,416 @@
+@import "normalize";
+@import "fonts";
+
+@mixin padding {
+    padding: 4.07em 5.07em;
+}
+
+$blue: #95beff;
+$dark_blue: #2f3854;
+$dark_gray: #cfd2da;
+$gray: #e5e7eb;
+$mid_blue: #6b7d98;
+$light_blue: #e1edff;
+$pink: #ff87b2;
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+a {
+    color: $blue;
+    text-decoration: none;
+}
+
+.about_us {
+    border-bottom: 1px solid $gray;
+    border-top: 1px solid $gray;
+}
+
+.about_us, .deleted, .our_locations, .log_in, .register, .the_manual, .create {
+    @include padding;
+    background: #fff;
+
+    h1 {
+        color: $dark_blue;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    p {
+        color: $mid_blue;
+    }
+}
+
+.actionable_item {
+    @include padding;
+    color: #fff;
+    overflow: auto;
+
+    a {
+        color: #fff;
+    }
+
+    .right {
+        margin-top: -4px;
+    }
+
+    h1 {
+        display: inline;
+        font-weight: normal;
+        text-transform: uppercase;
+    }
+
+    form {
+        display: inline;
+        margin-left: 4.14rem;
+    }
+
+    &.classes {
+        background: #aa86e8;
+    }
+
+    &.users {
+        background: #7b8ae9;
+    }
+
+    &.locations {
+        background: #ffa894;
+    }
+
+    &.permissions {
+        background: #ffd394;
+    }
+
+    &.roles {
+        background: #95beff;
+    }
+
+    &.children {
+        background: #6e7bcf;
+    }
+}
+
+.banner, .top_menu {
+    @include padding;
+    background: $dark_blue;
+    color: #fff;
+
+    h1 {
+        font-weight: normal;
+    }
+}
+
+body {
+    font: 100%/121.42% 'Helvetica Neue';
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.create {
+    @include padding;
+    background: #fff;
+}
+
+.default {
+    background: url('../img/default_icon.png');
+}
+
+.errors {
+    clear: left;
+    padding-top: 2.07em;
+    
+    p {
+        color: $pink;
+    }
+}
+
+.expand_menu {
+    background: url('../img/menu_icon.png');
+    cursor: pointer;
+    height: 12px;
+    margin-top: .25em;
+    width: 2.07em;
+}
+
+.options {
+    @include padding;
+    background: #fff;
+    color: $mid_blue;
+    
+    .filter {
+        margin-bottom: 1.125rem;
+    }
+
+    .select {
+        position: relative;
+        z-index: 10;
+        background: $light_blue;
+        color: $mid_blue;
+        height: 2.857em;
+        width: 14.785em;
+        display: inline-block;
+        vertical-align: middle;
+        margin: 0 2.07rem;
+        
+        &:hover {
+            li ~ li {
+                display: block;
+            }
+
+            li:not(:last-child) {
+                border-bottom: 1px solid #d5e2f4;
+            }
+        }
+    }
+
+    li {
+        background: $light_blue;
+        padding-top: .6rem;
+        padding-bottom: 1.1rem;
+        text-align: center;
+    }
+
+    li ~ li {
+        display: none;
+    }
+}
+
+h1 {
+    font-size: 100%;
+}
+
+.hidden_menu {
+    background: $dark_blue;
+    color: #fff;
+    height: 11.4375rem;
+    padding: 0 5.07rem 4.07rem 5.07rem;
+    position: absolute;
+        top: 9.375rem;
+        left: 0;
+        right: 0;
+    visibility: visible;
+    z-index: 9;
+
+    a {
+        color: #fff;
+    }
+   
+    li:first-child {
+        margin-top: 8px;
+    }
+ 
+    li {
+        margin-bottom: 1.125em;
+    }
+
+}
+
+.icon {
+    cursor: pointer;
+    display: inline-block;
+    height: 41px;
+    margin-right: 2.07em;
+    margin-top: - 4px;
+    vertical-align: middle;
+    width: 41px;
+}
+
+input[type='email'],
+input[type='password'],
+input[type='text'] {
+    background: $light_blue;
+    color: $mid_blue;
+    height: 2.857em;
+    outline: none;
+    padding: 0 2.07em;
+    width: 14.785em;
+}
+
+input[type=submit] {
+    background: #fff;
+    color: $blue;
+    margin-top: .85em;
+}
+
+input[type='email'] ~ input {
+    margin-left: 2.07em;
+}
+
+input {
+    display: block;
+    margin-top: 1.125rem;
+}
+
+.left {
+    float: left;
+}
+
+.list {
+    @include padding;
+    color: $mid_blue;
+
+    ul {
+        border-top: 1px solid $dark_gray;
+
+        &:last-child {
+        border-bottom: 1px solid $dark_gray;            
+        }
+
+        &:before,
+        &:after {
+            content: " "; /* 1 */
+            display: table; /* 2 */
+        }
+        
+        &:after {
+            clear: both;
+        }
+    }
+
+    .delete {
+        padding: 4.07rem 0;
+        text-align:center;
+        float: left;
+
+        border-left: 1px solid $gray;
+        float: right;
+        padding: 4.07em 1.125rem;
+        border-right: 1px solid $gray;
+    }
+
+    li {
+        padding: 4.07rem 0;
+        text-align:center;
+        float: left;
+
+        &.name {
+            background: $gray;            
+            width: 15.21rem;
+            color: $dark_blue;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        &.edit {
+            border-left: 1px solid $gray;
+            float: right;
+            padding: 4.07em 1.125rem;
+        }
+
+        &.email {
+            width: 30.42rem;
+        }
+
+        &.empty {
+            background: $gray;
+            text-align: center;
+            width: 100%;
+        }
+
+    }
+
+}
+
+.our_locations {
+    background: url('../img/BigMap.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.page_push {
+    -webkit-transform: translateY(0);
+    transition: 500ms ease;
+    &.page_push_end {
+        -webkit-transform: translateY(11.4375rem);
+    }
+}
+
+.page_wrapper {
+    position: relative;
+    z-index: 10;
+}
+
+#personal_settings_icon {
+    background: url('../img/personal_settings_icon.png');
+}
+
+.right {
+    float: right;
+}
+
+.register {
+    padding: 8.14rem 10.14rem;
+    text-align: center;
+}
+
+.sign_in {
+
+    input {
+        float: left;
+    }
+}
+
+#sign_out_icon {
+    background: url('../img/sign_out_icon.png');
+    margin-left: -15px;
+    width: 56px;
+}
+
+.tasks {
+    @include padding;
+    background: #fff;
+
+    h1 {
+        text-transform: uppercase;
+        margin-bottom: 1.125rem;
+        font-weight: bold;
+        color: $dark_blue;
+    }
+
+    h2 {
+        font-size: 1rem;
+        font-weight: normal;
+        color: $mid_blue
+    }
+    
+    ul {
+        margin-bottom: 2.07em;
+    }
+
+    li {
+        color: $blue;
+    }
+
+}
+
+.the_manual {
+    
+    h1 {
+        display: inline-block;
+        margin-bottom: 1.125em;
+        margin-right: 2.07em;
+    }
+
+    p {
+        display: inline;
+    }
+        
+}
+
+.top_menu {
+    overflow: auto;
+
+    h1 {
+        text-transform: uppercase;
+    }
+}
+
+ul {
+    list-style: none;
+}
