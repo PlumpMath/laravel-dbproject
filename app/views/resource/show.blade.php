@@ -4,7 +4,7 @@
 @include('elements.footer')
 
 @section('body')
-    <div class="wrap">
+    <div class="show wrap">
         <!-- header block -->
         <div class="header">
             <!-- header elem -->
@@ -15,6 +15,12 @@
             <div class="header-sub">
                 <p class="header-sub-text">{{ $info }}</p>
             </div>
+        </div>
+        <!-- nav block -->
+        <div class="nav">
+        	<div class="nav-return">
+        		<p class="nav-return-text">Return to <a href="{{ $url['index'] }}">{{ $Resources }}</a></p>
+        	</div>
         </div>
         <!-- resource block -->
         <ul class="rsrc">

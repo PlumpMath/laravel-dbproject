@@ -11,9 +11,6 @@
                 @foreach ($resources as $resource)
                 <!-- resource elem -->
                 <li class="rsrc-elem rsrc-type">
-                    <div class="rsrc-type-name">
-                        <p class="rsrc-type-name-text">{{ $resource['name'] }}</p>
-                    </div>
                     <!-- resource commands block -->
                     <div class="rsrc-type-cmds">
                         <!-- resource commands elem -->
@@ -37,7 +34,7 @@
                             </a>                          
                         </div>
                         <!-- resource commands elem -->
-                        <div class="rsrc-type-cmds-btn btn btn-cmd btn-link btn-active">
+                        <div class="rsrc-type-cmds-btn btn btn-cmd btn-link btn-active green">
                             <a class="rsrc-type-cmds-btn-link-text" href="{{ $resource['url']['create'] }}">
                                 <div class="vert-outer-wrap vert-stretch">
                                     <div class="vert-inner-wrap">
@@ -46,6 +43,9 @@
                                 </div>
                             </a>                          
                         </div>
+                    </div>
+                    <div class="rsrc-type-name">
+                        <p class="rsrc-type-name-text">{{ $resource['name'] }}</p>
                     </div>
                 </li>
                 @endforeach

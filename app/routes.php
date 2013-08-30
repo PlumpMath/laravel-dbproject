@@ -16,6 +16,14 @@ Route::get('/', function ()
                     'create'    => action('LocationController@create'),
                 ],
             ],
+            [
+                'name'  => 'Users',
+                'url'   => [
+                    'index'     => action('UserController@index'),
+                    'search'    => '#',
+                    'create'    => action('UserController@create'),
+                ],
+            ],
         ];
 
         $data = [
@@ -97,4 +105,4 @@ Route::post('/locations/affect', 'LocationController@affect');
 Route::get('/locations/{id}/copy', 'LocationController@copy');
 
 Route::resource('locations', 'LocationController');
-Route::resource('resources', 'ResourceController');
+Route::resource('users', 'UserController');

@@ -72,6 +72,22 @@ $layer_8: 3;
     }
 }
 
+@mixin transition($duration) {
+    -o-transition: $duration all;
+    -ms-transition: $duration all;
+    -moz-transition: $duration all;
+    -webkit-transition: $duration all;
+    transition: $duration all;    
+}
+
+@mixin transform($transform) {
+    -o-transform: $transform;
+    -ms-transform: $transform;
+    -moz-transform: $transform;
+    -webkit-transform: $transform;
+    transform: $transform;
+}
+
 /*=============================
 
     DECLARE RULES
@@ -176,8 +192,8 @@ ul {
             box-sizing:     border-box;
             display:        inline-block;
             padding:        $sm;
+            padding-left:   $tny;
             vertical-align: middle;
-            width:          50%;
 
             /* CHILDREN */
 
@@ -188,14 +204,13 @@ ul {
 
         .rsrc-type-cmds {
             display:        inline-block;
-            padding-right:  $tny;
-            text-align:     right;
-            width:          25%;
+            padding-left:   $tny;
 
             /* CHILDREN */
 
             .rsrc-type-cmds-btn {
                 height:         $med;
+                margin-right:   .5rem;
                 vertical-align: middle;
                 width:          $med;
 
@@ -218,6 +233,14 @@ ul {
             width:  $tny;
 
             /* CHILDREN */
+
+            .icon {
+                -o-transition: .1s all;
+                -ms-transition: .1s all;
+                -moz-transition: .1s all;
+                -webkit-transition: .1s all;
+                transition: .1s all;
+            }
 
             .icon-ok {
                 color: $green;
@@ -469,6 +492,14 @@ ul {
         );
     }/* .btn-active */
 
+    &.btn-active.green {
+        @include btn-main-and-states(
+            $green, $green, #28b564, #186e3d, #45e588,
+            #28b564, #28b564, #24a45b, #145c33, $green,
+            #209452, #209452, #25a85d, #145c33, none
+        );
+    }/* .btn-active.green */
+
     &.btn-inactive {
         @include btn-main-and-states(
             $red, $red, #a62230, #911e2a, #d46b77,
@@ -481,7 +512,19 @@ ul {
 /*=== label block ===*/
 
 .lbl {
+    @include transition(.1s);
 
+    /* SUBTYPES */
+
+    &.visible {
+        display: block;
+        opacity: 1;
+    }
+
+    &.invisible {
+        display: block;
+        opacity: 0;
+    }
 }/* .lbl */
 
 /*=== input block ===*/
@@ -548,11 +591,39 @@ ul {
 
 }/* .form */
 
+/*=== nav block ===*/
+
+.nav {
+
+    /* CHILDREN */
+
+    .nav-return {
+
+        /* CHILDREN */
+
+        .nav-return-text {
+            color: $gray;
+        }
+    }/* .nav-return */
+}/* .nav */
+
+
 /*=== search block ===*/
 
 .search {
     margin-top: $lg;
 }/* .search */
+
+/*=== show ===*/
+
+.show, .index {
+
+    /* CHILDREN */
+
+    .rsrc {
+        margin-top: $lg;
+    }/* .rsrc */
+}/* .show */
 
 /*=== visibility ===*/
 

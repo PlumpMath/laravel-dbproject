@@ -1,6 +1,6 @@
 <?php
 
-class LocationController extends ResourceController
+class UserController extends ResourceController
 {
     // {{{ forDisplay
 
@@ -20,9 +20,9 @@ class LocationController extends ResourceController
             //bin holds a list of all locations
             foreach ($this->bin['resource'] as $resource) {
                 $__output[] = [
-                    'name'  => $resource['name'],
+                    'name'  => $resource['first_name'].' '.$resource['last_name'],
                     'id'    => $resource['id'],
-                    'info'  => $resource['address'],
+                    'info'  => $resource['email'],
                 ];
             }
         } else {
@@ -32,14 +32,13 @@ class LocationController extends ResourceController
                     case 'phone':
                         $value = '('.substr($value, 0, 3).') '.substr($value, 3, 3).'-'.substr($value, 6, 4);
                         break;
-                    case 'status':
+                    case 'stay_logged_in':
+                        $value = ($value === 1) ? 'Yes' : 'No';
+                        break;
+                    case 'active':
                         $value = ($value === 1) ? 'Active' : 'Inactive';
                         break;
-                    case 'notes':
-                        $value = (is_null($value)) ? 'No Notes' : $value;
-                        break;
                 }
-
                 $__output[$this->format($key)->asKey()] = $value;
             }            
         }
@@ -58,7 +57,7 @@ class LocationController extends ResourceController
 
     public function name($resource)
     {
-        return $resource['name'];
+        return $resource['first_name'].' '.$resource['last_name'];
     }
 
     // }}}
@@ -72,7 +71,7 @@ class LocationController extends ResourceController
 
     public function info($resource)
     {
-        return $resource['address'];
+        return $resource['email'];
     }
 
     // }}}

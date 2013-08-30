@@ -18,6 +18,11 @@ class ResourceController extends BaseController
 
     public function __construct()
     {
+        //Filters
+        $this->beforeFilter('auth');
+
+        $this->beforeFilter('csrf', array('on' => 'post'));
+        
         //Names for resource
         $this->ResourceController = get_class($this);
         $this->Resource = explode('Controller', $this->ResourceController, 2)[0];
@@ -29,14 +34,11 @@ class ResourceController extends BaseController
 
         //urls to be made available to Views
         $this->url = [
-            'log_out' => URL::to('/log/out'),
-            'index' => action($this->ResourceController.'@index'),
-            'show'  => '',
-            'create' => action($this->ResourceController.'@create'),
-            'store' => action($this->ResourceController.'@store'),
-            'edit' => '',
-            'update' => '',
-            'destroy' => '',
+            'log_out'   => URL::to('/log/out'),
+            'home'      => URL::to('/'),
+            'index'     => action($this->ResourceController.'@index'),
+            'create'    => action($this->ResourceController.'@create'),
+            'store'     => action($this->ResourceController.'@store'),
         ];
 
         //default data to send to each View
@@ -151,6 +153,30 @@ class ResourceController extends BaseController
 
     public function info($resource)
     {
+        return $this->bin['info'];
+    }
+
+    // }}}
+    // {{{ search
+
+    /**
+     * Searches a resource
+     *
+     * @return  returns resources that match
+     */
+
+    public function search()
+    {
+        if ( ! Input::has('request')) return;
+
+        $ModelName = $this->Resource;
+
+        foreach($ModelName::all()->toArray() as $Model) {
+            foreach($Model as $prop => $value) {
+
+            }
+        }
+
         return $this->bin['info'];
     }
 
