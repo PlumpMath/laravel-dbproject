@@ -4,11 +4,24 @@ Route::get('/', function ()
 {
     if (Auth::check()) {
         $url = [
+            'log_out'           => URL::to('/log/out'),
+        ];
+
+        $resources = [
+            [
+                'name'  => 'Locations',
+                'url'   => [
+                    'index'     => action('LocationController@index'),
+                    'search'    => '#',
+                    'create'    => action('LocationController@create'),
+                ],
+            ],
         ];
 
         $data = [
-            'title' => 'Welcome, '.Auth::user()->first_name.' '.Auth::user()->last_name.'!',
-            'url'   => $url,
+            'title'     => 'Welcome, '.Auth::user()->first_name.' '.Auth::user()->last_name.'!',
+            'url'       => $url,
+            'resources' => $resources,
         ];
 
         return View::make('defaults.home.signed_in', $data);
@@ -84,3 +97,4 @@ Route::post('/locations/affect', 'LocationController@affect');
 Route::get('/locations/{id}/copy', 'LocationController@copy');
 
 Route::resource('locations', 'LocationController');
+Route::resource('resources', 'ResourceController');

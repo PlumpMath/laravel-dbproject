@@ -1,5 +1,5 @@
 @section('footer')
-	<div id='Footer' class='footer'>
-		<p>myafterschoolprograms, inc.</p>
+	<div class='footer'>
+		<p class='footer-txt'>myafterschoolprograms, inc.</p>
 	</div>
 @stop

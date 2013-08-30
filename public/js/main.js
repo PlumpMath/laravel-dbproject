@@ -8,7 +8,7 @@
             version: build_version,
             __construct: function () {
                 //handle input label toggling
-                var input_wrapper = ($('.form-wrapper').length !== 0) ? '.form-wrapper' : '.input-wrapper';
+                var input_wrapper = ($('.form').length !== 0) ? '.form' : '.input';
                 
                 this.resetLabels();
 
@@ -16,75 +16,14 @@
 
                 return this;
             },
-            states: [
-                'AL',
-                'AK',
-                'AS',
-                'AZ',
-                'AR',
-                'CA',
-                'CO',
-                'CT',
-                'DE',
-                'DC',
-                'FM',
-                'FL',
-                'GA',
-                'GU',
-                'HI',
-                'ID',
-                'IL',
-                'IN',
-                'IA',
-                'KS',
-                'KY',
-                'LA',
-                'ME',
-                'MH',
-                'MD',
-                'MA',
-                'MI',
-                'MN',
-                'MS',
-                'MO',
-                'MT',
-                'NE',
-                'NV',
-                'NH',
-                'NJ',
-                'NM',
-                'NY',
-                'NC',
-                'ND',
-                'MP',
-                'OH',
-                'OK',
-                'OR',
-                'PW',
-                'PA',
-                'PR',
-                'RI',
-                'SC',
-                'SD',
-                'TN',
-                'TX',
-                'UT',
-                'VT',
-                'VI',
-                'VA',
-                'WA',
-                'WV',
-                'WI',
-                'WY' 
-            ],
             toggleLabels: function (event) {
                 $(event.target)
-                    .siblings('label')
+                    .siblings('.input-lbl')
                     .resetToggle('invisible visible', ($(event.target).val() === ""));
             },
             resetLabels: function () {
-                $.each($('label'), function () {
-                    $(this).resetToggle('invisible visible', ($(this).siblings('input').val() === ""));
+                $.each($('.input-lbl'), function () {
+                    $(this).resetToggle('invisible visible', ($(this).siblings('.input-field').val() === ""));
                 });
             },
             toggleVisibility: function (event, element) {
@@ -92,12 +31,12 @@
                 $(element+'.invisible, '+element+'.visible').toggleClass('visible invisible');
             },
             toggleButton: function (button, condition) {
-                $(button).resetToggle('inactive active', condition);
+                $(button).resetToggle('btn-inactive btn-active', condition);
                 $(button)
-                    .children('.active-option')
+                    .children('.btn-active-text')
                     .resetToggle('invisible visible', condition);
                 $(button)
-                    .children('.inactive-option')
+                    .children('.btn-inactive-text')
                     .resetToggle('invisible visible', (!condition));
             },
             resetVisibility: function (element, condition) {
@@ -112,7 +51,10 @@
                     url: url,
                     data: {'js': !($('html').hasClass('no-js'))}
                 });
-            }
+            },
+            states: [
+                'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY' 
+            ]
         }
 
     $.fn.resetToggle = function (toggle_class, condition) {

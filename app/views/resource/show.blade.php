@@ -1,0 +1,38 @@
+@extends('layouts.no_vertical_fill')
+
+@include('elements.sidebar')
+@include('elements.footer')
+
+@section('body')
+    <div class="wrap">
+        <!-- header block -->
+        <div class="header">
+            <!-- header elem -->
+            <div class="header-title">
+                <p class="header-title-text">{{ $name }}</p>
+            </div>
+            <!-- header elem -->
+            <div class="header-sub">
+                <p class="header-sub-text">{{ $info }}</p>
+            </div>
+        </div>
+        <!-- resource block -->
+        <ul class="rsrc">
+            @foreach ($resource as $key => $value)
+            <!-- resource elem -->
+            <li class="rsrc-elem rsrc-inst">
+                <div class="rsrc-inst-name">
+                    <p class="rsrc-inst-name-text">{{ $key }}</p>
+                </div>
+                <div class="rsrc-inst-info">
+                    <p class="rsrc-inst-info-text">{{ $value }}</p>
+                </div>
+            </li>
+            @endforeach
+        </ul>
+    </div>
+
+    @yield('sidebar')
+    @yield('footer')
+
+@stop

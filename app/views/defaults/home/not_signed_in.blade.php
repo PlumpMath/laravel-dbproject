@@ -3,51 +3,57 @@
 @include('elements.footer')
 
 @section('body')
-    <div class="horizontal-center-wrapper">
-        <div class="vertical-center-outer-wrapper">
-            <div class="vertical-center-inner-wrapper">
-                <div id="Header" class="header visible"> 
-                    <div class="heading">
-                        <p>There&rsquo;s never too much play time!</p>
+    <div class="vert-outer-wrap vert-stretch">
+        <div class="vert-inner-wrap">
+            <!-- sign-up block -->
+            <div class="sign-up visible-toggle visible">
+                <!-- sign-up elem & header block -->
+                <div class="sign-up-header header">
+                    <!-- header elem -->
+                    <div class="header-title">
+                        <p class="header-title-text">There&rsquo;s never too much play time!</p>
                     </div>
-                    <div class="subheading">
-                        <p>Our after school programs keep the fun going</p>
-                    </div>
-                </div>
-                <div id="Sign-Up">
-                    <div class="visible">
-                        <button class="link active">
-                            <a href="{{ $url['register'] }}">Get Started</a>
-                        </button>
+                    <!-- header elem -->
+                    <div class="header-sub">
+                        <p class="header-sub-text">Our after school programs keep the fun going</p>
                     </div>
                 </div>
-                <div id="Log-In">
-                    <div class="visible">
-                        <p class="log-in">Have an account? <a class="log-in" href="{{ $url['log_in'] }}">Sign in</a></p>
-                    </div>
-                    <div class="animate form-wrapper invisible">
-                        {{ Form::open([
-                            'url' => $url['log_in'],
-                            'name' => 'log-in',
-                        ]) }}
-                            <div class="heading">
-                                <p>Sign in</p>
-                            </div>
-                            <div id="Email-Input" class="input-wrapper">
-                                {{ Form::text('email') }}
-                                {{ Form::label('email', 'Email', ['class' => 'visible']) }}
-                            </div>
-                            <div id="Password-Input" class="input-wrapper">
-                                {{ Form::password('password') }}
-                                {{ Form::label('password', 'Password', ['class' => 'visible']) }}
-                            </div>
-                            <button class="inactive">
-                                <p class="inactive-option visible">Nevermind...</p>
-                                <p class="active-option invisible">Sign In</p>
-                            </button>
-                        {{ Form::close()}}
-                    </div>
+                <!-- sign-up elem -->
+                <div class="sign-up-btn btn btn-link btn-active">
+                    <a class="btn-link-text" href="{{ $url['register'] }}">Get Started</a>
                 </div>
+                <!-- sign-up elem -->
+                <div class="sign-up-log-in">
+                    <p class="sign-up-log-in-text">Have an account? <a class="sign-up-log-in-link" href="{{ $url['log_in'] }}">Sign in</a></p>
+                </div>
+            </div>
+            <!-- log-in block -->
+            <div class="log-in visible-toggle invisible">
+                {{ Form::open([
+                    'url'   => $url['log_in'],
+                    'name'  => 'log-in',
+                    'class' => 'log-in-form form'
+                ]) }}
+                    <!-- log-in elem -->
+                    <div class="log-in-form-title">
+                        <p class="log-in-form-title-text">Sign in</p>
+                    </div>
+                    <!-- log-in elem -->
+                    <div class="log-in-form-email-input input">
+                        {{ Form::text('email', '', ['class' => 'log-in-form-email-input-field input-field']) }}
+                        {{ Form::label('email', 'Email', ['class' => 'log-in-form-email-input-lbl input-lbl lbl visible']) }}
+                    </div>
+                    <!-- log-in elem -->
+                    <div class="log-in-form-pwd-input input">
+                        {{ Form::password('password', ['class' => 'log-in-form-pwd-input-field input-field']) }}
+                        {{ Form::label('password', 'Password', ['class' => 'log-in-form-pwd-input-lbl input-lbl lbl visible']) }}
+                    </div>
+                    <!-- log-in elem -->
+                    <button class="log-in-form-btn btn btn-inactive">
+                        <p class="btn-inactive-text visible">Nevermind...</p>
+                        <p class="btn-active-text invisible">Sign In</p>
+                    </button>
+                {{ Form::close()}}
             </div>
         </div>
     </div>
@@ -59,20 +65,20 @@
 @section('scripts')
     <script>
         //Once 'Sign In' is clicked, switch buttons for form        
-        $('a.log-in, button.inactive').on('click', function (event) {
-            myafterschoolprograms.toggleVisibility(event, 'div');
+        $('.sign-up-log-in-link, .log-in-form-btn').on('click', function (event) {
+            myafterschoolprograms.toggleVisibility(event, '.visible-toggle');
         });
 
-        $('#Log-In').on('input', function () {
+        $('.log-in-form').on('input', function () {
             myafterschoolprograms.toggleButton(
-                '#Log-In button',
-                ($('#Email-Input input').val() !== '' && $('#Password-Input input').val() !== '')
+                '.log-in-form-btn',
+                ($('.log-in-form-email-input-field').val() !== '' && $('.log-in-form-pwd-input-field').val() !== '')
             );
 
-            if ($('#Email-Input input').val() !== '' && $('#Password-Input input').val() !== '') {
-                $('#Log-In button').off('click');
+            if ($('.log-in-form-email-input-field').val() !== '' && $('.log-in-form-pwd-input-field').val() !== '') {
+                $('.log-in-form-btn').off('click');
             } else {       
-                $('#Log-In button').on('click', function (event) {
+                $('.log-in-form-btn').on('click', function (event) {
                     myafterschoolprograms.toggleVisibility(event, 'div');
                 });                
             }
