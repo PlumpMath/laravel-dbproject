@@ -58,15 +58,6 @@ Route::post('/log/in', function () {
 
     if (Auth::attempt($user)) {
         $ip = $_SERVER['REMOTE_ADDR'];
-
-        if (filter_var($ip, FILTER_VALIDATE_IP)) {
-            $geo_info = file_get_contents('http://ipinfo.io/'.$ip);
-            $location = $geo_info['hostname'];
-
-            Auth::user()->last_logged_in_from = $ip;
-            Auth::user()->last_logged_in_at = $location;
-            Auth::user()->save();
-        }
     }
 
     return Redirect::to('/');
