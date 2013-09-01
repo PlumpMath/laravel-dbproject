@@ -4,6 +4,8 @@
         this.items = null;
         this.instance = this;
         this.validators = {};
+        this.formatters = {};
+        this.bin = {};
     }, 
     validators = {
         'accepted': {
@@ -20,7 +22,7 @@
                 }
             },
             'msg': function (name) {
-                return 'The '+name+' must be accepted.';
+                return name+' must be accepted.';
             }
         },
         'after': {
@@ -29,7 +31,7 @@
                 return value.getTime() > date.getTime();
             },
             'msg': function (name, date) {
-                return 'The '+name+' must be after '+date+'.';
+                return name+' must be after '+date+'.';
             }
         },
         'alpha': {
@@ -37,7 +39,7 @@
                 return /[A-Z]*/i.test(value);
             },
             'msg': function (name) {
-                return 'The '+name+' must be only letters.';
+                return name+' must be only letters.';
             }
         },
         'alphadash': {
@@ -45,7 +47,7 @@
                 return /[A-Z-]*/i.test(value);
             },
             'msg': function (name) {
-                return 'The '+name+' must be only letters and dashes.';
+                return name+' must be only letters and dashes.';
             }
         },
         'before': {
@@ -54,7 +56,7 @@
                 return value.getTime() < date.getTime();
             },
             'msg': function (name, date) {
-                return 'The '+name+' must be before '+date+'.';
+                return name+' must be before '+date+'.';
             }
         },
         'between': {
@@ -72,7 +74,7 @@
                 }
             },
             'msg': function (name, min, max) {
-                return 'The '+name+' must be between '+min+' and '+max+'.';
+                return name+' must be between '+min+' and '+max+'.';
             }
         },
         'bool': {
@@ -80,7 +82,7 @@
                 return $.type(value) === 'boolean';
             },
             'msg': function (name) {
-                return 'The '+name+' must be true or false.';
+                return name+' must be true or false.';
             }
         },
         'date': {
@@ -88,7 +90,7 @@
                 return $.type(value) === 'date';
             },
             'msg': function (name) {
-                return 'The '+name+' must be a date.';
+                return name+' must be a date.';
             }
         },
         'decimal': {
@@ -96,7 +98,7 @@
                 return $.type(value) === 'number' && Math.round(value) !== value;
             },
             'msg': function (name) {
-                return 'The '+name+' must be a decimal.';
+                return name+' must be a decimal.';
             }
         },
         'different': {
@@ -105,7 +107,7 @@
                 return value != other;
             },
             'msg': function (name, other) {
-                return 'The '+name+' must be different from '+other+'.';
+                return name+' must be different from '+other+'.';
             }
         },
         'email': {
@@ -113,7 +115,7 @@
                 return /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value);
             },
             'msg': function (name) {
-                return 'The '+name+' must be an email.';
+                return name+' must be an email.';
             }
         },
         'empty': {
@@ -121,7 +123,7 @@
                 return value.length === 0;
             },
             'msg': function (name) {
-                return 'The '+name+' must be empty.';
+                return name+' must be empty.';
             }
         },
         'in': {
@@ -129,7 +131,7 @@
                 return $.inArray(value, array) > -1;
             },
             'msg': function (name, array) {
-                return 'The '+name+' must be one of these values: '+array.join(', ')+'.';
+                return name+' must be one of these values: '+array.join(', ')+'.';
             }
         },
         'integer': {
@@ -137,7 +139,7 @@
                 return $.type(value) === 'number' && Math.round(value) === value;
             },
             'msg': function (name) {
-                return 'The '+name+' must be an integer.';
+                return name+' must be an integer.';
             }
         },
         'ip': {
@@ -152,7 +154,7 @@
                 return true;
             },
             'msg': function (name) {
-                return 'The '+name+' must be an ip address.';
+                return name+' must be an ip address.';
             }
         },
         'matches': {
@@ -161,7 +163,7 @@
                 return value === other;
             },
             'msg': function (name, other) {
-                return 'The '+name+' must be the same as '+other+'.';
+                return name+' must be the same as '+other+'.';
             }
         },
         'max': {
@@ -174,7 +176,7 @@
                 }
             },
             'msg': function (name, max) {
-                return 'The '+name+' must be less than '+max+'.';
+                return name+' must be less than '+max+'.';
             }
         },
         'min': {
@@ -187,7 +189,7 @@
                 }  
             },
             'msg': function (name, min) {
-                return 'The '+name+' must be less than '+min+'.';
+                return name+' must be less than '+min+'.';
             }
         },
         'not': {
@@ -195,7 +197,7 @@
                 return $.inArray(value, array) === -1;
             },
             'msg': function (name, array) {
-                return 'The '+name+' must not be one of these: '+array.join(', ')+'.';
+                return name+' must not be one of these: '+array.join(', ')+'.';
             }
         },
         'numeric': {
@@ -210,7 +212,7 @@
                 }
             },
             'msg': function (name) {
-                return 'The '+name+' must be only digits.';
+                return name+' must be only digits.';
             }
         },
         'required': {
@@ -218,7 +220,7 @@
                 return value.length > 0;
             },
             'msg': function (name) {
-                return name.charAt(0).toUpperCase()+name.slice(1)+' must be filled.';
+                return name+' must be filled.';
             }
         },
         'size': {
@@ -226,9 +228,23 @@
                 return value.length === size;
             },
             'msg': function (name, size) {
-                return 'The '+name+' must be '+size+' characters long.';
+                return name+' must be '+size+' characters long.';
             }
         },
+    },
+    formatters = {
+        'inputName': function (value) {
+            value = value.split('_');
+
+            for (var i in value) {
+                value[i] = value[i].charAt(0).toUpperCase()+value[i].slice(1);
+            }
+
+            return value.join(' ');
+        },
+        'default': function (value) {
+            return value.trim();
+        }
     },
     __i,
     key;
@@ -257,24 +273,37 @@
         var value = $(input).val(),
             date = new Date(value);
 
-        // the value is probably a date
-        if (date != 'Invalid Date') return date;
-
         // the value is probably a boolean
         if (value === 'true' || value === 'false' || value === '1' || value === '0') return !!value;
 
         // the value is probably a number
-        if (/\d+/.test(value) && value.charAt(0) !== '0' && value.length < 4) return +value;
+        if (/\d+/.test(value) && value.charAt(0) !== '0' && value.length < 6) return +value;
+
+        // the value is probably a date
+        if (date != 'Invalid Date') return date;
 
         // the value is a string
         return value; 
     }
 
+    Input.prototype.format = function (input) {
+        var value = $(input).val(),
+            rule = 'default',
+            name = $(input).attr('name');
+        if (this.instance.formatters.hasOwnProperty(name)) rule = name;
+
+        if (!!value) $(input).val(this.instance.formatters[rule](value));
+        return input; 
+    }
+
     Input.prototype.defineRule = function (name, callback, msg) {
+
+        if (this.instance.hasOwnProperty(name) && ! this.instance.validators.hasOwnProperty(name)) return;
+
         this.instance.validators[name] = {};
         this.instance.validators[name].fn = callback;
         this.instance.validators[name].msg = msg;
-        this.instance[name] = function () {
+        this.instance[name] = this.instance.bin[name] = function () {
             var args = Array.prototype.slice.call(arguments, 0),
                 passing,
                 item,
@@ -305,6 +334,16 @@
         }
     }
 
+    Input.prototype.defineFormat = function (name, callback) {
+        this.instance.formatters[name] = callback;
+    }
+
+    Input.prototype.alias = function (alias, name) {
+        if (this.instance.hasOwnProperty(alias) || ! this.instance.bin.hasOwnProperty(name)) return;
+
+        this.instance[alias] = this.instance.bin[name];
+    }
+
     Input.prototype.__construct = function (items, instance) {
         var item, i, key;
 
@@ -315,9 +354,10 @@
         this.tests = '';
 
         for (i = 0; i < items.length; i++) {
-            item = items[i];
+            item = this.format(items[i]);
 
             item.val = this.getValue(item);
+
             this.items.push(item);
         }
 
@@ -343,6 +383,10 @@
     Input.prototype.buildMessage = function () {
         var args = Array.prototype.slice.call(arguments, 0);
         args = args.slice(1);
+
+        for (i in args) {
+            if ($.type(args[i]) === 'string') args[i] = this.instance.formatters.inputName(args[i]);
+        }
 
         return this.instance.validators[arguments[0]].msg.apply(this, args);
     }
@@ -373,6 +417,12 @@
     for (key in validators) {
         if (validators.hasOwnProperty(key)) {
             __i.defineRule(key, validators[key].fn, validators[key].msg);
+        }
+    }
+
+    for (key in formatters) {
+        if (formatters.hasOwnProperty(key)) {
+            __i.defineFormat(key, formatters[key]);
         }
     }
 

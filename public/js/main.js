@@ -1,6 +1,6 @@
 (function(window, $) {
 
-    "use strict";
+    'use strict';
 
     // LOCAL
     var build_version       = '0.1.0',
@@ -19,11 +19,11 @@
             toggleLabels: function (event) {
                 $(event.target)
                     .siblings('.input-lbl')
-                    .resetToggle('invisible visible', ($(event.target).val() === ""));
+                    .resetToggle('invisible visible', ($(event.target).val() === ''));
             },
             resetLabels: function () {
                 $.each($('.input-lbl'), function () {
-                    $(this).resetToggle('invisible visible', ($(this).siblings('.input-field').val() === ""));
+                    $(this).resetToggle('invisible visible', ($(this).siblings('.input-field').val() === ''));
                 });
             },
             toggleVisibility: function (event, element) {
@@ -52,19 +52,22 @@
                     data: {'js': !($('html').hasClass('no-js'))}
                 });
             },
-            states: [
-                'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY' 
-            ]
+            states: {
+                abbreviations: [
+                    'AL', 'AK', 'AS', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'DC', 'FM', 'FL', 'GA', 'GU', 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'ME', 'MH', 'MD', 'MA', 'MI', 'MN', 'MS', 'MO', 'MT', 'NE', 'NV', 'NH', 'NJ', 'NM', 'NY', 'NC', 'ND', 'MP', 'OH', 'OK', 'OR', 'PW', 'PA', 'PR', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 'VT', 'VI', 'VA', 'WA', 'WV', 'WI', 'WY' 
+                ],
+                full: ['ALABAMA', 'ALASKA', 'AMERICAN SAMOA', 'ARIZONA', 'ARKANSAS', 'CALIFORNIA', 'COLORADO', 'CONNECTICUT', 'DELAWARE', 'DISTRICT OF COLUMBIA', 'FEDERATED STATES OF MICRONESIA', 'FLORIDA', 'GEORGIA', 'GUAM', 'HAWAII', 'IDAHO', 'ILLINOIS', 'INDIANA', 'IOWA', 'KANSAS', 'KENTUCKY', 'LOUISIANA', 'MAINE', 'MARSHALL ISLANDS', 'MARYLAND', 'MASSACHUSETTS', 'MICHIGAN', 'MINNESOTA', 'MISSISSIPPI', 'MISSOURI', 'MONTANA', 'NEBRASKA', 'NEVADA', 'NEW HAMPSHIRE', 'NEW JERSEY', 'NEW MEXICO', 'NEW YORK', 'NORTH CAROLINA', 'NORTH DAKOTA', 'NORTHERN MARIANA ISLANDS', 'OHIO', 'OKLAHOMA', 'OREGON', 'PALAU', 'PENNSYLVANIA', 'PUERTO RICO', 'RHODE ISLAND', 'SOUTH CAROLINA', 'SOUTH DAKOTA', 'TENNESSEE', 'TEXAS', 'UTAH', 'VERMONT', 'VIRGIN ISLANDS', 'VIRGINIA', 'WASHINGTON', 'WEST VIRGINIA', 'WISCONSIN', 'WYOMING']
+            }
         }
 
     $.fn.resetToggle = function (toggle_class, condition) {
         switch ($.type(toggle_class)) {
-            case "array":
+            case 'array':
                 break;
-            case "string":
+            case 'string':
                 toggle_class = toggle_class.split(' ');
                 break;
-            case "function":
+            case 'function':
                 toggle_class = toggle_class();
                 break;
             default:

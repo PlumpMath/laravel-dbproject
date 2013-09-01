@@ -788,6 +788,12 @@ ul {
   margin-top: 4.236rem; }
 
 /* .search */
+/*=== input-errors ===*/
+.input-errors {
+  color: #cc2a3b;
+  margin-bottom: 1.618rem; }
+
+/* .input-errors */
 /*=== show ===*/
 .show, .index {
   /* CHILDREN */
@@ -796,7 +802,29 @@ ul {
     margin-top: 4.236rem; }
 
 /* .show */
-/*=== show ===*/
+/*=== register ===*/
+.register {
+  /* CHILDREN */
+  /* .form */ }
+  .register .form {
+    /* CHILDREN */
+    /* .input-cllctn */ }
+    .register .form .input-cllctn {
+      margin: auto;
+      width: 26.8125rem;
+      /* .input-field */
+      /* .input-field */ }
+      .register .form .input-cllctn .input-small {
+        display: inline-block; }
+      .register .form .input-cllctn .input-field[name='state'] {
+        width: 4.70313rem; }
+      .register .form .input-cllctn .input-field[name='zip_code'] {
+        width: 6.70313rem; }
+    .register .form .form-btn-wrap {
+      text-align: center; }
+
+/* .show */
+/*=== page ===*/
 .page {
   position: absolute;
   left: 0;

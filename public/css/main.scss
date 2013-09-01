@@ -619,6 +619,13 @@ ul {
     margin-top: $lg;
 }/* .search */
 
+/*=== input-errors ===*/
+
+.input-errors {
+    color:          $red;
+    margin-bottom:  $sm;
+}/* .input-errors */
+
 /*=== show ===*/
 
 .show, .index {
@@ -630,7 +637,40 @@ ul {
     }/* .rsrc */
 }/* .show */
 
-/*=== show ===*/
+/*=== register ===*/
+
+.register {
+
+    /* CHILDREN */
+
+    .form {
+
+        /* CHILDREN */
+
+        .input-cllctn {
+            margin: auto;
+            width: $input_width;
+
+            .input-small {
+                display: inline-block;
+            }
+
+            .input-field[name='state'] {
+                width: $input_width/4 - ($tny * 2);
+            }/* .input-field */
+
+            .input-field[name='zip_code'] {
+                width: $input_width/4;
+            }/* .input-field */
+        }/* .input-cllctn */
+
+        .form-btn-wrap {
+            text-align: center;
+        }
+    }/* .form */
+}/* .show */
+
+/*=== page ===*/
 
 .page {
     position:   absolute;
