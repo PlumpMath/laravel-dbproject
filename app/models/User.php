@@ -3,7 +3,11 @@
 use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
+// {{{ User
+
+class User extends Resource implements UserInterface, RemindableInterface {
+
+	// {{{ properties
 
 	/**
 	 * The database table used by the model.
@@ -17,7 +21,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password');
+	protected $hidden = ['password'];
+
+	protected $relations_to = [
+		'LateSignUps',
+	];
+
+	// }}}
+	// {{{ getAuthIdentifier
 
 	/**
 	 * Get the unique identifier for the user.
@@ -29,6 +40,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->getKey();
 	}
 
+	// }}}
+	// {{{ getAuthPassword
+
 	/**
 	 * Get the password for the user.
 	 *
@@ -38,6 +52,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->password;
 	}
+
+	// }}}
+	// {{{ getReminderEmail
 
 	/**
 	 * Get the e-mail address where password reminders are sent.
@@ -49,28 +66,21 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return $this->email;
 	}
 
-    public function children() 
-    {
-        return $this->hasMany('Child');
-    }
+	// }}}
+	// {{{ latesignups
 
-    public function roles() 
-    {
-        return $this->belongsToMany('Role');
-    }
+	/**
+	 * Get the user's latesignups
+	 *
+	 * @return collection of latesignups
+	 */
 
-    public function payments()
-    {
-        return $this->hasMany('Payment');
-    }
+	public function latesignups()
+	{
+		return $this->hasMany('LateSignUps');
+	}
 
-    public function accountActivity()
-    {
-        return $this->hasMany('Account_activity');
-    }
-
-    public function messages()
-    {
-        return $this->belongsToMany('Message');
-    }
+	// }}}
 }
+
+// }}}

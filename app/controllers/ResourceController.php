@@ -22,11 +22,15 @@ class ResourceController extends BaseController
         $this->beforeFilter('auth');
 
         $this->beforeFilter('csrf', array('on' => 'post'));
-        
+
         //Names for resource
+
+        //to separate FooBar into Foo Bar
+        $regex = '/(?<!^)((?<![[:upper:]])[[:upper:]]|[[:upper:]](?![[:upper:]]))/';
+
         $this->ResourceController = get_class($this);
         $this->Resource = explode('Controller', $this->ResourceController, 2)[0];
-        $this->Resources = str_plural($this->Resource);
+        $this->Resources = preg_replace( $regex, ' $1', str_plural($this->Resource));
         $this->resource = strtolower($this->Resource);
         $this->resources = strtolower($this->Resources);
 

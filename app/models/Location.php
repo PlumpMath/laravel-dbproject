@@ -1,15 +1,16 @@
 <?php
 
-class Location extends Eloquent {
-    protected $guarded = array();
+// {{{ Location
 
-    public static $rules = array();
+class Location extends Resource {
 
-    public function classes() {
-        return $this->hasMany('Class');
-    }
+	// {{{ properties
 
-    public function activities() {
-        return $this->belongsToMany('Activity');
-    }
+    protected $guarded = [];
+
+    public static $rules = [];
+
+    // }}}
 }
+
+// }}}

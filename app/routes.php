@@ -24,6 +24,14 @@ Route::get('/', function ()
                     'create'    => action('UserController@create'),
                 ],
             ],
+            [
+                'name'  => 'Late Sign Ups',
+                'url'   => [
+                    'index'     => action('LateSignUpController@index'),
+                    'search'    => '#',
+                    'create'    => action('LateSignUpController@create'),
+                ],
+            ],
         ];
 
         $data = [
@@ -56,9 +64,22 @@ Route::post('/log/in', function () {
         'password'  => Input::get('password'),
     ];
 
+    Auth::attempt($user);
+
+    /*
     if (Auth::attempt($user)) {
         $ip = $_SERVER['REMOTE_ADDR'];
+
+        if (filter_var($ip, FILTER_VALIDATE_IP)) {
+            $geo_info = file_get_contents('http://ipinfo.io/'.$ip);
+            $location = $geo_info['hostname'];
+
+            Auth::user()->last_logged_in_from = $ip;
+            Auth::user()->last_logged_in_at = $location;
+            Auth::user()->save();
+        }
     }
+    */
 
     return Redirect::to('/');
 });
@@ -74,9 +95,13 @@ Route::get('/register', function () {
         'check_email'   => URL::to('/is_email_unique'),
     ];
 
+    $v = Validator::make(['name' => 'Dayle'],['name' => 'numeric|required|min:9']);
+    $v->fails();
+
     $data = [
         'title' => 'Registering -- myafterschoolprograms.com',
         'url'   => $url,
+        'm'     => $v->messages() 
     ];
 
     return View::make('defaults.register', $data);
@@ -108,3 +133,4 @@ Route::get('/locations/{id}/copy', 'LocationController@copy');
 
 Route::resource('locations', 'LocationController');
 Route::resource('users', 'UserController');
+Route::resource('latesignups', 'LateSignUpController');

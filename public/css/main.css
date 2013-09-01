@@ -464,6 +464,9 @@ ul {
           color: white;
           height: 100%;
           width: 100%; }
+    .rsrc .rsrc-elem .rsrc-inst-empty {
+      padding: 1rem;
+      text-align: center; }
     .rsrc .rsrc-elem .rsrc-elem-checkbox, .rsrc .rsrc-elem .rsrc-inst-info, .rsrc .rsrc-elem .rsrc-inst-name {
       display: inline-block;
       padding: 1rem; }
@@ -790,6 +793,42 @@ ul {
   /* CHILDREN */
   /* .rsrc */ }
   .show .rsrc, .index .rsrc {
+    margin-top: 4.236rem; }
+
+/* .show */
+/*=== show ===*/
+.page {
+  position: absolute;
+  left: 0;
+  top: 0;
+  text-align: center;
+  width: 100%;
+  -o-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+  /* SUBTYPES */
+  /* CHILDREN */ }
+  .page.page-hide-left {
+    -o-transform: translateX(-100%);
+    -ms-transform: translateX(-100%);
+    -moz-transform: translateX(-100%);
+    -webkit-transform: translateX(-100%);
+    transform: translateX(-100%); }
+  .page.page-show {
+    -o-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0); }
+  .page.page-hide-right {
+    -o-transform: translateX(100%);
+    -ms-transform: translateX(100%);
+    -moz-transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    transform: translateX(100%); }
+  .page .page-input-cllctn {
     margin-top: 4.236rem; }
 
 /* .show */

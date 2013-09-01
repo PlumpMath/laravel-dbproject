@@ -24,6 +24,14 @@
         </div>
         <!-- resource block -->
         <ul class="rsrc">
+            @if (empty($resources))
+            <!-- resource elem -->
+            <li class="rsrc-elem rsrc-inst">
+                <div class="rsrc-inst-empty">
+                    <p class="rsrc-inst-empty-text">There are no {{ $Resources }}! <a href="{{ $url['create'] }}">Create one?</a></p>
+                </div>
+            </li>            
+            @else
             @foreach ($resources as $resource)
             <!-- resource elem -->
             <li class="rsrc-elem rsrc-inst">
@@ -40,6 +48,7 @@
                 </a>
             </li>
             @endforeach
+            @endif
         </ul>
     </div>
 

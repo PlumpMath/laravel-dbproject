@@ -8,128 +8,130 @@
         'id'  => 'Register-Form',
     ]) }}
     {{ Form::close() }}
-    <div id="Name-Page" class="page show">
-        <div class="horizontal-center-wrapper">
-            <div class="vertical-center-outer-wrapper">
-                <div class="vertical-center-inner-wrapper">
-                    <div id="Header" class="header">
-                        <div class="heading">
-                            <p>How about your name?</p>
-                        </div>
-                        <div class="subheading">
-                            <p>(No middle name, please)</p>
-                        </div>
+    <div class="page page-name page-show vert-stretch">
+        <div class="vert-outer-wrap vert-stretch">
+            <div class="vert-inner-wrap">
+                <div class="page-header header">
+                    <div class="header-title">
+                        <p class="header-title-text">How about your name?</p>
                     </div>
-                    <div id="Name-Input" class="input-collection input-wrapper">
-                        {{ Form::text('name') }}
-                        {{ Form::label('name', 'First &amp; Last Name', ['class' => 'visible']) }}
-                        <div id="Name-Check" class="invisible">
-                            <p>So, this is you? <span id="Last-Name-Check"></span>, <span id="First-Name-Check"></span></p>
-                        </div>
-                        <button class="inactive">
-                            <p class="active-option invisible">Yes, that's me</p>
-                            <p class="inactive-option visible">Still Typing...</p>
-                        </button>
+                    <div class="header-sub">
+                        <p class="header-title-text">(No middle name, please)</p>
+                    </div>
+                </div>
+                <div class="page-input-cllctn input-cllctn">
+                    <div class="page-input-cllctn-input input">
+                        {{ Form::text('name', '', ['class' => 'page-input-cllctn-input-field input-field']) }}
+                        {{ Form::label('name', 'First &amp; Last Name', ['class' => 'page-input-cllctn-input-lbl input-lbl lbl visible']) }}
+                    </div>
+                    <div class="page-validation invisible">
+                        <p class="page-validation-text">So, this is you? <span class="page-validation-last-name-check"></span>, <span id="page-validation-first-name-check"></span></p>
+                    </div>
+                    <div class="page-btn btn btn-inactive">
+                        <p class="btn-active-text invisible">Yes, that's me</p>
+                        <p class="btn-inactive-text visible">...</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="Email-Page" class="page hide-right">
-        <div class="horizontal-center-wrapper">
-            <div class="vertical-center-outer-wrapper">
-                <div class="vertical-center-inner-wrapper">
-                    <div id="Header" class="header">
-                        <div class="heading">
-                            <p>Which email would you like to use?</p>
-                        </div>
-                        <div class="subheading">
-                            <p>Your email is what you use to sign in, once you've registered.</p>
-                        </div>
+    <div class="page page-email page-hide-right vert-stretch">
+        <div class="vert-outer-wrap vert-stretch">
+            <div class="vert-inner-wrap">
+                <div class="page-header header">
+                    <div class="header-title">
+                        <p class="header-title-text">Which email will you use?</p>
                     </div>
-                    <div id="Email-Input" class="input-collection input-wrapper">
-                        {{ Form::text('email', '', ['autofill' => 'off']) }}
-                        {{ Form::label('email', 'youremail@example.com', ['class' => 'visible']) }}
-                        <div id="Email-Check" class="invisible">
-                            <p>Someone's already using that email!</p>
-                        </div>
-                        <button class="inactive">
-                            <p class="active-option invisible">Next!</p>
-                            <p class="inactive-option visible">Still Typing...</p>
-                        </button>
+                    <div class="header-sub">
+                        <p class="header-title-text">Later, you'll use this email to sign in</p>
+                    </div>
+                </div>
+                <div class="page-input-cllctn input-cllctn">
+                    <div class="page-input-cllctn-input input">
+                        {{ Form::text('email', '', ['class' => 'page-input-cllctn-input-field input-field']) }}
+                        {{ Form::label('email', 'your_email@example.com', ['class' => 'page-input-cllctn-input-lbl input-lbl lbl visible']) }}
+                    </div>
+                    <div class="page-validation invisible">
+                        <p class="page-validation-text">Someone's using that email!</p>
+                    </div>
+                    <div class="page-btn btn btn-inactive">
+                        <p class="btn-active-text invisible">I'll use this one</p>
+                        <p class="btn-inactive-text visible">...</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="Password-Page" class="page hide-right">
-        <div class="horizontal-center-wrapper">
-            <div class="vertical-center-outer-wrapper">
-                <div class="vertical-center-inner-wrapper">
-                    <div id="Header" class="header">
-                        <div class="heading">
-                            <p>Password, please</p>
+    <div class="page page-pwd page-hide-right vert-stretch">
+        <div class="vert-outer-wrap vert-stretch">
+            <div class="vert-inner-wrap">
+                <div class="page-header header">
+                    <div class="header-title">
+                        <p class="header-title-text">A password, please</p>
+                    </div>
+                    <div class="header-sub">
+                        <p class="header-title-text">Find out what we're doing to keep you safe.</p>
+                    </div>
+                </div>
+                <div class="page-input-cllctn input-cllctn">
+                    <div class="page-input-cllctn-input input">
+                        {{ Form::password('password', ['class' => 'page-input-cllctn-input-field input-field']) }}
+                        {{ Form::label('pwd', 'Password', ['class' => 'page-input-cllctn-input-lbl input-lbl lbl visible']) }}
+                    </div>
+                    <div class="page-input-cllctn-pwd-input input">
+                        {{ Form::password('password_confirm', ['class' => 'page-input-cllctn-pwd-input-field input-field']) }}
+                        {{ Form::label('password_confirm', 'Confirm Password', ['class' => 'page-input-cllctn-pwd-input-lbl input-lbl lbl visible']) }}
+                    </div>
+                    <div class="page-validation invisible">
+                        <div class="page-validation-longer-than-six invisible">
+                            <p class="page-validation-longer-than-six-text">Whoops, your password is only <span class="page-validation-longer-than-six-number-of-characters"></span> character<span class="page-validation-longer-than-six-more-than-one visible">s</span> long. Only <span class="page-validation-longer-than-six-number-to-go"></span> more to go.</p>
                         </div>
-                        <div class="subheading">
-                            <p><a href='#'>Find out</a> what we're doing to keep you safe.</p>
+                        <div class="page-validation-must-match invisible">
+                            <p class="page-validation-must-match-text"><span class="page-validation-must-match-and-longer-than-six invisible">Also, </span><span class="page-valdiation-must-match-only visible">Make sure </span>the two passwords match.</p>
                         </div>
                     </div>
-                    <div id="Password-Input-Collection" class="input-collection">
-                        <div id="Password-Input" class="input-wrapper">
-                            {{ Form::password('password') }}
-                            {{ Form::label('password', 'Password', ['class' => 'visible']) }}
-                        </div>
-                        <div id="Confirm-Password-Input" class="input-wrapper">
-                            {{ Form::password('confirm_password') }}
-                            {{ Form::label('confirm_password', 'Confirm Password', ['class' => 'visible']) }}
-                            <div id="Password-Check" class="invisible">
-                                <p class='longer-than-six invisible'>Just make sure it's longer than six characters.</p>
-                                <p class='must-match invisible'><span class='check-and invisible'>Also, t</span><span class='check-no-and visible'>T</span>he two passwords must match.</p>
-                            </div>
-                            <button class="inactive">
-                                <p class="active-option invisible">Next!</p>
-                                <p class="inactive-option visible">Still Typing...</p>
-                            </button>
-                        </div>
+                    <div class="page-btn btn btn-inactive">
+                        <p class="btn-active-text invisible">Don't peek!</p>
+                        <p class="btn-inactive-text visible">...</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div id="Address-Page" class="page hide-right">
-        <div class="horizontal-center-wrapper">
-            <div class="vertical-center-outer-wrapper">
-                <div class="vertical-center-inner-wrapper">
-                    <div id="Header" class="header">
-                        <div class="heading">
-                            <p>Where do you live?</p>
-                        </div>
+    <div class="page page-address page-hide-right vert-stretch">
+        <div class="vert-outer-wrap vert-stretch">
+            <div class="vert-inner-wrap">
+                <div class="page-header header">
+                    <div class="header-title">
+                        <p class="header-title-text">And finally, your address?</p>
                     </div>
-                    <div id="Address-Input-Collection" class="input-collection">
-                        <div id="Address-Input" class="input-wrapper">
-                            {{ Form::text('address') }}
-                            {{ Form::label('address', 'Street Address', ['class' => 'visible']) }}
-                        </div>
-                        <div id="City-Input" class="input-wrapper">
-                            {{ Form::text('city') }}
-                            {{ Form::label('city', 'City', ['class' => 'visible']) }}
-                        </div>
-                        <div id="State-Input" class="input-wrapper">
-                            {{ Form::text('State') }}
-                            {{ Form::label('State', 'State', ['class' => 'visible']) }}
-                        </div>
-                        <div id="Zip-Code-Input" class="input-wrapper">
-                            {{ Form::text('zip_code') }}
-                            {{ Form::label('zip_code', 'Zip', ['class' => 'visible']) }}
-                        </div>
-                        <div>
-                            <div id="Address-Check" class="invisible">
-                            </div>
-                            <button class="inactive">
-                                <p class="active-option invisible">Done!</p>
-                                <p class="inactive-option visible">Still Typing...</p>
-                            </button>
-                        </div>
+                    <div class="header-sub">
+                        <p class="header-title-text">We'll use this to ease class selection, later.</p>
+                    </div>
+                </div>
+                <div class="page-input-cllctn input-cllctn">
+                    <div class="page-input-cllctn-input input">
+                        {{ Form::text('address', '', ['class' => 'page-input-cllctn-input-field input-field']) }}
+                        {{ Form::label('address', 'Street Address', ['class' => 'page-input-cllctn-input-lbl input-lbl lbl visible']) }}
+                    </div>
+                    <div class="page-input-cllctn-input input">
+                        {{ Form::text('city', '', ['class' => 'page-input-cllctn-input-field input-field']) }}
+                        {{ Form::label('city', 'City', ['class' => 'page-input-cllctn-input-lbl input-lbl lbl visible']) }}
+                    </div>
+                    <div class="page-input-cllctn-input input">
+                        {{ Form::text('state', '', ['class' => 'page-input-cllctn-input-field input-field']) }}
+                        {{ Form::label('state', 'State', ['class' => 'page-input-cllctn-input-lbl input-lbl lbl visible']) }}
+                    </div>
+                    <div class="page-input-cllctn-input input">
+                        {{ Form::text('zip_code', '', ['class' => 'page-input-cllctn-input-field input-field']) }}
+                        {{ Form::label('zip_code', 'State', ['class' => 'page-input-cllctn-input-lbl input-lbl lbl visible']) }}
+                    </div>
+                    <div class="page-validation invisible">
+                        <p class="page-validation-longer-than-six-text"></p>
+                    </div>
+                    <div class="page-btn btn btn-inactive">
+                        <p class="btn-active-text invisible">Don't peek!</p>
+                        <p class="btn-inactive-text visible">...</p>
                     </div>
                 </div>
             </div>
@@ -140,82 +142,14 @@
 @stop
 
 @section('scripts')
+    <script src='{{ asset('js/Validator.js') }}'></script>
     <script>
-        //Name Button activation
-        $('#Name-Input').on('load input', function () {
-            var name = $('#Name-Input input').val().trim().split(/ (.+)?/),
-                has_first_and_last = (name.length > 1 && name[1].length > 0);
-
-            myafterschoolprograms.resetVisibility('#Name-Check', has_first_and_last);
-            myafterschoolprograms.toggleButton('#Name-Input button', has_first_and_last);
-
-            if (has_first_and_last) {
-                $('#First-Name-Check').html(name[0]);
-                $('#Last-Name-Check').html(name[1]);
-            }
-
-        });
-
-        //Email Button activation
-        $('#Email-Input').on('input', function () {
-            var email = $('#Email-Input input').val().trim(),
-                email_reg_exp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                is_an_email = email_reg_exp.test(email),
-                is_unique = true;
-
-            if (is_an_email) {
-                $.ajax({
-                    method: 'POST',
-                    url: '{{ $url['check_email'] }}',
-                    data: {'email': email},
-                    success: function (data) {
-                        is_unique = (data === 'true') ? true : false;
-                    },
-                    async: false
-                });
-            }
-
-            myafterschoolprograms.resetVisibility('#Email-Check', !is_unique)
-            myafterschoolprograms.toggleButton('#Email-Input button', is_an_email && is_unique);
-        });
-
-        //Password Button activation
-        $('#Password-Input-Collection').on('input', function () {
-            var password = $('#Password-Input input').val(),
-                confirm_password = $('#Confirm-Password-Input input').val(),
-                are_filled = (confirm_password.length > 0 && password.length > 0),
-                are_matching = (password === confirm_password),
-                are_longer_than_six = (password.length >= 6);
-
-            myafterschoolprograms.resetVisibility('#Password-Check', (are_filled && (!are_matching || !are_longer_than_six)));
-            myafterschoolprograms.resetVisibility('.longer-than-six', are_filled && !are_longer_than_six);
-            myafterschoolprograms.resetVisibility('.check-and', are_filled && !are_longer_than_six);
-            myafterschoolprograms.resetVisibility('.check-no-and', are_filled && are_longer_than_six);
-            myafterschoolprograms.resetVisibility('.must-match', are_filled && !are_matching);
-
-            myafterschoolprograms.toggleButton('#Password-Input-Collection button', (are_matching && are_longer_than_six));
-        });
-
-        //Address Button activation
-        $('#Address-Input-Collection').on('input', function () {
-            var address = $('#Address-Input input').val().trim(),
-                city = $('#City-Input input').val().trim(),
-                state = $('#State-Input input').val().trim().toUpperCase(),
-                zip = $('#Zip-Code-Input input').val().trim(),
-                is_state = ($.inArray(state, myafterschoolprograms.states) > -1),
-                is_zip = (/^\d+$/.test(zip) && zip.length === 5),
-                are_filled = (address.length > 0 && city.length > 0 && state.length > 0 && zip.length > 0);
-
-                console.log(is_zip+' '+is_state+' '+are_filled)
-
-            myafterschoolprograms.toggleButton('#Address-Input-Collection button', is_state && is_zip && are_filled);
-        });
-
-        $('.page button').on('click', function () {
-            if ($(this).hasClass('active')) {
-                $(this).parents('.page').toggleClass('show hide-left');
-                $(this).parents('.page').next().toggleClass('hide-right show');
-            }
-        });
+        Input.get('name').required().alphadash().verbose();
+        Input.get('email').required().email().verbose();
+        Input.get('password').required().min(6).matches('password_confirm').verbose();
+        Input.get('address').required().verbose();
+        Input.get('city').required().verbose();
+        Input.get('state').required().in(myafterschoolprograms.states).size(2).verbose();
+        Input.get('zip_code').required().numeric().size(5).verbose();
     </script>
 @stop

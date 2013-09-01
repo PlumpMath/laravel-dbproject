@@ -222,6 +222,11 @@ ul {
             }/* .rsrc-type-cmds-btn */
         }/* .rsrc-type-cmds */
 
+        .rsrc-inst-empty {
+            padding: $tny;
+            text-align: center;
+        }
+
         .rsrc-elem-checkbox, .rsrc-inst-info, .rsrc-inst-name {
             display: inline-block;
             padding: $tny;
@@ -623,6 +628,41 @@ ul {
     .rsrc {
         margin-top: $lg;
     }/* .rsrc */
+}/* .show */
+
+/*=== show ===*/
+
+.page {
+    position:   absolute;
+
+        left:   0;
+        top:    0;
+
+    text-align: center;
+    width:      100%;
+
+    @include transition(.5s);
+
+    /* SUBTYPES */
+
+    &.page-hide-left {
+        @include transform(translateX(-100%));
+    }
+
+    &.page-show {
+        @include transform(translateX(0));
+    }
+
+    &.page-hide-right {
+        @include transform(translateX(100%));
+    }
+
+    /* CHILDREN */
+
+    .page-input-cllctn {
+        margin-top: $lg;
+    }
+
 }/* .show */
 
 /*=== visibility ===*/
