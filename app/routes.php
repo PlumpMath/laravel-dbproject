@@ -95,16 +95,24 @@ Route::get('/register', function () {
         'check_email'   => URL::to('/is_email_unique'),
     ];
 
-    $v = Validator::make(['name' => 'Dayle'],['name' => 'numeric|required|min:9']);
-    $v->fails();
-
     $data = [
         'title' => 'Registering -- myafterschoolprograms.com',
         'url'   => $url,
-        'm'     => $v->messages() 
     ];
 
     return View::make('defaults.register', $data);
+});
+
+Route::get('/verify', function () {
+    $url = [
+    ]
+
+    $data = [
+        'title' => 'Verifying your account -- myafterschoolprograms.com',
+        'url'   => $url,
+    ];
+
+    return View::make('defaults.verify', $data);
 });
 
 Route::post('/is_email_unique', function () {
