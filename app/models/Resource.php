@@ -47,10 +47,12 @@ class Resource extends Eloquent {
      */
 
     public function validate($data) {
-        $validator = new Validator($data, $this->rules);
+        $class = get_class($this);
 
-        if ($v->fails()) {
-            $this->errors = $validator->errors;
+        $validator = Validator::make($data, $class::$rules);
+
+        if ( ! $validator->fails()) {
+            $this->errors = $validator->messages();
             return false;
         } 
 

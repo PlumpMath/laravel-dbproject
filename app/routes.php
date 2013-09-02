@@ -64,7 +64,11 @@ Route::post('/log/in', function () {
         'password'  => Input::get('password'),
     ];
 
-    Auth::attempt($user);
+    if (Auth::attempt($user)) {
+        return Redirect::intended('/');
+    } else {
+        return Redirect::to('/');
+    }
 
     /*
     if (Auth::attempt($user)) {
@@ -80,8 +84,6 @@ Route::post('/log/in', function () {
         }
     }
     */
-
-    return Redirect::to('/');
 });
 
 Route::get('/log/out', function () {
@@ -93,6 +95,7 @@ Route::get('/log/out', function () {
 Route::get('/register', function () {
     $url = [
         'check_email'   => URL::to('/is_email_unique'),
+        'verify'        => URL::to('/verify'),
     ];
 
     $data = [
@@ -103,9 +106,56 @@ Route::get('/register', function () {
     return View::make('defaults.register', $data);
 });
 
-Route::get('/verify', function () {
-    $url = [
-    ]
+Route::post('/verify', function () {
+    $name       = explode(' ', Input::get('name'), 2);
+    $first_name = $name[0];
+    $last_name  = $name[1];
+
+    $data = [
+        'first_name'    => $first_name,
+        'last_name'     => $last_name,
+        'email'         => Input::get('email'),
+        'phone'         => Input::get('phone'),
+        'password'      => Input::get('password'),
+        'address'       => Input::get('address'),
+        'city'          => Input::get('city'),
+        'state'         => Input::get('state'),
+        'zip_code'      => Input::get('zip_code'),
+        'status'        => 2,
+        'remember'      => 0,
+    ];
+        
+    $user = new User;
+
+    if ($user->validate($data)) {
+
+        $user->first_name   = $data['first_name'];
+        $user->last_name    = $data['last_name'];
+        $user->email        = $data['email'];
+        $user->phone        = $data['phone'];
+        $user->password     = $data['password'];
+        $user->address      = $data['address'];
+        $user->city         = $data['city'];
+        $user->state        = $data['state'];
+        $user->zip_code     = $data['zip_code'];
+        $user->status       = $data['status'];
+        $user->remember     = $data['remember'];
+
+        $user->save(); 
+
+        $verification = new Verification;
+
+        $verification->hash = md5(mt_rand(0, 65535));
+        $verification->verified_on = null;
+
+        $verification->save();
+
+        $user->verification()->save($verification);
+
+        $url = [
+            'activate' => URL::to('/activate/{hash}', $verification->hash)
+        ];       
+    }
 
     $data = [
         'title' => 'Verifying your account -- myafterschoolprograms.com',
@@ -113,6 +163,22 @@ Route::get('/verify', function () {
     ];
 
     return View::make('defaults.verify', $data);
+});
+
+Route::get('/activate/{hash}', function ($hash) {
+    $verification = Verification::where('hash', '=', $hash)->first();
+
+    if (is_null($verification)) App::abort('404');  
+
+    $url = [
+    ];
+
+    $data = [
+        'title' => 'Account Activation -- myafterschoolprograms.com',
+        'url'   => $url,
+    ];
+
+    return View::make('defaults.activate', $data);
 });
 
 Route::post('/is_email_unique', function () {

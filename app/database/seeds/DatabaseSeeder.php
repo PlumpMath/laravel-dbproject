@@ -2,53 +2,57 @@
 
 class DatabaseSeeder extends Seeder {
 
-	/**
-	 * Run the database seeds.
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
-		Eloquent::unguard();
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Eloquent::unguard();
 
-		$this->call('UsersTableSeeder');
-        $this->call('PermissionsTableSeeder');
-        $this->call('RolesTableSeeder');
+        $this->call('UsersTableSeeder');
+        //$this->call('PermissionsTableSeeder');
+        //$this->call('RolesTableSeeder');
         $this->call('LocationsTableSeeder');
-        $this->call('MapsTableSeeder');
-	}
+        //$this->call('MapsTableSeeder');
+    }
 
 }
+
+/*
 
 class MapsTableSeeder extends Seeder {
-	public function geocode($query)
-	{
-		$placeSearchURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $query . '&sensor=false';
+    public function geocode($query)
+    {
+        $placeSearchURL = 'https://maps.googleapis.com/maps/api/geocode/json?address=' . $query . '&sensor=false';
 
-		$placeSearchJSON = file_get_contents($placeSearchURL);
-		$dataArray = json_decode($placeSearchJSON);
-		$location = $dataArray->results[0]->geometry->location;
-		return array($location->lat, $location->lng);
-	}
-	
-	public function run()
-	{
-		$now = date('Y-m-d H:i:s');
-		$locations = Location::all();
-		
-		foreach($locations as $location) {
-			$address = urlencode($location['address'] . $location['city'] . $location['state']);
-			$latlng = self::geocode($address);
+        $placeSearchJSON = file_get_contents($placeSearchURL);
+        $dataArray = json_decode($placeSearchJSON);
+        $location = $dataArray->results[0]->geometry->location;
+        return array($location->lat, $location->lng);
+    }
+    
+    public function run()
+    {
+        $now = date('Y-m-d H:i:s');
+        $locations = Location::all();
+        
+        foreach($locations as $location) {
+            $address = urlencode($location['address'] . $location['city'] . $location['state']);
+            $latlng = self::geocode($address);
 
-			Maps::create(array(
-					'id' => $location['id'],
-					'latitude' => $latlng[0],
-					'longitude' => $latlng[1],
-					)
-			);
-		}
-	}
+            Maps::create(array(
+                    'id' => $location['id'],
+                    'latitude' => $latlng[0],
+                    'longitude' => $latlng[1],
+                    )
+            );
+        }
+    }
 }
+
+*/
 
 class LocationsTableSeeder extends Seeder {
     public function run()
@@ -209,6 +213,8 @@ class LocationsTableSeeder extends Seeder {
     }
 }
 
+/*
+
 class RolesTableSeeder extends Seeder {
     public function run()
     {
@@ -252,6 +258,8 @@ class PermissionsTableSeeder extends Seeder {
     }
 }
 
+*/
+
 class UsersTableSeeder extends Seeder {
     public function run()
     {
@@ -294,12 +302,12 @@ class UsersTableSeeder extends Seeder {
                               'phone' => '',
                               'first_name' => '',
                               'last_name' => 'Admin',
-                              'street_address' => '',
+                              'address' => '',
                               'city' => '',
                               'state' => '',
                               'zip_code' => '',
-                              'stay_logged_in' => 1,
-                              'active' => 1,
+                              'remember' => 1,
+                              'status' => 1,
                               'created_at' => $now,
                               'updated_at' => $now
                               ),
@@ -316,12 +324,12 @@ class UsersTableSeeder extends Seeder {
                              'phone' => '5555555555',
                              'first_name' => $first_name,
                              'last_name' => $last_name,
-                             'street_address' => '555 Example Road',
+                             'address' => '555 Example Road',
                              'city' => 'Example City',
                              'state' => 'NY',
                              'zip_code' => '55555',
-                             'stay_logged_in' => 1,
-                             'active' => 1,
+                             'remember' => 1,
+                             'status' => 1,
                              'created_at' => $now,
                              'updated_at' => $now
                              );
@@ -330,12 +338,5 @@ class UsersTableSeeder extends Seeder {
         foreach($users as $user) {
             User::create($user);
         }
-    }
-}
-
-class ActivitiesTableSeeder
-{
-    public function run()
-    {
     }
 }

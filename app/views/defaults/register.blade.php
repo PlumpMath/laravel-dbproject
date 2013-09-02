@@ -21,7 +21,7 @@
                 <p class="copy-paragraph-text">There's fun in exercise that can create healthy choices. See the reasons why to enroll your child.</p>
             </div>
         </div>
-        {{ Form::open(['url' => '', 'class' => 'form']) }}
+        {{ Form::open(['url' => $url['verify'], 'class' => 'form']) }}
         <div class="input-cllctn">
             <div class="input-cllctn-input input">
                 {{ Form::text('name', '', ['class' => 'input-cllctn-input-field input-field']) }}

@@ -716,7 +716,20 @@ ul {
             text-align: center;
         }
     }/* .form */
-}/* .show */
+}/* .register */
+
+/*=== verify ===*/
+
+.verify {
+    margin: auto;
+    width:  $input_short_width;
+
+    /* CHILDREN */
+
+    .copy-paragraph {
+        margin-top: $med;
+    }/* .copy-paragraph-text */
+}/* .page */
 
 /*=== page ===*/
 
@@ -751,7 +764,7 @@ ul {
         margin-top: $lg;
     }
 
-}/* .show */
+}/* .page */
 
 /*=============================
 

@@ -888,7 +888,17 @@ ul {
     .register .form .form-btn-wrap {
       text-align: center; }
 
-/* .show */
+/* .register */
+/*=== verify ===*/
+.verify {
+  margin: auto;
+  width: 20.1094rem;
+  /* CHILDREN */
+  /* .copy-paragraph-text */ }
+  .verify .copy-paragraph {
+    margin-top: 2.618rem; }
+
+/* .page */
 /*=== page ===*/
 .page {
   position: absolute;
@@ -924,7 +934,7 @@ ul {
   .page .page-input-cllctn {
     margin-top: 4.236rem; }
 
-/* .show */
+/* .page */
 /*=============================
 
     STATE
