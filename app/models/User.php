@@ -29,15 +29,15 @@ class User extends Resource implements UserInterface, RemindableInterface {
     ];
 
     public static $rules = [
-        'first_name'    => 'required|alphadash',
-        'last_name'     => 'required|alphadash',
-        'email'         => 'required|email',
-        'phone'         => 'required|numeric|size:10',
-        'password'      => 'required|min:6|confirmed',
+        'first_name'    => 'required',
+        'last_name'     => 'required',
+        'email'         => 'required|email|unique:users',
+        'phone'         => 'required',
+        'password'      => 'required|min:6|same:password_confirm',
         'address'       => 'required',
         'city'          => 'required',
         'state'         => 'required',
-        'zip_code'      => 'required|numeric|size:5',
+        'zip_code'      => 'required',
     ];
 
     // }}}

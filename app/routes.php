@@ -4,7 +4,8 @@ Route::get('/', function ()
 {
     if (Auth::check()) {
         $url = [
-            'log_out'           => URL::to('/log/out'),
+            'home'        => URL::to('/'),
+            'log_out'     => URL::to('/log/out'),
         ];
 
         $resources = [
@@ -44,6 +45,7 @@ Route::get('/', function ()
     } else {
         //urls for the view
         $url = [
+            'home'        => URL::to('/'),
             'log_in'        => URL::to('/log/in'),
             'register'      => URL::to('/register'),
         ];
@@ -58,20 +60,35 @@ Route::get('/', function ()
     }
 });
 
+Route::get('/log/in', function () {
+    $url = [
+        'home'        => URL::to('/'),
+        'log_in' => URL::to('/log/in'),
+    ];
+
+    $data = [
+        'url'   => $url,
+        'title' => 'Log in -- myafterschoolprograms.com'
+    ];
+
+    if (Session::has('auth_failed')) {
+        $data['errors'] = 'visible';
+        Session::forget('auth_failed');
+    } else {
+        $data['errors'] = 'invisible';
+    }
+
+    return View::make('defaults.login', $data);
+});
+
 Route::post('/log/in', function () {
     $user = [
-        'email'      => Input::get('email'),
+        'email'     => Input::get('email'),
         'password'  => Input::get('password'),
     ];
 
     if (Auth::attempt($user)) {
-        return Redirect::intended('/');
-    } else {
-        return Redirect::to('/');
-    }
-
     /*
-    if (Auth::attempt($user)) {
         $ip = $_SERVER['REMOTE_ADDR'];
 
         if (filter_var($ip, FILTER_VALIDATE_IP)) {
@@ -82,8 +99,11 @@ Route::post('/log/in', function () {
             Auth::user()->last_logged_in_at = $location;
             Auth::user()->save();
         }
-    }
     */
+        return Redirect::intended('/');
+    } else {
+        return Redirect::to('/log/in')->with('auth_failed', true);
+    }
 });
 
 Route::get('/log/out', function () {
@@ -94,6 +114,7 @@ Route::get('/log/out', function () {
 
 Route::get('/register', function () {
     $url = [
+        'home'          => URL::to('/'),
         'check_email'   => URL::to('/is_email_unique'),
         'verify'        => URL::to('/verify'),
     ];
@@ -102,6 +123,10 @@ Route::get('/register', function () {
         'title' => 'Registering -- myafterschoolprograms.com',
         'url'   => $url,
     ];
+    if (Session::has('errors')) {
+        $data['errors'] = Session::get('errors');
+        Session::forget('errors');
+    }
 
     return View::make('defaults.register', $data);
 });
@@ -109,31 +134,33 @@ Route::get('/register', function () {
 Route::post('/verify', function () {
     $name       = explode(' ', Input::get('name'), 2);
     $first_name = $name[0];
-    $last_name  = $name[1];
+    $last_name  = (isset($name[1])) ? $name[1] : '';
 
     $data = [
-        'first_name'    => $first_name,
-        'last_name'     => $last_name,
-        'email'         => Input::get('email'),
-        'phone'         => Input::get('phone'),
-        'password'      => Input::get('password'),
-        'address'       => Input::get('address'),
-        'city'          => Input::get('city'),
-        'state'         => Input::get('state'),
-        'zip_code'      => Input::get('zip_code'),
-        'status'        => 2,
-        'remember'      => 0,
+        'first_name'        => $first_name,
+        'last_name'         => $last_name,
+        'email'             => Input::get('email'),
+        'phone'             => Input::get('phone'),
+        'password'          => Input::get('password'),
+        'password_confirm' => Input::get('password_confirm'),
+        'address'           => Input::get('address'),
+        'city'              => Input::get('city'),
+        'state'             => Input::get('state'),
+        'zip_code'          => Input::get('zip_code'),
+        'status'            => 2,
+        'remember'          => 0,
     ];
-        
-    $user = new User;
+    
+    $validator = Validator::make($data, User::$rules);
 
-    if ($user->validate($data)) {
+    if ($validator->passes()) {
+        $user = new User;
 
         $user->first_name   = $data['first_name'];
         $user->last_name    = $data['last_name'];
         $user->email        = $data['email'];
         $user->phone        = $data['phone'];
-        $user->password     = $data['password'];
+        $user->password     = Hash::make($data['password']);
         $user->address      = $data['address'];
         $user->city         = $data['city'];
         $user->state        = $data['state'];
@@ -153,24 +180,39 @@ Route::post('/verify', function () {
         $user->verification()->save($verification);
 
         $url = [
-            'activate' => URL::to('/activate/{hash}', $verification->hash)
-        ];       
+            'home'          => URL::to('/'),
+            'activate'      => URL::to('/activate/{hash}', $verification->hash),
+            'another_email' => '',
+        ]; 
+        $data = [
+            'title' => 'Verifying your account -- myafterschoolprograms.com',
+            'url'   => $url,
+        ];
+
+        return View::make('defaults.verify', $data);      
     }
 
-    $data = [
-        'title' => 'Verifying your account -- myafterschoolprograms.com',
-        'url'   => $url,
-    ];
-
-    return View::make('defaults.verify', $data);
+    return Redirect::to('/register')->withErrors($validator)->withInput(Input::except(['password','password_confirm']));
 });
 
 Route::get('/activate/{hash}', function ($hash) {
     $verification = Verification::where('hash', '=', $hash)->first();
 
-    if (is_null($verification)) App::abort('404');  
+    Auth::loginUsingId($verification->user_id);
+
+    $user = Auth::user();
+
+    if ($user->status === 2) {
+        $user->status = 1;
+        $user->save();
+    } else {
+        App::abort('404');
+    }
+
+    if (is_null($verification)) App::abort('404');
 
     $url = [
+        'home' => URL::to('/'),
     ];
 
     $data = [
@@ -208,3 +250,7 @@ Route::get('/locations/{id}/copy', 'LocationController@copy');
 Route::resource('locations', 'LocationController');
 Route::resource('users', 'UserController');
 Route::resource('latesignups', 'LateSignUpController');
+
+App::missing(function ($exception) {
+    return Response::view('errors.missing', [], 404);
+});

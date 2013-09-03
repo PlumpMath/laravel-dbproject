@@ -10,8 +10,8 @@
         			<p class="copy-title-text">Verifying your email</p>
         		</div>
         		<div class="copy-paragraph">
-        			<p class="copy-paragraph-text">We"ve sent you an email containing a link to activate your account. It may take a few minutes for the email to arrive.</p>
-                    <p class="copy-paragraph-text">Would you like us to <a href="">send another?</a></p>
+        			<p class="copy-paragraph-text">We&rsquo;ve sent you an email containing a link to activate your account. It may take a few minutes for the email to arrive.</p>
+                    <p class="copy-paragraph-text">Would you like us to <a href="{{ $url['another_email'] }}">send another?</a></p>
         		</div>
         	</div>
         </div>

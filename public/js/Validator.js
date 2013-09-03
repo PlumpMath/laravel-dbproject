@@ -133,7 +133,7 @@
                     return array.indexOf(value) > -1;
                 },
                 'msg': function (name, array) {
-                    return name+' should be one of these values: '+array.join(', ')+'.';
+                    return name+' is invalid.';
                 }
             },
             'integer': {

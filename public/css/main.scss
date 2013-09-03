@@ -116,6 +116,15 @@ a {
     &:focus, &:hover {
         text-decoration: underline;
     }
+
+    &.link-silent {
+        color: inherit;
+        text-decoration: none;
+
+        &:focus, &:hover {
+            text-decoration: none;
+        }
+    }
 }/* a */
 
 body {
@@ -364,14 +373,14 @@ ul {
 
     .header-title {
         color:          $black;
-        font-size:      $med;
+        font-size:      $sm;
         line-height:    $line_height;
         margin-bottom:  -.25rem;
     }/* .header-title */
 
     .header-sub {
         color:          $gray;
-        font-size:      $sm;
+        font-size:      $tny;
         line-height:    $line_height;
     }/* .header-sub */
 }/* .header */
@@ -414,15 +423,47 @@ ul {
 
 .footer {
     background:     $white;
-    padding:        .5rem 0;
+    color:          $black;
+    padding:        .5rem 1rem;
     position:       fixed;
 
-        bottom:     0;
+        top:        0;
         left:       0;
         right:      0;
 
-    text-align:     center;
+    text-align:     left;
     z-index:        $layer_2;
+
+    /* CHILDREN */
+
+    .footer-title {
+        display: inline;
+
+        /* CHILDREN */
+
+        .footer-text, .icon {
+            display:        inline;
+            vertical-align: middle;
+        }/* .footer-text, .icon */
+
+        .icon {
+            color:          $blue;
+            font-size:      $sm;
+            margin-right:   1rem;
+        }/* .icon */
+    }/* .footer-title */
+
+    .footer-nav {
+        display: inline;
+        margin-left:    $sm;
+
+        /* CHILDREN */
+
+        .footer-nav-elem {
+            display:        inline;
+            vertical-align: middle;
+        }
+    }
 }/* .footer */
 
 /*=== log-in block ===*/
@@ -462,12 +503,40 @@ ul {
 /*=== sign-up block ===*/
 
 .sign-up {
-    text-align: center;
+    overflow: auto;
 
     /* CHILDREN */
 
+    .sign-up-elem {
+        float: right;
+        width: $input_short_width;
+
+        &:first-child {
+            text-align: center;
+        }
+
+        &:last-child {
+            margin-right: $lg;
+        }
+    }
+
+    .copy {
+
+        /* CHILDREN */
+
+        .copy-paragraph {
+
+            /* CHILDREN */
+
+            .copy-paragraph-text {
+                margin-top: $sm;
+                margin-bottom: 0;
+            }/* .copy-paragraph-text */
+        }/* .copy-paragraph */
+    }/* .copy */
+
     .sign-up-btn {
-        margin-top: $lg;
+        margin-top: 8.875rem;
     }/* .sign-up-btn */
 
     .sign-up-log-in {
@@ -651,6 +720,7 @@ ul {
     color:          $red;
     margin-bottom:  $sm;
     font-size:      .809rem;
+    text-align: left;
 }/* .input-errors */
 
 /*=== show ===*/
@@ -679,7 +749,7 @@ ul {
         margin-top:     13.6015rem;
         overflow:       auto;
         width:          $input_short_width;
-    }/* .header */
+    }/* .copy */
 
     .form {
         float: left;

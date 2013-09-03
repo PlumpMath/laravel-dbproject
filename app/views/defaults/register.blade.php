@@ -23,64 +23,145 @@
         </div>
         {{ Form::open(['url' => $url['verify'], 'class' => 'form']) }}
         <div class="input-cllctn">
+            @if ($errors->first('first_name') || $errors->first('last_name'))
+            <div class="input-cllctn-input input input-has-errors">
+            @else
             <div class="input-cllctn-input input">
+            @endif
                 {{ Form::text('name', '', ['class' => 'input-cllctn-input-field input-field']) }}
                 {{ Form::label('name', 'First &amp; Last Name', ['class' => 'input-cllctn-input-lbl input-lbl lbl visible']) }}
             </div>
+            @if ($errors->first('first_name'))
+            <div class="input-errors name-errors visible-toggle visible">
+                <p>Name is required.</p>
+            </div>
+            @elseif ($errors->first('last_name'))
+            <div class="input-errors name-errors visible-toggle visible">
+                <p>Name should contain a first and last name.</p>
+            </div>
+            @else
             <div class="input-errors name-errors visible-toggle invisible">
             </div>
+            @endif
+            @if ($errors->first('email'))
+            <div class="input-cllctn-input input input-has-errors">
+            @else
             <div class="input-cllctn-input input">
+            @endif
                 {{ Form::text('email', '', ['class' => 'input-cllctn-input-field input-field']) }}
                 {{ Form::label('email', 'youremail@example.com', ['class' => 'input-cllctn-input-lbl input-lbl lbl visible']) }}
             </div>
+            @if ($errors->first('email'))
+            <div class="input-errors email-errors visible-toggle visible">
+                <p>{{ $errors->first('email') }}</p>
+            </div>
+            @else
             <div class="input-errors email-errors visible-toggle invisible">
             </div>
+            @endif
+            @if ($errors->first('phone'))
+            <div class="input-cllctn-input input input-has-errors">
+            @else
             <div class="input-cllctn-input input">
+            @endif
                 {{ Form::text('phone', '', ['class' => 'input-cllctn-input-field input-field']) }}
                 {{ Form::label('phone', 'Phone', ['class' => 'input-cllctn-input-lbl input-lbl lbl visible']) }}
             </div>
+            @if ($errors->first('phone'))
+            <div class="input-errors phone-errors visible-toggle visible">
+                <p>{{ $errors->first('phone') }}</p>
+            </div>
+            @else
             <div class="input-errors phone-errors visible-toggle invisible">
             </div>
+            @endif
+            @if ($errors->first('password'))
+            <div class="input-cllctn-input input input-has-errors">
+            @else
             <div class="input-cllctn-input input">
+            @endif
                 {{ Form::password('password', ['class' => 'input-cllctn-input-field input-field']) }}
                 {{ Form::label('password', 'Password', ['class' => 'input-cllctn-input-lbl input-lbl lbl visible']) }}
             </div>
+            @if ($errors->first('password'))
+            <div class="input-errors password-errors visible-toggle visible">
+                <p>{{ $errors->first('password') }}</p>
+            </div>
+            @else
             <div class="input-errors password-errors visible-toggle invisible">
             </div>
-            <div class="input-cllctn-input input input-small">
+            @endif
+            <div class="input-cllctn-input input">
                 {{ Form::password('password_confirm', ['class' => 'input-cllctn-input-field input-field']) }}
                 {{ Form::label('password_confirm', 'Confirm Password', ['class' => 'input-cllctn-input-lbl input-lbl lbl visible']) }}
             </div>
-            <div class="input-errors password-confirm-errors visible-toggle invisible">
-            </div>
-            <div class="input-cllctn-input input input-small">
+            @if ($errors->first('address'))
+            <div class="input-cllctn-input input input-has-errors">
+            @else
+            <div class="input-cllctn-input input">
+            @endif
                 {{ Form::text('address', '', ['class' => 'input-cllctn-input-field input-field']) }}
                 {{ Form::label('address', 'Street Address', ['class' => 'input-cllctn-input-lbl input-lbl lbl visible']) }}
             </div>
+            @if ($errors->first('address'))
+            <div class="input-errors address-errors visible-toggle visible">
+                <p>{{ $errors->first('address') }}</p>
+            </div>
+            @else
             <div class="input-errors address-errors visible-toggle invisible">
             </div>
+            @endif
+            @if ($errors->first('city'))
+            <div class="input-cllctn-input input input-has-errors">
+            @else
             <div class="input-cllctn-input input">
+            @endif
                 {{ Form::text('city', '', ['class' => 'input-cllctn-input-field input-field']) }}
                 {{ Form::label('city', 'City', ['class' => 'input-cllctn-input-lbl input-lbl lbl visible']) }}
             </div>
+            @if ($errors->first('city'))
+            <div class="input-errors city-errors visible-toggle visible">
+                <p>{{ $errors->first('city') }}</p>
+            </div>
+            @else
             <div class="input-errors city-errors visible-toggle invisible">
             </div>
+            @endif
+            @if ($errors->first('state'))
+            <div class="input-cllctn-input input input-small input-has-errors">
+            @else
             <div class="input-cllctn-input input input-small">
+            @endif
                 {{ Form::text('state', '', ['class' => 'input-cllctn-input-field input-field']) }}
                 {{ Form::label('state', 'State', ['class' => 'input-cllctn-input-lbl input-lbl lbl visible']) }}
             </div>
+            @if ($errors->first('zip_code'))
+            <div class="input-cllctn-input input input-small input-margin input-has-errors">
+            @else
             <div class="input-cllctn-input input input-small input-margin">
+            @endif
                 {{ Form::text('zip_code', '', ['class' => 'input-cllctn-input-field input-field']) }}
                 {{ Form::label('zip_code', 'Zip', ['class' => 'input-cllctn-input-lbl input-lbl lbl visible']) }}
             </div>
+            @if ($errors->first('state'))
+            <div class="input-errors state-errors visible-toggle visible">
+                <p>{{ $errors->first('state') }}</p>
+            </div>
+            @else
             <div class="input-errors state-errors visible-toggle invisible">
             </div>
+            @endif
+            @if ($errors->first('zip_code'))
+            <div class="input-errors zip-code-errors visible-toggle visible">
+                <p>{{ $errors->first('zip_code') }}</p>
+            </div>
+            @else
             <div class="input-errors zip-code-errors visible-toggle invisible">
             </div>
+            @endif
             <div class="form-btn-wrap">
-                <button class="form-btn btn btn-inactive">
-                    <p class="btn-inactive-text visible">Nevermind</p>
-                    <p class="btn-active-text invisible">Sign up</p>
+                <button class="form-btn btn btn-active">
+                    <p class="btn-active-text visible">Sign up</p>
                 </button>
             </div>
         </div>
@@ -112,7 +193,6 @@
                 inputs: Input.all().required()        
             });
 
-            myafterschoolprograms.toggleButton($('.btn'), inputs.passing());
             $(event.target).parent().removeClass('input-has-errors');
             myafterschoolprograms.resetVisibility($(inputs.getErrorElement(event.target.name)), 0);
         });
