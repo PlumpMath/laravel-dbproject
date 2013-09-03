@@ -604,10 +604,15 @@ ul {
     color: #2f3854;
     font-size: 1.618rem;
     line-height: 130.9%;
-    margin-bottom: -.25rem; }
+    margin-bottom: -.25rem;
+    /* SUBTYPES */
+    /* .copy-title-big */ }
+    .copy .copy-title.copy-title-big {
+      font-size: 2.618rem;
+      margin-bottom: 1rem; }
   .copy .copy-sub {
     color: #2f3854;
-    font-size: 1rem;
+    font-size: 1.05rem;
     line-height: 130.9%;
     margin-top: 2.618rem; }
   .copy .copy-paragraph {
@@ -654,73 +659,6 @@ ul {
       vertical-align: middle; }
 
 /* .footer */
-/*=== log-in block ===*/
-.log-in {
-  opacity: 0;
-  text-align: center;
-  -o-transition: 0.5s all;
-  -ms-transition: 0.5s all;
-  -moz-transition: 0.5s all;
-  -webkit-transition: 0.5s all;
-  transition: 0.5s all;
-  -o-transform: translateX(-17.944rem);
-  -ms-transform: translateX(-17.944rem);
-  -moz-transform: translateX(-17.944rem);
-  -webkit-transform: translateX(-17.944rem);
-  transform: translateX(-17.944rem);
-  /* SUBTYPES */
-  /* .invisible */
-  /* .visible */
-  /* CHILDREN */
-  /* .log-in-form-title */ }
-  .log-in.invisible {
-    display: block;
-    height: 0;
-    transition: none; }
-  .log-in.visible {
-    display: block;
-    height: auto;
-    opacity: 1;
-    -o-transform: translateX(0);
-    -ms-transform: translateX(0);
-    -moz-transform: translateX(0);
-    -webkit-transform: translateX(0);
-    transform: translateX(0); }
-  .log-in .log-in-form-title {
-    font-size: 1.618rem;
-    margin-bottom: 1rem;
-    text-align: left; }
-
-/* .log-in */
-/*=== sign-up block ===*/
-.sign-up {
-  overflow: auto;
-  /* CHILDREN */
-  /* .copy */
-  /* .sign-up-btn */
-  /* .sign-up-log-in */ }
-  .sign-up .sign-up-elem {
-    float: right;
-    width: 20.1094rem; }
-    .sign-up .sign-up-elem:first-child {
-      text-align: center; }
-    .sign-up .sign-up-elem:last-child {
-      margin-right: 4.236rem; }
-  .sign-up .copy {
-    /* CHILDREN */
-    /* .copy-paragraph */ }
-    .sign-up .copy .copy-paragraph {
-      /* CHILDREN */
-      /* .copy-paragraph-text */ }
-      .sign-up .copy .copy-paragraph .copy-paragraph-text {
-        margin-top: 1.618rem;
-        margin-bottom: 0; }
-  .sign-up .sign-up-btn {
-    margin-top: 8.875rem; }
-  .sign-up .sign-up-log-in {
-    margin-top: 1rem; }
-
-/* .sign-up */
 /*=== button block ===*/
 .btn {
   border-radius: .25rem;
@@ -893,6 +831,86 @@ ul {
     margin-top: 4.236rem; }
 
 /* .show */
+/*=== 404 ===*/
+.missing {
+  width: 20.1094rem;
+  /* CHILDREN */
+  /* .copy-title-big */ }
+  .missing .copy-title-big {
+    color: #cc2a3b;
+    text-align: center;
+    /* .icon */ }
+    .missing .copy-title-big .icon {
+      margin-right: 1rem; }
+
+/* .missing */
+/*=== log-in block ===*/
+.log-in {
+  opacity: 0;
+  text-align: center;
+  -o-transition: 0.5s all;
+  -ms-transition: 0.5s all;
+  -moz-transition: 0.5s all;
+  -webkit-transition: 0.5s all;
+  transition: 0.5s all;
+  -o-transform: translateX(-17.944rem);
+  -ms-transform: translateX(-17.944rem);
+  -moz-transform: translateX(-17.944rem);
+  -webkit-transform: translateX(-17.944rem);
+  transform: translateX(-17.944rem);
+  /* SUBTYPES */
+  /* .invisible */
+  /* .visible */
+  /* CHILDREN */
+  /* .log-in-form-title */ }
+  .log-in.invisible {
+    display: block;
+    height: 0;
+    transition: none; }
+  .log-in.visible {
+    display: block;
+    height: auto;
+    opacity: 1;
+    -o-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0); }
+  .log-in .log-in-form-title {
+    font-size: 1.618rem;
+    margin-bottom: 1rem;
+    text-align: left; }
+
+/* .log-in */
+/*=== sign-up block ===*/
+.sign-up {
+  overflow: auto;
+  /* CHILDREN */
+  /* .copy */
+  /* .sign-up-btn */
+  /* .sign-up-log-in */ }
+  .sign-up .sign-up-elem {
+    float: right;
+    width: 20.1094rem; }
+    .sign-up .sign-up-elem:first-child {
+      text-align: center; }
+    .sign-up .sign-up-elem:last-child {
+      margin-right: 4.236rem; }
+  .sign-up .copy {
+    /* CHILDREN */
+    /* .copy-paragraph */ }
+    .sign-up .copy .copy-paragraph {
+      /* CHILDREN */
+      /* .copy-paragraph-text */ }
+      .sign-up .copy .copy-paragraph .copy-paragraph-text {
+        margin-top: 1.618rem;
+        margin-bottom: 0; }
+  .sign-up .sign-up-btn {
+    margin-top: 8.875rem; }
+  .sign-up .sign-up-log-in {
+    margin-top: 1rem; }
+
+/* .sign-up */
 /*=== register ===*/
 .register {
   display: table;

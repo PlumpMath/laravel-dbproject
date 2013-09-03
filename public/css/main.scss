@@ -397,11 +397,18 @@ ul {
         font-size:      $sm;
         line-height:    $line_height;
         margin-bottom:  -.25rem;
+
+        /* SUBTYPES */
+
+        &.copy-title-big {
+            font-size: $med;
+            margin-bottom: $tny;
+        }/* .copy-title-big */
     }/* .copy-title */
 
     .copy-sub {
         color:          $black;
-        font-size:      $tny;
+        font-size:      1.05rem;
         line-height:    $line_height;
         margin-top:     $med;
     }/* .copy-sub */
@@ -465,84 +472,6 @@ ul {
         }
     }
 }/* .footer */
-
-/*=== log-in block ===*/
-
-.log-in {
-    opacity:            0;
-    text-align:         center;
-
-    @include transition(.5s);
-    @include transform(translateX(-$max));
-
-    /* SUBTYPES */
-
-    &.invisible {
-        display:    block;
-        height:     0;
-        transition: none;
-    }/* .invisible */
-
-    &.visible {
-        display:            block;
-        height:             auto;
-        opacity:            1;
-
-        @include transform(translateX(0));
-    }/* .visible */
-
-    /* CHILDREN */
-
-    .log-in-form-title {
-        font-size:      $sm;
-        margin-bottom:  $tny;
-        text-align:     left;
-    }/* .log-in-form-title */
-}/* .log-in */
-
-/*=== sign-up block ===*/
-
-.sign-up {
-    overflow: auto;
-
-    /* CHILDREN */
-
-    .sign-up-elem {
-        float: right;
-        width: $input_short_width;
-
-        &:first-child {
-            text-align: center;
-        }
-
-        &:last-child {
-            margin-right: $lg;
-        }
-    }
-
-    .copy {
-
-        /* CHILDREN */
-
-        .copy-paragraph {
-
-            /* CHILDREN */
-
-            .copy-paragraph-text {
-                margin-top: $sm;
-                margin-bottom: 0;
-            }/* .copy-paragraph-text */
-        }/* .copy-paragraph */
-    }/* .copy */
-
-    .sign-up-btn {
-        margin-top: 8.875rem;
-    }/* .sign-up-btn */
-
-    .sign-up-log-in {
-        margin-top: $tny;
-    }/* .sign-up-log-in */
-}/* .sign-up */
 
 /*=== button block ===*/
 
@@ -733,6 +662,101 @@ ul {
         margin-top: $lg;
     }/* .rsrc */
 }/* .show */
+
+/*=== 404 ===*/
+
+.missing {
+    width: $input_short_width;
+
+    /* CHILDREN */
+
+    .copy-title-big {
+        color:      $red;
+        text-align: center;
+
+        .icon {
+            margin-right: $tny;
+        }/* .icon */
+    }/* .copy-title-big */
+}/* .missing */
+
+/*=== log-in block ===*/
+
+.log-in {
+    opacity:            0;
+    text-align:         center;
+
+    @include transition(.5s);
+    @include transform(translateX(-$max));
+
+    /* SUBTYPES */
+
+    &.invisible {
+        display:    block;
+        height:     0;
+        transition: none;
+    }/* .invisible */
+
+    &.visible {
+        display:            block;
+        height:             auto;
+        opacity:            1;
+
+        @include transform(translateX(0));
+    }/* .visible */
+
+    /* CHILDREN */
+
+    .log-in-form-title {
+        font-size:      $sm;
+        margin-bottom:  $tny;
+        text-align:     left;
+    }/* .log-in-form-title */
+}/* .log-in */
+
+/*=== sign-up block ===*/
+
+.sign-up {
+    overflow: auto;
+
+    /* CHILDREN */
+
+    .sign-up-elem {
+        float: right;
+        width: $input_short_width;
+
+        &:first-child {
+            text-align: center;
+        }
+
+        &:last-child {
+            margin-right: $lg;
+        }
+    }
+
+    .copy {
+
+        /* CHILDREN */
+
+        .copy-paragraph {
+
+            /* CHILDREN */
+
+            .copy-paragraph-text {
+                margin-top: $sm;
+                margin-bottom: 0;
+            }/* .copy-paragraph-text */
+        }/* .copy-paragraph */
+    }/* .copy */
+
+    .sign-up-btn {
+        margin-top: 8.875rem;
+    }/* .sign-up-btn */
+
+    .sign-up-log-in {
+        margin-top: $tny;
+    }/* .sign-up-log-in */
+}/* .sign-up */
 
 /*=== register ===*/
 

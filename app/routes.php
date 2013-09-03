@@ -4,41 +4,14 @@ Route::get('/', function ()
 {
     if (Auth::check()) {
         $url = [
-            'home'        => URL::to('/'),
-            'log_out'     => URL::to('/log/out'),
-        ];
-
-        $resources = [
-            [
-                'name'  => 'Locations',
-                'url'   => [
-                    'index'     => action('LocationController@index'),
-                    'search'    => '#',
-                    'create'    => action('LocationController@create'),
-                ],
-            ],
-            [
-                'name'  => 'Users',
-                'url'   => [
-                    'index'     => action('UserController@index'),
-                    'search'    => '#',
-                    'create'    => action('UserController@create'),
-                ],
-            ],
-            [
-                'name'  => 'Late Sign Ups',
-                'url'   => [
-                    'index'     => action('LateSignUpController@index'),
-                    'search'    => '#',
-                    'create'    => action('LateSignUpController@create'),
-                ],
-            ],
+            'home'      => URL::to('/'),
+            'log_out'   => URL::to('/log/out'),
+            'verify'    => URL::to('/verify'),
         ];
 
         $data = [
-            'title'     => 'Welcome, '.Auth::user()->first_name.' '.Auth::user()->last_name.'!',
+            'title'     => 'Welcome, '.Auth::user()->first_name.' '.Auth::user()->last_name.' -- myafterschoolprograms',
             'url'       => $url,
-            'resources' => $resources,
         ];
 
         return View::make('defaults.home.signed_in', $data);
@@ -252,5 +225,14 @@ Route::resource('users', 'UserController');
 Route::resource('latesignups', 'LateSignUpController');
 
 App::missing(function ($exception) {
-    return Response::view('errors.missing', [], 404);
+    $url = [
+        'home' => URL::to('/')
+    ];
+
+    $data = [
+        'url' => $url,
+        'title' => '404 -- myafterschoolprograms'
+    ];
+
+    return Response::view('errors.missing', $data, 404);
 });
