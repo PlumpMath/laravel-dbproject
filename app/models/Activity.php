@@ -1,6 +1,8 @@
 <?php
 
 class Activity extends Resource {
+    public $timestamps = false;
+    
     protected $guarded = array();
 
     public static $rules = array();

@@ -1,6 +1,8 @@
 <?php
 
 class LessonRestriction extends Resource {
+    public $timestamps = false;
+
     protected $guarded = [];
 
     public static $rules = [
