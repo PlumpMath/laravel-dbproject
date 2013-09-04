@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateLessondatetemplatesTable extends Migration {
+class CreateLessonRestrictionsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,11 @@ class CreateLessondatetemplatesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('lesson_date_templates', function(Blueprint $table) {
+		Schema::create('lesson_restrictions', function(Blueprint $table) {
 			$table->increments('id');
-			$table->string('name');
-			$table->text('description')->nullable;
+			$table->string('property');
+			$table->string('comparison');
+			$table->string('value');
 		});
 	}
 
@@ -26,7 +27,7 @@ class CreateLessondatetemplatesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('lesson_date_templates');
+		Schema::drop('lesson_restrictions');
 	}
 
 }

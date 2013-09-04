@@ -11,7 +11,8 @@ class Lesson extends Resource {
         'Location',
         'Children',
         'LateSignUp',
-        'Activity'
+        'Activity',
+        'LessonRestriction',
     ];
 
     public function activity()
@@ -37,5 +38,10 @@ class Lesson extends Resource {
     public function children()
     {
         return $this->belongsToMany('Children');
+    }
+
+    public function restrictions()
+    {
+        return $this->belongsToMany('LessonRestriction');
     }
 }

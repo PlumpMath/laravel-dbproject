@@ -255,6 +255,16 @@ Route::get('/activate/{hash}', function ($hash) {
 });
 
 Route::get('/signup', function () {
+    $url = [
+        'home' => URL::to('/'),
+    ];
+
+    $data = [
+        'title' => 'Signing up -- myafterschoolprograms.com',
+        'url'   => $url,
+    ];
+
+    return View::make('defaults.signup.', $data);
 });
 
 Route::get('/signup/late', function () {

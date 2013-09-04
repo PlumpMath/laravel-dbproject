@@ -16,7 +16,6 @@ class CreateActivityLocationTable extends Migration {
             $table->increments('id');
             $table->integer('activity_id');
             $table->integer('location_id');
-            $table->timestamps();
         });
     }
 

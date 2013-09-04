@@ -66,6 +66,33 @@ class LessonsTableSeeder extends Seeder
 {
     public function run()
     {
+
+        for($i = 1; $i < 11; $i++) {
+            $data = [
+                'property' => 'grade',
+                'comparison' => '=',
+                'value' => $i,
+            ];
+
+            $restriction = LessonRestriction::create($data);
+        }
+
+        $data = [
+            'property' => 'gender',
+            'comparison' => '=',
+            'value' => 'male',
+        ];
+
+        $restriction = LessonRestriction::create($data);
+
+        $data = [
+            'property' => 'gender',
+            'comparison' => '=',
+            'value' => 'female',
+        ];
+
+        $restriction = LessonRestriction::create($data);
+
         $now = date('Y-m-d H:i:s');
         for ($i=0; $i < 5; $i++) { 
             $data = [
@@ -84,6 +111,14 @@ class LessonsTableSeeder extends Seeder
 
             $activity = $location->activities()->first();
             $activity->lessons()->save($lesson);
+
+            for ($j=0; $j < mt_rand(2,5); $j++) { 
+                $restriction = LessonRestriction::find(mt_rand(1,10));
+                $lesson->restrictions()->attach($restriction);
+            }
+
+            $restriction = LessonRestriction::find(mt_rand(11,12));
+            $lesson->restrictions()->attach($restriction);
 
             $lessons            = [];
             $lesson_start       = date('j') + mt_rand(-60, 60);
