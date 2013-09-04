@@ -16,6 +16,9 @@
         	</div>
         </div>
     </div>
+
+    @yield('footer')
+
 @stop
 
 @section('scripts')

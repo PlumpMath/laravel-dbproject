@@ -102,7 +102,7 @@
 
         $('.form').on('submit', function (event) {
             var inputs = Input.test({
-                email: Input.get('email').required().email(),
+                email: Input.get('email').required(),
                 password: Input.get('password').required()
             });
             

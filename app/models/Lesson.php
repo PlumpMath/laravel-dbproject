@@ -1,0 +1,41 @@
+<?php
+
+class Lesson extends Resource {
+    protected $guarded = [];
+
+    public static $rules = [
+    ];
+
+    protected $relations_to = [
+        'LessonDate',
+        'Location',
+        'Children',
+        'LateSignUp',
+        'Activity'
+    ];
+
+    public function activity()
+    {
+        return $this->belongsTo('Activity');
+    }
+
+    public function late_sign_up()
+    {
+        return $this->hasMany('LateSignUp');
+    }
+
+    public function dates()
+    {
+        return $this->hasMany('LessonDate');
+    }
+
+    public function location()
+    {
+        return $this->belongsTo('location');
+    }
+
+    public function children()
+    {
+        return $this->belongsToMany('Children');
+    }
+}

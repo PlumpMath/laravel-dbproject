@@ -26,6 +26,7 @@ class User extends Resource implements UserInterface, RemindableInterface {
     protected $relations_to = [
         'LateSignUp',
         'Verification',
+        'Child',
     ];
 
     public static $rules = [
@@ -97,14 +98,28 @@ class User extends Resource implements UserInterface, RemindableInterface {
     // {{{ verification
 
     /**
-     * Get the user's latesignups
+     * Get the user's verification
      *
-     * @return collection of latesignups
+     * @return verification
      */
 
     public function verification()
     {
-        return $this->hasOne('verification');
+        return $this->hasOne('Verification');
+    }
+
+    // }}}
+    // {{{ children
+
+    /**
+     * Get the user's children
+     *
+     * @return collection of children
+     */
+
+    public function children()
+    {
+        return $this->hasMany('Child');
     }
 
     // }}}

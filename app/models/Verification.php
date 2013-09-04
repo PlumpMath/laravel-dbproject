@@ -1,6 +1,6 @@
 <?php
 
-// {{{ Location
+// {{{ Verification
 
 class Verification extends Resource {
 
@@ -9,6 +9,10 @@ class Verification extends Resource {
     protected $guarded = [];
 
     public static $rules = [];
+
+    protected $relations_to = [
+        'User',
+    ];
 
     // }}}
     // {{{ user

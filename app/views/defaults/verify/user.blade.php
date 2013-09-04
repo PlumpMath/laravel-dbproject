@@ -16,4 +16,7 @@
         	</div>
         </div>
     </div>
+
+    @yield('footer')
+
 @stop

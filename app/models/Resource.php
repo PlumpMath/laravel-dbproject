@@ -19,7 +19,8 @@ class Resource extends Eloquent {
      * @return array    array containing strings of models
      */
 
-    public function relations() {
+    public function relations()
+    {
     	return $this->relations_to;
     }
 

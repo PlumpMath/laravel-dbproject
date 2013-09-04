@@ -14,15 +14,15 @@ class CreateChildTable extends Migration {
     {
         Schema::create('children', function(Blueprint $table) {
             $table->increments('id');
-            $table->timestamp('date_of_birth');
-            $table->integer('age');
-            $table->integer('grade');
+            $table->integer('user_id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('school');//Possibly exchanged for school ID should we be able to compile a list of schools
-            $table->integer('gender');
+            $table->string('school');
+            $table->timestamp('birthday');
+            $table->integer('age');
+            $table->integer('grade');
+            $table->string('gender');
             $table->boolean('returning_player');
-            $table->integer('parent_id');
             $table->timestamps();
         });
     }

@@ -510,7 +510,7 @@ ul {
   right: 0;
   top: 0;
   width: 18rem;
-  z-index: 10;
+  z-index: 8;
   -o-transition: 0.25s all;
   -ms-transition: 0.25s all;
   -moz-transition: 0.25s all;
@@ -635,7 +635,7 @@ ul {
   left: 0;
   right: 0;
   text-align: left;
-  z-index: 9;
+  z-index: 7;
   /* CHILDREN */
   /* .footer-title */ }
   .footer .footer-title {
@@ -762,9 +762,9 @@ ul {
     border: 1px solid #cc2a3b; }
   .input .input-icon {
     position: absolute;
-    left: 1rem;
+    right: 1rem;
     top: 1rem;
-    z-index: 7; }
+    z-index: 5; }
   .input .input-field {
     background: none;
     border: 1px solid #9397a8;
@@ -774,7 +774,7 @@ ul {
     padding: 1rem;
     position: relative;
     width: 26.8125rem;
-    z-index: 8;
+    z-index: 6;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
@@ -785,19 +785,19 @@ ul {
       color: #2f3854;
       outline: none; }
     .input .input-field.input-has-icon {
-      padding-left: 2.5rem; }
+      padding-right: 2.5rem; }
   .input .input-lbl {
     color: #9397a8;
     position: absolute;
     left: 1.1rem;
     top: 1rem;
-    z-index: 7;
-    /* SUBTYPES */
-    /* .input-has-icon */ }
-    .input .input-lbl.input-has-icon {
-      left: 2.5rem; }
+    z-index: 5; }
 
 /* .input */
+.input-not-text {
+  position: none; }
+
+/* .input-not-text */
 /*=== form block ===*/
 /* .form */
 /*=== nav block ===*/
@@ -818,8 +818,19 @@ ul {
 /*=== input-errors ===*/
 .input-errors {
   color: #cc2a3b;
-  margin-bottom: 1.618rem;
   font-size: .809rem;
+  margin-bottom: 1.618rem;
+  text-align: left; }
+
+/* .input-errors */
+/*=== input-errors ===*/
+.input-message {
+  background: #e1edff;
+  border: 1px solid #95beff;
+  color: #7fa4d9;
+  font-size: .809rem;
+  margin-bottom: 1.618rem;
+  padding: 1rem;
   text-align: left; }
 
 /* .input-errors */
@@ -939,7 +950,8 @@ ul {
       /* .input-field */
       /* .input-field */ }
       .register .form .input-cllctn .input-small {
-        display: inline-block; }
+        display: inline-block;
+        vertical-align: middle; }
       .register .form .input-cllctn .input-margin {
         margin-left: 1rem; }
       .register .form .input-cllctn .input-field {
@@ -952,14 +964,44 @@ ul {
       text-align: center; }
 
 /* .register */
+.register-child .copy {
+  margin-top: 2.1875rem; }
+.register-child .form .input-cllctn {
+  position: relative; }
+  .register-child .form .input-cllctn .input-default {
+    color: #9397a8; }
+  .register-child .form .input-cllctn .input-not-text {
+    margin-bottom: 1.618rem; }
+  .register-child .form .input-cllctn .input-checkbox, .register-child .form .input-cllctn .input-checkbox-lbl {
+    display: inline-block;
+    margin-left: 1rem;
+    vertical-align: middle; }
+  .register-child .form .input-cllctn .input-field[name='grade'] {
+    width: 5.70313rem; }
+  .register-child .form .input-cllctn .input-field[name='gender'] {
+    width: 8.9375rem; }
+  .register-child .form .input-cllctn .lbl .icon {
+    color: #95beff;
+    margin-left: 1.618rem;
+    position: absolute;
+    right: 1rem; }
+    .register-child .form .input-cllctn .lbl .icon:hover {
+      color: #7fa4d9;
+      cursor: pointer; }
+
+/* .register-child */
 /*=== verify ===*/
 .verify {
   margin: auto;
   width: 20.1094rem;
   /* CHILDREN */
+  /* .copy-paragraph-text */
   /* .copy-paragraph-text */ }
-  .verify .copy-paragraph {
-    margin-top: 2.618rem; }
+  .verify .copy-title-big {
+    color: #2dcb70;
+    text-align: center; }
+  .verify .copy-title {
+    margin-bottom: 2.618rem; }
 
 /* .page */
 /*=== page ===*/
@@ -998,6 +1040,39 @@ ul {
     margin-top: 4.236rem; }
 
 /* .page */
+/*=== twitter-typeahead === */
+.twitter-typeahead {
+  position: relative !important;
+  margin-bottom: 1.618rem; }
+  .twitter-typeahead .tt-query {
+    margin-bottom: 0; }
+  .twitter-typeahead .tt-hint {
+    background: none;
+    color: #9397a8;
+    display: block;
+    margin: 1px 0 0 1px;
+    padding: 1rem;
+    text-overflow: ellipsis;
+    width: 18.1094rem;
+    z-index: 5;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+  .twitter-typeahead .tt-dropdown-menu {
+    background: white;
+    border: 1px solid #9397a8;
+    width: 20.1094rem;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box; }
+  .twitter-typeahead .tt-suggestion {
+    color: #2f3854;
+    padding: 0.25rem 1rem; }
+    .twitter-typeahead .tt-suggestion.tt-is-under-cursor {
+      background: #95beff;
+      color: white; }
+
+/* .twitter-typeahead */
 /*=============================
 
     STATE

@@ -10,7 +10,22 @@ class Location extends Resource {
 
     public static $rules = [];
 
+    protected $relations_to = [
+    	'Activity',
+        'Lesson',
+    ];
+
     // }}}
+
+    public function activities()
+    {
+    	return $this->belongsToMany('Activity');
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany('Lesson');
+    }
 }
 
 // }}}

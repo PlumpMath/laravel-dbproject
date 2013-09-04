@@ -198,10 +198,14 @@
             'not': {
                 'fn':  function (value, array) {
                     if (array === null) return false;
-                    return array.indexOf(value) === -1;
+                    if ($.type(array) === 'array') {
+                        return array.indexOf(value) === -1;
+                    } else {
+                        return value !== array;
+                    }
                 },
                 'msg': function (name, array) {
-                    return name+' should not be one of these: '+array.join(', ')+'.';
+                    return name+' is invalid.';
                 }
             },
             'numeric': {
@@ -330,7 +334,7 @@
                             if (!!msg) output += '<p>'+msg+'</p>';
                         }
 
-                        $('input[name='+i+']').parent().resetToggle(' input-has-errors', !!output);
+                        $('input[name='+i+']').parents('.input').resetToggle(' input-has-errors', !!output);
                         myafterschoolprograms.resetVisibility(element, !!output)
 
                         if (!!output) {
@@ -349,7 +353,7 @@
         },
         get: function (selector) {
             var items = $('input[name='+selector+']');
-
+            if (items.length === 0) items = $('select[name='+selector+']');
             if (items.length === 0) return null;
             return new this.__construct(items, this.instance);
         },

@@ -13,13 +13,16 @@ class LateSignUp extends Resource {
     protected $relations_to = [
     	'User',
     	'ClassSession',
+        'Lesson',
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo('User');
     }
 
-    public function class_session() {
-        return $this->belongsTo('ClassSession');
+    public function lesson()
+    {
+        return $this->belongsTo('Lesson');
     }
 }

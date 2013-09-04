@@ -2,35 +2,20 @@
 
 Route::get('/', function ()
 {
-    if (Auth::check()) {
-        $url = [
-            'home'      => URL::to('/'),
-            'log_out'   => URL::to('/log/out'),
-            'verify'    => URL::to('/verify'),
-        ];
+    //urls for the view
+    $url = [
+        'home'        => URL::to('/'),
+        'log_in'        => URL::to('/log/in'),
+        'register'      => URL::to('/register/user'),
+    ];
 
-        $data = [
-            'title'     => 'Welcome, '.Auth::user()->first_name.' '.Auth::user()->last_name.' -- myafterschoolprograms',
-            'url'       => $url,
-        ];
+    //data to make available to the view
+    $data = [
+        'title' => 'Hello! Welcome to myafterschoolprograms.com',
+        'url'   => $url,
+    ];
 
-        return View::make('defaults.home.signed_in', $data);
-    } else {
-        //urls for the view
-        $url = [
-            'home'        => URL::to('/'),
-            'log_in'        => URL::to('/log/in'),
-            'register'      => URL::to('/register'),
-        ];
-
-        //data to make available to the view
-        $data = [
-            'title' => 'Hello! Welcome to myafterschoolprograms.com',
-            'url'   => $url,
-        ];
-
-        return View::make('defaults.home.not_signed_in', $data);
-    }
+    return View::make('defaults.home.not_signed_in', $data);
 });
 
 Route::get('/log/in', function () {
@@ -85,11 +70,11 @@ Route::get('/log/out', function () {
     return Redirect::to('/');
 });
 
-Route::get('/register', function () {
+Route::get('/register/user', function () {
     $url = [
         'home'          => URL::to('/'),
         'check_email'   => URL::to('/is_email_unique'),
-        'verify'        => URL::to('/verify'),
+        'verify'        => URL::to('/verify/user'),
     ];
 
     $data = [
@@ -101,10 +86,30 @@ Route::get('/register', function () {
         Session::forget('errors');
     }
 
-    return View::make('defaults.register', $data);
+    return View::make('defaults.register.user', $data);
 });
 
-Route::post('/verify', function () {
+Route::get('/register/child', function () {
+    $url = [
+        'home'      => URL::to('/'),
+        'log_out'   => URL::to('/log/out'),
+        'verify'    => URL::to('/verify/child'),
+    ];
+
+    $data = [
+        'title'     => 'Welcome, '.Auth::user()->first_name.' '.Auth::user()->last_name.' -- myafterschoolprograms',
+        'url'       => $url,
+    ];
+
+    if (Session::has('errors')) {
+        $data['errors'] = Session::get('errors');
+        Session::forget('errors');
+    }
+
+    return View::make('defaults.register.child', $data);
+});
+
+Route::post('/verify/user', function () {
     $name       = explode(' ', Input::get('name'), 2);
     $first_name = $name[0];
     $last_name  = (isset($name[1])) ? $name[1] : '';
@@ -115,7 +120,7 @@ Route::post('/verify', function () {
         'email'             => Input::get('email'),
         'phone'             => Input::get('phone'),
         'password'          => Input::get('password'),
-        'password_confirm' => Input::get('password_confirm'),
+        'password_confirm'  => Input::get('password_confirm'),
         'address'           => Input::get('address'),
         'city'              => Input::get('city'),
         'state'             => Input::get('state'),
@@ -162,10 +167,63 @@ Route::post('/verify', function () {
             'url'   => $url,
         ];
 
-        return View::make('defaults.verify', $data);      
+        return View::make('defaults.verify.user', $data);      
     }
 
-    return Redirect::to('/register')->withErrors($validator)->withInput(Input::except(['password','password_confirm']));
+    return Redirect::to('/register/user')->withErrors($validator)->withInput(Input::except(['password','password_confirm']));
+});
+
+Route::post('/verify/child', function () {
+    $name       = explode(' ', Input::get('name'), 2);
+    $first_name = $name[0];
+    $last_name  = (isset($name[1])) ? $name[1] : '';
+
+    $data = [
+        'first_name'        => $first_name,
+        'last_name'         => $last_name,
+        'school'            => Input::get('school'),
+        'birthday'          => Child::getBirthday(Input::get('birthday')),
+        'age'               => Child::getAge(Input::get('birthday')),
+        'grade'             => Input::get('grade'),
+        'gender'            => Input::get('gender'),
+        'returning_player'  => (Input::has('returning_player')) ? 1 : 0,
+    ];
+    
+    $validator = Validator::make($data, Child::$rules);
+
+    if ($validator->passes()) {
+        $child = new Child;
+
+        $child->first_name          = $data['first_name'];
+        $child->last_name           = $data['last_name'];
+        $child->school              = $data['school'];
+        $child->birthday            = $data['birthday'];
+        $child->age                 = $data['age'];
+        $child->grade               = $data['grade'];
+        $child->gender              = $data['gender'];
+        $child->returning_player    = $data['returning_player'];
+
+        $child->save(); 
+
+        $user = Auth::user();
+
+        $user->children()->save($child);
+
+        $url = [
+            'home'          => URL::to('/'),
+            'register'      => URL::to('/register/child'),
+            'sign_up'       => URL::to('/signup'),
+        ]; 
+        $data = [
+            'title' => 'Adding your child -- myafterschoolprograms.com',
+            'url'   => $url,
+            'child' => $child,
+        ];
+
+        return View::make('defaults.verify.child', $data);      
+    }
+
+    return Redirect::to('/register/child')->withErrors($validator)->withInput(Input::all());
 });
 
 Route::get('/activate/{hash}', function ($hash) {
@@ -194,6 +252,12 @@ Route::get('/activate/{hash}', function ($hash) {
     ];
 
     return View::make('defaults.activate', $data);
+});
+
+Route::get('/signup', function () {
+});
+
+Route::get('/signup/late', function () {
 });
 
 Route::post('/is_email_unique', function () {

@@ -17,9 +17,24 @@
                 return this;
             },
             toggleLabels: function (event) {
-                $(event.target)
-                    .siblings('.input-lbl')
-                    .resetToggle('invisible visible', ($(event.target).val() === ''));
+                var condition;
+
+                if ($(event.target).is('select')) {
+                    condition = event.target.value === $(event.target).children('.default').value;
+                } else {
+                    condition = $(event.target).val() === '';
+                }
+
+                if ($(event.target).siblings('.input-lbl').length === 0) {
+                    $(event.target)
+                        .parent()
+                        .siblings('.input-lbl')
+                        .resetToggle('invisible visible', condition);
+                } else {
+                    $(event.target)
+                        .siblings('.input-lbl')
+                        .resetToggle('invisible visible', condition);
+                }
             },
             resetLabels: function () {
                 $.each($('.input-lbl'), function () {

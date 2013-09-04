@@ -36,14 +36,16 @@ $yellow:        #fbdf6f;
 $red:           #cc2a3b;
 
 /*=== Z-INDEX ===*/
-$layer_1: 10;
-$layer_2: 9;
-$layer_3: 8;
-$layer_4: 7;
-$layer_5: 6;
-$layer_6: 5;
-$layer_7: 4;
-$layer_8: 3;
+$layer_1: 8;
+$layer_2: 7;
+$layer_3: 6;
+$layer_4: 5;
+$layer_5: 4;
+$layer_6: 3;
+$layer_7: 2;
+$layer_8: 1;
+$layer_9: -1;
+$layer_10: -2;
 
 /*=============================
 
@@ -566,7 +568,7 @@ ul {
     .input-icon {
         position: absolute;
 
-            left:   $tny;
+            right:   $tny;
             top:    $tny;
 
         z-index:    $layer_4;
@@ -594,7 +596,7 @@ ul {
         /* SUBTYPES */
 
         &.input-has-icon {
-            padding-left: $tny * 2.5;
+            padding-right: $tny * 2.5;
         }/* .input-has-icon */
     }/* .input-field */
 
@@ -606,14 +608,12 @@ ul {
             top:    $tny;
 
         z-index:    $layer_4;
-
-        /* SUBTYPES */
-
-        &.input-has-icon {
-            left: $tny * 2.5;
-        }/* .input-has-icon */
     }/* .input-lbl */
 }/* .input */
+
+.input-not-text {
+    position: none;
+}/* .input-not-text */
 
 /*=== form block ===*/
 
@@ -647,10 +647,23 @@ ul {
 
 .input-errors {
     color:          $red;
-    margin-bottom:  $sm;
     font-size:      .809rem;
-    text-align: left;
+    margin-bottom:  $sm;
+    text-align:     left;
 }/* .input-errors */
+
+/*=== input-errors ===*/
+
+.input-message {
+    background:     $light_blue;
+    border:         1px solid $blue;
+    color:          $dark_blue;
+    font-size:      .809rem;
+    margin-bottom:  $sm;
+    padding:        $tny;
+    text-align:     left;
+}/* .input-errors */
+
 
 /*=== show ===*/
 
@@ -787,6 +800,7 @@ ul {
 
             .input-small {
                 display: inline-block;
+                vertical-align: middle;
             }/* .input-small */
 
             .input-margin {
@@ -812,6 +826,54 @@ ul {
     }/* .form */
 }/* .register */
 
+.register-child {
+    .copy {
+        margin-top: 2.1875rem;
+    }
+
+    .form {
+        .input-cllctn {
+            position: relative;
+
+            .input-default {
+                color: $gray;
+            }
+
+            .input-not-text {
+                margin-bottom: $sm;
+            }
+
+            .input-checkbox, .input-checkbox-lbl {
+                display:        inline-block;
+                margin-left:    $tny;
+                vertical-align: middle;
+            }
+
+            .input-field[name='grade'] {
+                width: $input_width/4 - ($tny);
+            }
+
+            .input-field[name='gender'] {
+                width: $input_width/3;
+            }
+
+            .lbl {
+                .icon {
+                    color:  $blue;
+                    margin-left:    $sm;
+                    position:       absolute;
+                    right:          $tny;
+
+                    &:hover {
+                        color:  $dark_blue;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}/* .register-child */
+
 /*=== verify ===*/
 
 .verify {
@@ -820,8 +882,13 @@ ul {
 
     /* CHILDREN */
 
-    .copy-paragraph {
-        margin-top: $med;
+    .copy-title-big {
+        color:      $green;
+        text-align: center;
+    }/* .copy-paragraph-text */
+
+    .copy-title {
+        margin-bottom: $med;
     }/* .copy-paragraph-text */
 }/* .page */
 
@@ -859,6 +926,48 @@ ul {
     }
 
 }/* .page */
+
+/*=== twitter-typeahead === */
+
+.twitter-typeahead {
+    position: relative !important;
+    margin-bottom: $sm;
+
+    .tt-query {
+        margin-bottom: 0;
+    }
+
+    .tt-hint {
+        background:     none;
+        color:          $gray;
+        display:        block;
+        margin:         1px 0 0 1px;
+        padding:        $tny;
+        text-overflow:  ellipsis;
+        width:          $input_short_width - 2rem;
+        z-index:        $layer_4;
+
+        @include box-sizing;     
+    }
+
+    .tt-dropdown-menu {
+        background: $white;
+        border: 1px solid $gray;
+        width: $input_short_width;
+
+        @include box-sizing;     
+    }
+
+    .tt-suggestion {
+        color: $black;
+        padding: .25rem $tny;
+
+        &.tt-is-under-cursor {
+            background: $blue;
+            color: $white;
+        }
+    }
+}/* .twitter-typeahead */
 
 /*=============================
 
